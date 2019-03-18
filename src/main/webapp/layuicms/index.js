@@ -205,7 +205,7 @@ layui.config({//基础目录
             id: 'LAY_layuipro',
             btn: ['好的'],
             moveType: 1,
-            content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>这是一个基于layui的带后台的CMS管理系统，已经集成了通用的功能，例如菜单、用户、角色、机构、日志管理，系统架构清晰，方便做二次开发。</p></div>',
+            content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>欢迎使用本系统</p></div>',
             success: function (layero) {
                 var btn = layero.find('.layui-layer-btn');
                 btn.css('text-align', 'center');
