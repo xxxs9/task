@@ -8,6 +8,7 @@
 	<description>数据源配置</description>
 
 	<beans>
+		<context:property-placeholder location="classpath:config/config_uat.properties" />
 		<!--数据源-->
 		<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 			<property name="driverClassName" value="${jdbc.driverClass}" />
