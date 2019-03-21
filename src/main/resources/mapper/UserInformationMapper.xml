@@ -7,6 +7,7 @@
     -->
     <result column="ID" jdbcType="VARCHAR" property="id" />
     <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="INFORMATION_TITLE" jdbcType="VARCHAR" property="informationTitle" />
     <result column="IS_TOP" jdbcType="INTEGER" property="isTop" />
     <result column="INFORMATION_IMG" jdbcType="VARCHAR" property="informationImg" />
     <result column="INFORMATION_TYPE" jdbcType="INTEGER" property="informationType" />
@@ -14,4 +15,45 @@
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="INFORMATION_CONTENT" jdbcType="LONGVARCHAR" property="informationContent" />
   </resultMap>
+
+    <!--基本数据列-->
+    <sql id="Base_Column_List">
+    ID,LOGIN_NAME,INFORMATION_TITLE,IS_TOP,INFORMATION_IMG,INFORMATION_TYPE,CREATE_TIME,UPDATE_TIME,INFORMATION_CONTENT
+  </sql>
+    <!-- 获取所有数列-->
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from user_information t
+        where 1=1
+        <if test="loginName != null and loginName != ''">
+            and t.LOGIN_NAME LIKE CONCAT('%',#{loginName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="informationTitle != null and informationTitle != ''">
+            and t.INFORMATION_TITLE LIKE CONCAT('%',#{informationTitle,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="isTop != null and isTop != ''">
+            and t.IS_TOP = #{isTop,jdbcType=INT}
+        </if>
+        order by t.UPDATE_TIME desc,t.id desc
+        limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+    </select>
+    <!--获取记录数-->
+    <select id="countGetAll" parameterType="map" resultType="Integer">
+        select count(1) from user_information t
+        where 1=1
+        <if test="loginName != null and loginName != ''">
+            and t.LOGIN_NAME LIKE CONCAT('%',#{loginName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="informationTitle != null and informationTitle != ''">
+            and t.INFORMATION_TITLE LIKE CONCAT('%',#{informationTitle,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="isTop != null and isTop != ''">
+            and t.IS_TOP = #{isTop,jdbcType=INT}
+        </if>
+    </select>
+    <!--删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+    delete from user_information
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
 </mapper>

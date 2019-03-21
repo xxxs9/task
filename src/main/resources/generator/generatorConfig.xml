@@ -29,9 +29,9 @@
         <javaClientGenerator targetPackage="com.gameloft9.demo.dataaccess.dao.user" targetProject=".\src\main\java" type="XMLMAPPER"/>
 
         <!-- 指定数据库表-->
-        <table tableName="user_comment" domainObjectName="UserComment"/>
-        <table tableName="user_dynamic" domainObjectName="UserDynamic"/>
-        <table tableName="user_friends" domainObjectName="UserFriends"/>
+        <!--<table tableName="user_comment" domainObjectName="UserComment"/>-->
+        <!--<table tableName="user_dynamic" domainObjectName="UserDynamic"/>-->
+        <!--<table tableName="user_friends" domainObjectName="UserFriends"/>-->
         <table tableName="user_information" domainObjectName="UserInformation"/>
     </context>
 </generatorConfiguration>

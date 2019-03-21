@@ -52,5 +52,6 @@ public class VCodeServiceImpl implements VCodeService{
 
         // 将当前验证码存入到Session中
         session.setAttribute("vcode", new String(vCode));
+        System.out.println(new String(vCode)+"===================");
     }
 }

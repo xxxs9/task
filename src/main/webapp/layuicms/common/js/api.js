@@ -143,6 +143,10 @@ layui.define(['$tool','jquery'], function (exports) {
         },
         UpdateUserInfo:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'personCenter/update.do',req,config,successCallback,errorCallback);
+        },
+        /*删除资讯*/
+        DelInformation:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'common/delete.do',req,config,successCallback,errorCallback);
         }
     };
 

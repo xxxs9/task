@@ -1,5 +1,7 @@
 package com.gameloft9.demo.dataaccess.model.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -21,12 +23,14 @@ public class UserDynamic {
      * 创建时间
      */
     @Column(name = "CREATE_TIME")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 更新时间
      */
     @Column(name = "UPDATE_TIME")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**

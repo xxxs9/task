@@ -1,5 +1,7 @@
 package com.gameloft9.demo.dataaccess.model.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -16,6 +18,12 @@ public class UserInformation {
      */
     @Column(name = "LOGIN_NAME")
     private String loginName;
+
+    /**
+     * 资讯标题
+     */
+    @Column(name = "INFORMATION_TITLE")
+    private String informationTitle;
 
     /**
      * 是否置顶
@@ -39,12 +47,14 @@ public class UserInformation {
      * 创建时间
      */
     @Column(name = "CREATE_TIME")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 更新时间
      */
     @Column(name = "UPDATE_TIME")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**
@@ -87,6 +97,24 @@ public class UserInformation {
      */
     public void setLoginName(String loginName) {
         this.loginName = loginName;
+    }
+
+    /**
+     * 获取资讯标题
+     *
+     * @return INFORMATION_TITLE - 资讯标题
+     */
+    public String getInformationTitle() {
+        return informationTitle;
+    }
+
+    /**
+     * 设置资讯标题
+     *
+     * @param informationTitle 资讯标题
+     */
+    public void setInformationTitle(String informationTitle) {
+        this.informationTitle = informationTitle;
     }
 
     /**

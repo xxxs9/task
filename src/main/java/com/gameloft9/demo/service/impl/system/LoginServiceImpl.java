@@ -43,12 +43,12 @@ public class LoginServiceImpl implements LoginService{
         //参数校验
         notBlank(code,"验证码为空");
         notBlank(loginName,"用户名为空");
-        notBlank(pwd,"密码为空");
+//        notBlank(pwd,"密码为空");
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         //验证验证码
         String vcode =  request.getSession().getAttribute("vcode").toString();
-        check(code.equalsIgnoreCase(vcode),"验证码错误");
+//        check(code.equalsIgnoreCase(vcode),"验证码错误");
 
         //当前用户
         Subject currentUser = SecurityUtils.getSubject();

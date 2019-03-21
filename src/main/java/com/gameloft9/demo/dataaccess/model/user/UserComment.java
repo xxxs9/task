@@ -1,5 +1,7 @@
 package com.gameloft9.demo.dataaccess.model.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -27,6 +29,7 @@ public class UserComment {
      * 评论时间
      */
     @Column(name = "CREATE_TIME")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
