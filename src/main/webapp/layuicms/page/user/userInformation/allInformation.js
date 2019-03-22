@@ -92,9 +92,9 @@ layui.config({
     //添加用户
     $(".add_btn").click(function () {
         var index = layui.layer.open({
-            title: "添加用户",
+            title: "添加资讯",
             type: 2,
-            content: "addUser.html",
+            content: "addInformation.html",
             success: function (layero, index) {
                 setTimeout(function () {
                     layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
