@@ -11,6 +11,7 @@ public class UserInformation {
      * 资讯表
      */
     @Column(name = "ID")
+    @Id
     private String id;
 
     /**

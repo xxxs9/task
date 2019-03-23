@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class InformtionServiceImpl implements InformtionService {
     public Boolean deleteById(String id) {
         CheckUtil.notBlank(id,"用户id为空");
         //删除
-        dao.deleteById(id);
+        dao.deleteByPrimaryKey(id);
         return true;
     }
 }

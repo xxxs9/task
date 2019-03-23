@@ -4,13 +4,14 @@ layui.config({
     ajaxExtention: 'ajaxExtention',//加载自定义扩展，每个业务js都需要加载这个ajax扩展
     $tool: 'tool',
     $api:'api'
-}).use(['form', 'layer', 'tree','$api', 'jquery', 'ajaxExtention', '$tool'], function () {
+}).use(['form', 'layer', 'tree','$api', 'jquery', 'ajaxExtention', '$tool','upload'], function () {
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         laypage = layui.laypage,
         $ = layui.jquery,
         $tool = layui.$tool,
         $api = layui.$api;
+        upload = layui.upload;//上传组件
 
     var orgId;
     var orgName;
@@ -24,9 +25,19 @@ layui.config({
         initOrgTree();
         //加载角色列表
         loadRoleList();
+        //初始化发布者
+        initInformation();
     }
 
     init();
+
+    /**
+     * 初始化发布者
+     */
+    function  initInformation() {
+        //获取登陆的用户名
+        $("#loginName").val(window.sessionStorage.getItem("sysUser"));
+    }
 
     /**
      * 初始化组织机构树
@@ -40,13 +51,15 @@ layui.config({
 
     }
     /**
-     * 创建资讯端口
+     * 自动加载编译器
      */
     $(function () {
         var html = '<div id="myEditor" name="informationContent"></div>';
         $('#informationContent').append(html);
         ResetEditor();
-        var ue = UE.getEditor('myEditor');
+        var ue = UE.getEditor('myEditor',{
+            zIndex:0
+        });
         ue.ready(function(){
             ue.setContent("");
         });
@@ -161,7 +174,53 @@ layui.config({
 
         return false;
     })
+    /**
+     * 关于文件上传
+     */
+    $('#chooseFile').on('click',function() {
+        // //加载jquery和upload实例
+        // var $ = layui.jquery,
+        //     upload = layui.upload;
 
+        //普通图片上传(编辑表单的)
+        var uploadInst = upload.render({
+            elem: '#chooseFile',//选择绑定选择文件的那个按钮
+            url: 'UploadServlet',
+            auto: false, //选择文件后不自动上传
+            bindAction: '#beginFile',//绑定开始上传按钮
+            accept: 'images',//上传时校验文件类型
+            acceptMime: 'image/*',//打开选择框只显示图片文件
+            size: 1024 * 5,//设置文件上传的限制大小单位KB
+            choose: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#photo_img').attr('src', result); //图片链接（base64）
+                });
+            },
+            done: function (res) {
+                //如果上传失败
+                if (res.code == 500) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                if (res.code != 500) {
+                    //绑定新的路径给存图片路径的input框
+                    $('#informationImg').val(res.data);
+                    return layer.msg('上传成功');
+                }
+            },
+            //关于失败重传可以写也可以不写参照layui官方文档
+            error: function () {
+                //演示失败状态，并实现重传
+                var textTip = $('#textTip');
+                textTip.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                textTip.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
 });
+
 
 
