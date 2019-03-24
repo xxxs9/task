@@ -11,6 +11,7 @@ public class UserComment {
      * 评论表
      */
     @Column(name = "ID")
+    @Id
     private Integer id;
 
     /**
@@ -29,7 +30,7 @@ public class UserComment {
      * 评论时间
      */
     @Column(name = "CREATE_TIME")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GTM+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**

@@ -11,6 +11,7 @@ public class UserFriends {
      * 朋友表
      */
     @Column(name = "ID")
+    @Id
     private Integer id;
 
     /**

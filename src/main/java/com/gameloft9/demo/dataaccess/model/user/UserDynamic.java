@@ -11,6 +11,7 @@ public class UserDynamic {
      * 朋友圈动态表
      */
     @Column(name = "ID")
+    @Id
     private Integer id;
 
     /**
@@ -23,14 +24,14 @@ public class UserDynamic {
      * 创建时间
      */
     @Column(name = "CREATE_TIME")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 更新时间
      */
     @Column(name = "UPDATE_TIME")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**
