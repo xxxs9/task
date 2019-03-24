@@ -166,6 +166,10 @@ layui.define(['$tool','jquery'], function (exports) {
         },
         UpdateDynamic:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'dynamic/update.do',req,config,successCallback,errorCallback);
+        },
+        /*好友模块*/
+        DelFriends:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'friends/delete.do',req,config,successCallback,errorCallback);
         }
     };
 
