@@ -8,7 +8,9 @@ import com.gameloft9.demo.mgrframework.beans.response.PageResultBean;
 import com.gameloft9.demo.mgrframework.beans.response.ResultBean;
 import com.gameloft9.demo.service.api.user.InformtionService;
 import com.gameloft9.demo.service.beans.system.InformationAddRequest;
+import com.gameloft9.demo.service.beans.system.SysUserResponse;
 import com.gameloft9.demo.service.beans.system.UserAddRequest;
+import com.gameloft9.demo.service.beans.system.UserUpdateRequest;
 import com.gameloft9.demo.utils.Constants;
 import com.gameloft9.demo.utils.FileUtil;
 import com.gameloft9.demo.utils.PropertyUtil;
@@ -17,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
@@ -110,6 +114,26 @@ public class InformationController {
         }
        return rs;
 
+    }
+
+    /**
+     * 获取资讯
+     * */
+    @RequestMapping(value = "/get.do",method = RequestMethod.POST)
+    @ResponseBody
+    public IResult getUser(String id){
+        //返回json至前端的均返回ResultBean或者PageResultBean
+        return new ResultBean<UserInformation>(service.getById(id));
+    }
+    /**
+     * 更新用户
+     * */
+    @RequestMapping(value = "/update.do",method = RequestMethod.POST)
+    @ResponseBody
+    @BizOperLog(operType = OperType.UPDATE,memo = "更新资讯")
+    public IResult updateUser(@RequestBody @Valid UserInformation informationAddRequest){//传递了数组，前台放在payload里面了，后台通过@RequestBody获取
+        //返回json至前端的均返回ResultBean或者PageResultBean
+        return new ResultBean<Boolean>(service.updateInformation(informationAddRequest));
     }
 
 }

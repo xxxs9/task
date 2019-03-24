@@ -55,7 +55,7 @@ public class UserInformation {
      * 更新时间
      */
     @Column(name = "UPDATE_TIME")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**

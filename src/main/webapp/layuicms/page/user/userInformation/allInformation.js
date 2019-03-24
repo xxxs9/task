@@ -89,7 +89,7 @@ layui.config({
         return false;
     });
 
-    //添加用户
+    //添加资讯
     $(".add_btn").click(function () {
         var index = layui.layer.open({
             title: "添加资讯",
@@ -97,7 +97,7 @@ layui.config({
             content: "addInformation.html",
             success: function (layero, index) {
                 setTimeout(function () {
-                    layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
+                    layui.layer.tips('点击此处返回资讯列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
                 }, 500)
@@ -152,12 +152,12 @@ layui.config({
     //编辑
     function editUser(id){
         var index = layui.layer.open({
-            title: "编辑用户",
+            title: "编辑资讯",
             type: 2,
-            content: "editUser.html?id="+id,
+            content: "editInformation.html?id="+id,
             success: function (layero, index) {
                 setTimeout(function () {
-                    layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
+                    layui.layer.tips('点击此处返回资讯列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
                 }, 500)

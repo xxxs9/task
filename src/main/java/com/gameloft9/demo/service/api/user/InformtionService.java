@@ -53,4 +53,13 @@ public interface InformtionService {
      * @return
      */
     String addInformation(InformationAddRequest information);
+
+    /**
+     * 获取指定资讯
+     * @param id
+     * @return
+     */
+    UserInformation getById(String id);
+
+    Boolean updateInformation(UserInformation request);
 }

@@ -144,12 +144,18 @@ layui.define(['$tool','jquery'], function (exports) {
         UpdateUserInfo:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'personCenter/update.do',req,config,successCallback,errorCallback);
         },
-        /*删除资讯*/
+        /*资讯*/
         DelInformation:function(req,config,successCallback,errorCallback){
             doPost($tool.getContext() + 'common/delete.do',req,config,successCallback,errorCallback);
         },
         AddInformation:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'common/add.do',req,config,successCallback,errorCallback);
+        },
+        GetInformation:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'common/get.do',req,successCallback,errorCallback);
+        },
+        UpdateInformation:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'common/update.do',req,config,successCallback,errorCallback);
         }
     };
 

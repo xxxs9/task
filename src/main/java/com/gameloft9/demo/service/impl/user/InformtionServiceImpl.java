@@ -63,4 +63,31 @@ public class InformtionServiceImpl implements InformtionService {
         dao.insert(in);
         return in.getId();
     }
+
+    @Override
+    public UserInformation getById(String id) {
+        CheckUtil.notBlank(id,"用户id为空");
+        //根据主键查询
+        UserInformation userInformation = dao.selectByPrimaryKey(id);
+        return userInformation;
+    }
+
+    @Override
+    public Boolean updateInformation(UserInformation request) {
+        //获取创建时间不变
+        UserInformation selectCreateTimeExp = dao.selectByPrimaryKey(request.getId());
+        //设置传入属性
+        UserInformation userInformation = new UserInformation();
+        userInformation.setId(request.getId());
+        userInformation.setCreateTime(selectCreateTimeExp.getCreateTime());
+        userInformation.setIsTop(request.getIsTop());
+        userInformation.setInformationType(request.getInformationType());
+        userInformation.setInformationTitle(request.getInformationTitle());
+        userInformation.setInformationImg(request.getInformationImg());
+        userInformation.setInformationContent(request.getInformationContent());
+        userInformation.setLoginName(request.getLoginName());
+        userInformation.setUpdateTime(new Date());
+        dao.updateByPrimaryKey(userInformation);
+        return true;
+    }
 }
