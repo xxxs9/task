@@ -13,18 +13,10 @@ layui.config({
         $api = layui.$api;
         upload = layui.upload;//上传组件
 
-    var orgId;
-    var orgName;
-    var roleIdList = new Array();//所有的角色id列表
-
     /**
      * 页面初始化
      * */
     function init() {
-        //初始化机构树
-        initOrgTree();
-        //加载角色列表
-        loadRoleList();
         //初始化发布者
         initInformation();
     }
@@ -39,17 +31,6 @@ layui.config({
         $("#loginName").val(window.sessionStorage.getItem("sysUser"));
     }
 
-    /**
-     * 初始化组织机构树
-     * */
-    function initOrgTree() {
-        //获取所有组织机构树
-
-        $api.GetAllOrg(null,function (res) {
-            renderTree('#org-tree', res.data);
-        });
-
-    }
     /**
      * 自动加载编译器
      */
@@ -85,87 +66,32 @@ layui.config({
     }
 
 
-
-    /**
-     * 绘制树
-     * @param id dom id
-     * @param nodes 树节点数据
-     * */
-    function renderTree(id, nodes) {
-        //绘制前先清空
-        $(id).empty();
-
-        //绘制
-        layui.tree({
-            elem: id
-            , nodes: nodes
-            , click: function (node) {//显示组织机构数据
-                console.log(node); //node即为当前点击的节点数据
-                orgId = node.id;//保存机构id
-                orgName = node.name;
-            }
-        });
-    }
-
-    /**
-     * 加载角色列表
-     * */
-    function loadRoleList() {
-        var req = {
-            page: 1,
-            limit: 999
-        };
-
-
-        $api.GetRoleList(req,function (res) {
-            var data = res.data;
-            if (data.length > 0) {
-                var roleHtml = "";
-                for (var i = 0; i < data.length; i++) {
-                    roleHtml += '<input type="checkbox" name="' + data[i].id + '" title="' + data[i].roleName + '">';
-                    roleIdList.push(data[i].id);//保存id列表
-                }
-
-                $('.role-check-list').append($(roleHtml));
-                form.render();//重新绘制表单，让修改生效
-            }
-        });
-    }
-
     /**
      * 表单提交
      * */
-    form.on("submit(addUser)", function (data) {
+    form.on("submit(addInformation)", function (data) {
         var loginName = data.field.loginName;
-        var realName = data.field.realName;
-        var mobile = data.field.mobile;
-        var idList = new Array();
+        var informationTitle = data.field.informationTitle;
+        var isTop = data.field.isTop;
+        var informationImg = data.field.informationImg;
+        var informationContent = UE.getEditor('myEditor').getContent();
+        var informationType = data.field.informationType;
 
-        if($tool.isBlank(orgId)||$tool.isBlank(orgName)){
-            layer.msg("请选择所属组织机构");
-            return false;
-        }
 
-        //获取选中的角色列表
-        for (var i = 0; i < roleIdList.length; i++) {
-            if (data.field[roleIdList[i]] === 'on') {
-                idList.push(roleIdList[i]);
-            }
-        }
 
         //请求
         var req = {
             loginName: loginName,
-            realName: realName,
-            mobile: mobile,
-            orgId: orgId,
-            orgName: orgName,
-            roleIdList: idList
+            informationTitle: informationTitle,
+            isTop: isTop,
+            informationImg: informationImg,
+            informationContent: informationContent,
+            informationType: informationType
         };
 
-        $api.AddUser(JSON.stringify(req),{contentType:"application/json;charset=UTF-8"},function (data) {
+        $api.AddInformation(JSON.stringify(req),{contentType:"application/json;charset=UTF-8"},function (data) {
             //top.layer.close(index);(关闭遮罩已经放在了ajaxExtention里面了)
-            layer.msg("用户添加成功！", {time: 1000}, function () {
+            layer.msg("资讯信息添加成功！", {time: 1000}, function () {
                 layer.closeAll("iframe");
                 //刷新父页面
                 parent.location.reload();
@@ -174,20 +100,16 @@ layui.config({
 
         return false;
     })
-    /**
-     * 关于文件上传
-     */
-    $('#chooseFile').on('click',function() {
-        // //加载jquery和upload实例
-        // var $ = layui.jquery,
-        //     upload = layui.upload;
 
+    /**
+     * 文件上传
+     */
         //普通图片上传(编辑表单的)
-        var uploadInst = upload.render({
-            elem: '#chooseFile',//选择绑定选择文件的那个按钮
-            url: 'UploadServlet',
+    var uploadInst = upload.render({
+            elem: '#chooseFile_add',//选择绑定选择文件的那个按钮
+            url: $tool.getContext() + 'common/upload.do',
             auto: false, //选择文件后不自动上传
-            bindAction: '#beginFile',//绑定开始上传按钮
+            bindAction: '#beginFile_add',//绑定开始上传按钮
             accept: 'images',//上传时校验文件类型
             acceptMime: 'image/*',//打开选择框只显示图片文件
             size: 1024 * 5,//设置文件上传的限制大小单位KB
@@ -219,8 +141,8 @@ layui.config({
                 });
             }
         });
-    });
-});
 
+
+});
 
 
