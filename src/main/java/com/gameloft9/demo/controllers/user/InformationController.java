@@ -53,7 +53,7 @@ public class InformationController {
      * */
     @RequestMapping(value = "/informationList.do",method = RequestMethod.POST)
     @ResponseBody
-    public IResult getUserList(String page, String limit, String loginName, String informationTitle, String isTop){
+    public IResult getList(String page, String limit, String loginName, String informationTitle, String isTop){
         //返回json至前端的均返回ResultBean或者PageResultBean
         return new PageResultBean<Collection<UserInformation>>(service.getAll(page,limit,loginName,informationTitle,isTop),service.countGetAll(loginName,informationTitle,isTop));
     }
@@ -64,13 +64,13 @@ public class InformationController {
     @RequestMapping(value = "/delete.do",method = RequestMethod.POST)
     @ResponseBody
     @BizOperLog(operType = OperType.DELETE,memo = "删除资讯")
-    public IResult deleteUser(String id){
+    public IResult delete(String id){
         //返回json至前端的均返回ResultBean或者PageResultBean
         return new ResultBean<Boolean>(service.deleteById(id));
     }
 
     /**
-     * 资讯
+     * 添加资讯
      * */
     @RequestMapping(value = "/add.do",method = RequestMethod.POST)
     @ResponseBody
@@ -121,7 +121,7 @@ public class InformationController {
      * */
     @RequestMapping(value = "/get.do",method = RequestMethod.POST)
     @ResponseBody
-    public IResult getUser(String id){
+    public IResult getInformation(String id){
         //返回json至前端的均返回ResultBean或者PageResultBean
         return new ResultBean<UserInformation>(service.getById(id));
     }

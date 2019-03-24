@@ -156,6 +156,16 @@ layui.define(['$tool','jquery'], function (exports) {
         },
         UpdateInformation:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'common/update.do',req,config,successCallback,errorCallback);
+        },
+        /*动态模块*/
+        DelDynamic:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'dynamic/delete.do',req,config,successCallback,errorCallback);
+        },
+        GetDynamic:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'dynamic/get.do',req,successCallback,errorCallback);
+        },
+        UpdateDynamic:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'dynamic/update.do',req,config,successCallback,errorCallback);
         }
     };
 

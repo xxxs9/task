@@ -50,10 +50,6 @@
             and t.IS_TOP = #{isTop}
         </if>
     </select>
-    <!--删除-->
-    <delete id="deleteById" parameterType="java.lang.String">
-    delete from user_information
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
+
 
 </mapper>

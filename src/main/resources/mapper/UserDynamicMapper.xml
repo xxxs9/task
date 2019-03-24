@@ -11,4 +11,28 @@
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="DYNAMIC_CONTENT" jdbcType="LONGVARCHAR" property="dynamicContent" />
   </resultMap>
+
+  <!--基本数据列-->
+  <sql id="Base_Column_List">
+    ID,LOGIN_NAME,DYNAMIC_CONTENT,CREATE_TIME,UPDATE_TIME
+  </sql>
+  <!-- 获取所有数列-->
+  <select id="getAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from user_dynamic t
+    where 1=1
+    <if test="loginName != null and loginName != ''">
+      and t.LOGIN_NAME LIKE CONCAT('%',#{loginName,jdbcType=VARCHAR},'%')
+    </if>
+    order by t.UPDATE_TIME desc,t.id desc
+    limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+  </select>
+  <!--获取记录数-->
+  <select id="countGetAll" resultType="Integer">
+    select count(1) from user_dynamic t
+    where 1=1
+    <if test="loginName != null and loginName != ''">
+      and t.LOGIN_NAME LIKE CONCAT('%',#{loginName,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+
 </mapper>
