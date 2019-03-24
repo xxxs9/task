@@ -64,15 +64,19 @@
 </script>
 <!--用户状态模板-->
 <script type="text/html" id="tmp">
-    {{#  if(d.isForbidden === '1'){ }}
-    禁用
+    {{#  if(d.informationType == '0'){ }}
+    新闻
+    {{#  } else if(d.informationType == '1') { }}
+    出装
+    {{#  } else if(d.informationType == '2'){ }}
+    技巧
     {{#  } else { }}
-    启用
+    未分类
     {{#  } }}
 </script>
 <!--是否置顶模板-->
 <script type="text/html" id="top">
-    {{#  if(d.isTop === '1'){ }}
+    {{#  if(d.isTop == '1'){ }}
     置顶
     {{#  } else { }}
     不置顶

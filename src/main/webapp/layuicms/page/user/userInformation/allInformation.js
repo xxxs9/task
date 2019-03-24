@@ -39,7 +39,7 @@ layui.config({
                   {field: 'loginName', title: '发布者', width: '10%'}
                 , {field: 'informationTitle', title: '标题', width: '10%'}
                 , {field: 'isTop', title: '是否置顶', width: '10%',templet: '#top'}
-                , {field: 'informationImg', title: '封面图', width: '10%'}
+                , {field: 'informationImg', title: '封面图', width: '10%',templet:'<div><img src="{{d.informationImg}}"></div>'}
                 , {field: 'informationType', title: '资讯类型', width: '10%',templet: '#tmp'}
                 , {field: 'createTime', title: '创建时间', width: '20%'}
                 , {field: 'updateTime', title: '更新时间', width: '20%'}

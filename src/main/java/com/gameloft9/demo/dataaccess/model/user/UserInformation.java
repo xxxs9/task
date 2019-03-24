@@ -48,7 +48,7 @@ public class UserInformation {
      * 创建时间
      */
     @Column(name = "CREATE_TIME")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**

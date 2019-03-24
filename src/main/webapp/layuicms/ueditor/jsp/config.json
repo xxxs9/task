@@ -13,7 +13,7 @@
   "imageCompressBorder": 1600,
   "imageInsertAlign": "none",
 //  图片配置
-  "imageUrlPrefix": "http://img.tiyuanku.cn/",
+  "imageUrlPrefix": "/stone",
   "imagePathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}",
   "scrawlActionName": "uploadscrawl",
   "scrawlFieldName": "upfile",

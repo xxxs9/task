@@ -147,6 +147,9 @@ layui.define(['$tool','jquery'], function (exports) {
         /*删除资讯*/
         DelInformation:function(req,config,successCallback,errorCallback){
             doPost($tool.getContext() + 'common/delete.do',req,config,successCallback,errorCallback);
+        },
+        AddInformation:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'common/add.do',req,config,successCallback,errorCallback);
         }
     };
 

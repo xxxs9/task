@@ -31,7 +31,7 @@
             and t.INFORMATION_TITLE LIKE CONCAT('%',#{informationTitle,jdbcType=VARCHAR},'%')
         </if>
         <if test="isTop != null and isTop != ''">
-            and t.IS_TOP = #{isTop,jdbcType=INT}
+            and t.IS_TOP = #{isTop}
         </if>
         order by t.UPDATE_TIME desc,t.id desc
         limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
@@ -47,7 +47,7 @@
             and t.INFORMATION_TITLE LIKE CONCAT('%',#{informationTitle,jdbcType=VARCHAR},'%')
         </if>
         <if test="isTop != null and isTop != ''">
-            and t.IS_TOP = #{isTop,jdbcType=INT}
+            and t.IS_TOP = #{isTop}
         </if>
     </select>
     <!--删除-->
