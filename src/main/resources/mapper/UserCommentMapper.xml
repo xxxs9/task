@@ -11,4 +11,53 @@
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="COMMENT_DETAILS" jdbcType="LONGVARCHAR" property="commentDetails" />
   </resultMap>
+    <!--动态信息的结果映射表-->
+    <resultMap id="UserDynamicMap" type="com.gameloft9.demo.dataaccess.model.user.UserDynamic">
+        <result column="ID" jdbcType="INTEGER" property="id" />
+        <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="DYNAMIC_CONTENT" jdbcType="LONGVARCHAR" property="dynamicContent" />
+    </resultMap>
+
+
+  <resultMap id="SelectResultBase" type="com.gameloft9.demo.service.beans.system.CommentSelectResponse">
+      <result column="ID" jdbcType="INTEGER" property="id" />
+      <result column="DYNAMIC_ID" jdbcType="INTEGER" property="dynamicId" />
+      <result column="COMMENT_NAME" jdbcType="VARCHAR" property="commentName" />
+      <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="COMMENT_DETAILS" jdbcType="LONGVARCHAR" property="commentDetails" />
+      <association property="dynamic" column="DYNAMIC_ID" select="getDynamic" />
+  </resultMap>
+
+    <!--基本数据列-->
+    <sql id="Base_Column_List">
+    ID,DYNAMIC_ID,COMMENT_NAME,CREATE_TIME,COMMENT_DETAILS
+  </sql>
+    <!-- 获取所有数列-->
+    <select id="getAll" resultMap="SelectResultBase">
+        select <include refid="Base_Column_List"/> from user_comment t
+        where 1=1
+        <if test="commentName != null and commentName != ''">
+            and t.COMMENT_NAME LIKE CONCAT('%',#{commentName,jdbcType=VARCHAR},'%')
+        </if>
+        order by t.CREATE_TIME desc,t.id desc
+        limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+    </select>
+
+    <!--获取记录数-->
+    <select id="countGetAll" resultType="Integer">
+        select count(1) from user_comment t
+        where 1=1
+        <if test="commentName != null and commentName != ''">
+            and t.COMMENT_NAME LIKE CONCAT('%',#{commentName,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+
+    <!--获取动态信息字段-->
+    <select id="getDynamic" parameterType="java.lang.Integer" resultMap="UserDynamicMap">
+        SELECT
+         *
+         FROM user_dynamic t WHERE t.ID=#{dynamicId}
+    </select>
 </mapper>

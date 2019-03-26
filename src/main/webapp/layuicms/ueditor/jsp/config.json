@@ -13,10 +13,11 @@
   "imageCompressBorder": 1600,
   "imageInsertAlign": "none",
 //  图片配置
-  "imageUrlPrefix": "/stone",
+  "imageUrlPrefix": "http://127.0.0.1/",
   "imagePathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}",
   "scrawlActionName": "uploadscrawl",
   "scrawlFieldName": "upfile",
+
   "scrawlPathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}",
   "scrawlMaxSize": 2048000,
   "scrawlUrlPrefix": "",

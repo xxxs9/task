@@ -170,6 +170,16 @@ layui.define(['$tool','jquery'], function (exports) {
         /*好友模块*/
         DelFriends:function(req,config,successCallback,errorCallback){
             doPost($tool.getContext() + 'friends/delete.do',req,config,successCallback,errorCallback);
+        },
+        /*评论模块*/
+        DelComment:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'comment/delete.do',req,config,successCallback,errorCallback);
+        },
+        GetComment:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'comment/get.do',req,successCallback,errorCallback);
+        },
+        UpdateComment:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'comment/update.do',req,config,successCallback,errorCallback);
         }
     };
 
