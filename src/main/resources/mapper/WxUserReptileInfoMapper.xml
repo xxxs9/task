@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.user.WxUserReptileInfoMapper">
+  <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.user.WxUserReptileInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="ID" jdbcType="BIGINT" property="id" />
+    <result column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="REPTILE_ID" jdbcType="VARCHAR" property="reptileId" />
+    <result column="SERVER_ID" jdbcType="VARCHAR" property="serverId" />
+    <result column="REPTILE_NAME" jdbcType="VARCHAR" property="reptileName" />
+    <result column="SERVER_NAME" jdbcType="VARCHAR" property="serverName" />
+  </resultMap>
+
+  <select id="queryWxUserReptileInfoByUuid" parameterType="String" resultMap="BaseResultMap">
+    select * from WX_USER_REPTILE_INFO t WHERE
+    t.UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+</mapper>
