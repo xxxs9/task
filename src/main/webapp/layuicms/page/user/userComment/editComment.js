@@ -68,7 +68,7 @@ layui.config({
      * 关于编译器
      */
     function ResetEditor() {
-        UEDITOR_CONFIG.UEDITOR_HOME_URL ='/stone/layuicms/ueditor/'; //一定要用这句话，否则你需要去
+        UEDITOR_CONFIG.UEDITOR_HOME_URL ='/task/layuicms/ueditor/'; //一定要用这句话，否则你需要去
         UE.getEditor('myEditor', {
             initialFrameHeight : 300,
             initialFrameWidth : 800,

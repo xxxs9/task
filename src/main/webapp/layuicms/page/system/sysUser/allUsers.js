@@ -30,6 +30,7 @@ layui.config({
     function defineTable() {
         tableIns = table.render({
             elem: '#user-data'
+            , id: 'dategrid'
             , height: 415
             , url: $tool.getContext() + 'sysUser/userList.do' //数据接口
             , method: 'post'
@@ -67,9 +68,10 @@ layui.config({
                 initPwd(row.id);
             }
         });
+
+        tableIns.resize('dategrid');
     }
     defineTable();
-
 
     //查询
     form.on("submit(queryUser)", function (data) {

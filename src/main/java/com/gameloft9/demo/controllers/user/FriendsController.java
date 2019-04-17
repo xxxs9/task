@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Collection;
 
 /**
- * 好用管理
+ * 好友管理
  */
 @Slf4j
 @Controller

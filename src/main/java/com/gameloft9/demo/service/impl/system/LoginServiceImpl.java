@@ -18,9 +18,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import static com.gameloft9.demo.mgrframework.utils.CheckUtil.*;
+import static com.gameloft9.demo.mgrframework.utils.CheckUtil.notBlank;
 
 /**
  * 登录服务

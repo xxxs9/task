@@ -18,6 +18,7 @@ import com.gameloft9.demo.utils.UUIDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,7 +39,7 @@ import java.util.Map;
  * 资讯功能
  */
 @Slf4j
-@Service
+@Controller
 @RequestMapping("/common")
 public class InformationController {
     @Autowired

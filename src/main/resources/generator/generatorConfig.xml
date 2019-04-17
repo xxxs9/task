@@ -20,18 +20,21 @@
                         password="${jdbc.password}">
         </jdbcConnection>
         <!-- targetProject:生成model类的位置 -->
-        <javaModelGenerator targetPackage="com.gameloft9.demo.dataaccess.model.user" targetProject=".\src\main\java"/>
+        <javaModelGenerator targetPackage="com.gameloft9.demo.dataaccess.model.user" targetProject="./src/main/java"/>
 
         <!-- targetProject:mapper映射文件生成的位置 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="./src/main/resources"/>
 
         <!-- targetPackage：mapper接口生成的位置 -->
-        <javaClientGenerator targetPackage="com.gameloft9.demo.dataaccess.dao.user" targetProject=".\src\main\java" type="XMLMAPPER"/>
+        <javaClientGenerator targetPackage="com.gameloft9.demo.dataaccess.dao.user" targetProject="./src/main/java" type="XMLMAPPER"/>
 
         <!-- 指定数据库表-->
         <!--<table tableName="user_comment" domainObjectName="UserComment"/>-->
         <!--<table tableName="user_dynamic" domainObjectName="UserDynamic"/>-->
         <!--<table tableName="user_friends" domainObjectName="UserFriends"/>-->
-        <table tableName="user_information" domainObjectName="UserInformation"/>
+        <!--<table tableName="user_information" domainObjectName="UserInformation"/>-->
+        <!--<table tableName="wx_user" domainObjectName="WxUser"/>-->
+        <!--<table tableName="wx_user_reptile_info" domainObjectName="WxUserReptileInfo"/>-->
+        <!--<table tableName="get_reptile_id" domainObjectName="GetReptileId"/>-->
     </context>
 </generatorConfiguration>

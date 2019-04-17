@@ -47,6 +47,7 @@ public class ExceptionHandler {
         ResultBean<?> result = new ResultBean();
         result.setMsg("数据库访问异常");
         result.setCode(ResultBean.SYSTEM_FAIL);
+        e.printStackTrace();
         return result;
     }
 
