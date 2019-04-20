@@ -24,6 +24,7 @@ public class VCodeServiceImpl implements VCodeService{
     /**
      * 输出验证码
      * */
+    @Override
     public void outPutVCode(HttpServletRequest request, HttpServletResponse response) throws Exception{
         HttpSession session = request.getSession();
         response.setContentType("image/jpeg");

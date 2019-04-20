@@ -51,6 +51,7 @@ public class SysMenuServiceImpl implements SysMenuService {
      *
      * @param UserTest 用户
      */
+    @Override
     public List<MenuTreeResponse> getMenuByRoles(UserTest user) {
         //拿到角色id列表
         List<SysRoleTest> roles = sysUserRoleTestMapper.getRolesByUserId(user.getId());
@@ -75,6 +76,7 @@ public class SysMenuServiceImpl implements SysMenuService {
      * @param menuCode     菜单编码
      * @param parentMenuId 父菜单主键
      */
+    @Override
     public List<SysMenuTestExtend> getAll(String page, String limit, String menuName, String menuCode, String parentMenuId) {
         PageRange pageRange = new PageRange(page, limit);
 
@@ -88,6 +90,7 @@ public class SysMenuServiceImpl implements SysMenuService {
      * @param menuCode     菜单编码
      * @param parentMenuId 父菜单主键
      */
+    @Override
     public int countGetAll(String menuName, String menuCode, String parentMenuId) {
         return sysMenuTestMapper.countGetAll(menuName, menuCode, parentMenuId);
     }
@@ -95,6 +98,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     /**
      * 获取一级菜单列表
      */
+    @Override
     public List<SysMenuTest> getFirstClassMenus() {
         List<SysMenuTest> menus = new ArrayList<SysMenuTest>();
         menus = sysMenuTestMapper.getFirstClassMenus();
@@ -110,6 +114,7 @@ public class SysMenuServiceImpl implements SysMenuService {
      * @param parentMenuId 父菜单id
      * @return String 菜单id
      */
+    @Override
     public String addMenu(String menuName, String menuUrl, String menuType, String parentMenuId, String requestUrl, String sort) {
         CheckUtil.notBlank(menuName, "菜单名称为空");
         CheckUtil.notBlank(menuUrl, "菜单访问链接为空");
@@ -150,12 +155,14 @@ public class SysMenuServiceImpl implements SysMenuService {
      *
      * @param menuId 菜单id
      */
+    @Override
     @Transactional(rollbackForClassName = "Exception")
     public Boolean deleteMenu(String menuId) {
         CheckUtil.notBlank(menuId, "菜单id为空");
 
         SysMenuTest menu = sysMenuTestMapper.selectByPrimaryKey(menuId);
-        if (StringUtils.isBlank(menu.getParentId())) {//删除的是一级菜单
+        //删除的是一级菜单
+        if (StringUtils.isBlank(menu.getParentId())) {
             log.info("删除菜单类型:一级菜单");
             int count = sysMenuTestMapper.getChildrenCount(menuId);
             CheckUtil.check(count <= 0, "含有子菜单，不能删除");
@@ -180,9 +187,11 @@ public class SysMenuServiceImpl implements SysMenuService {
      *
      * @param id 菜单主键
      */
+    @Override
     public SysMenuTestExtend getById(String id) {
         SysMenuTestExtend menu = sysMenuTestMapper.getById(id);
-        if (menu != null) {//获取所属角色id列表
+        //获取所属角色id列表
+        if (menu != null) {
             List<String> idList = sysMenuRoleTestMapper.getRoleIdsByMenuId(id);
             menu.setRoleIdList(idList);
         }
@@ -199,6 +208,7 @@ public class SysMenuServiceImpl implements SysMenuService {
      * @param sort       排序号
      * @param idList     角色列表
      */
+    @Override
     public Boolean updateMenu(String menuId, String menuName, String menuUrl, String requestUrl, String sort, List<String> idList) {
         CheckUtil.notBlank(menuName, "菜单名称为空");
         CheckUtil.notBlank(menuUrl, "访问链接为空");
@@ -282,7 +292,8 @@ public class SysMenuServiceImpl implements SysMenuService {
     private String generateMenuCode(String menuType, String parentMenuId) {
         String maxCode = "";
 
-        if (Constants.MenuType.FIRST_CLASS.value.equals(menuType)) {//一级菜单
+        //一级菜单
+        if (Constants.MenuType.FIRST_CLASS.value.equals(menuType)) {
             //找到一级菜单中的最大编码
             maxCode = sysMenuTestMapper.getMaxCodeOfFirstClass();
             if (StringUtils.isBlank(maxCode)) {
@@ -365,7 +376,8 @@ public class SysMenuServiceImpl implements SysMenuService {
 
             //更新
             SysAccessPermissionTest sysAccessPermissionTest = sysAccessPermissionTestMapper.selectByUrl(requestUrl);
-            if (sysAccessPermissionTest != null) {//更新
+            //更新
+            if (sysAccessPermissionTest != null) {
                 sysAccessPermissionTest.setRoles(privilege);
                 sysAccessPermissionTestMapper.updateByPrimaryKeySelective(sysAccessPermissionTest);
                 return;
@@ -400,7 +412,8 @@ public class SysMenuServiceImpl implements SysMenuService {
         if (roleNames == null || roleNames.isEmpty()) {
             return "authc";
         } else if (roleNames.size() == 1) {
-            String privilege_role = "roles[";//角色等于一个为"authc,roles[admin]"格式
+            //角色等于一个为"authc,roles[admin]"格式
+            String privilege_role = "roles[";
             privilege_role = privilege_role + roleNames.get(0) + "]";
             finalPrivilege = privilege_authc + privilege_role;
 

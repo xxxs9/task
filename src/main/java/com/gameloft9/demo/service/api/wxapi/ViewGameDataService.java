@@ -9,6 +9,9 @@ public interface ViewGameDataService {
 
     /**
      * 获取所有英雄
+     * @param pageNum
+     * @param pageSize
+     * @return
      */
     public List<HeroBase> getAllHero(Integer pageNum, Integer pageSize);
 
@@ -16,6 +19,9 @@ public interface ViewGameDataService {
      * 获取英雄明细
      * 通过 heroName和HeroTile
      * 因为会出现英雄名或者称号不匹配的现象
+     * @param heroName
+     * @param heroTile
+     * @return
      */
     public HeroDetailDto getHeroDetailSKill(String heroName, String heroTile);
 }

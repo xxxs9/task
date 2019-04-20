@@ -11,5 +11,6 @@ public interface IErrCode {
 
     String getDesc();
 
+    @Override
     String toString();
 }

@@ -49,8 +49,8 @@ public class Constants {
      * */
     public enum AttachmentType{
 
-        USER_FACE("userFace");//用户头像
-
+        //用户头像
+        USER_FACE("userFace");
         public String value;
 
         AttachmentType(String name){

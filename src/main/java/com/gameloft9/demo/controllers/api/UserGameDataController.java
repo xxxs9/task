@@ -41,7 +41,7 @@ public class UserGameDataController {
     @ResponseBody
     public IResult getUserGameData(String uuid){
 
-        if (!userQueryService.queryWxUser(uuid)){
+        if (userQueryService.queryWxUser(uuid)){
             return new ResultBean<WxUserBaseGameDto>(userGameDataService.getUserGameData(uuid));
         }
         return new ResultBean<String>("用户信息错误");
@@ -54,7 +54,7 @@ public class UserGameDataController {
     @RequestMapping(value = "/match.api",method = RequestMethod.POST)
     @ResponseBody
     public IResult getUserRecentMatch(String uuid){
-        if (!userQueryService.queryWxUser(uuid)){
+        if (userQueryService.queryWxUser(uuid)){
             return new ResultBean<List<ReptileUserRecentMatch>>(userGameDataService.getUserRecentMatch(uuid));
         }
         return new ResultBean<String>("用户信息错误");

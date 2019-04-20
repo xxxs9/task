@@ -22,6 +22,7 @@ public class GameDataPipeline implements Pipeline {
     public void process(ResultItems resultItems, Task task) {
         UserGame ug = resultItems.get("ug");
         if (ug != null && ug.getRub() != null && ug.getRList().size() > 0 ){
+            //没有数据才会入库
             if (reptileUserBaseMapper.queryByReptileServerId(
                     ug.getRub().getServerId(),ug.getRub().getReptileId()) == null){
                 reptileUserBaseMapper.insert(ug.getRub());

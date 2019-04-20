@@ -18,6 +18,7 @@ public interface InformtionService {
      * @param loginName     发布者名
      * @param informationTitle     文章标题
      * @param isTop       状态 0-不置顶 1-置顶
+     * @return
      */
     List<UserInformation> getAll(String page, String limit, String loginName, String informationTitle, String isTop);
 
@@ -27,12 +28,14 @@ public interface InformtionService {
      * @param loginName     登录名
      * @param informationTitle     文章标题
      * @param isTop       状态 0-不置顶 1-置顶
+     * @return
      */
     int countGetAll(String loginName, String informationTitle, String isTop);
 
     /**
      * 根据资讯ID删除用户
      * @param id 用户id
+     * @return
      * */
     Boolean deleteById(String id);
 
@@ -61,5 +64,10 @@ public interface InformtionService {
      */
     UserInformation getById(String id);
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     Boolean updateInformation(UserInformation request);
 }

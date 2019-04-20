@@ -51,7 +51,7 @@ public class UserGameDataServiceImpl implements UserGameDataService {
                     info.getServerId(), info.getReptileId());
             //获取近期比赛数据
             List<ReptileUserContentStatistics> csList = reptileUserContentStatisticsMapper.queryListByReptileServerId(
-                    info.getServerId(), info.getReptileId());
+                    info.getReptileId(),info.getServerId());
             dto.setUBase(uBase);
             dto.setCsList(csList);
 

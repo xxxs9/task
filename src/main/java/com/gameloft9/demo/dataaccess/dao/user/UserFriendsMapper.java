@@ -38,7 +38,13 @@ public interface UserFriendsMapper extends Mapper<UserFriends>{
 
     ///-------- admin ---------
 
-    //获取所有好友内容
+    /**
+     * 获取所有好友内容
+     * @param start
+     * @param end
+     * @param loginName
+     * @return
+     */
     List<UserFriends> getAll(
             @Param("start") int start,
             @Param("end") int end,

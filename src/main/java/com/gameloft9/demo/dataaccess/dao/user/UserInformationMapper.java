@@ -18,6 +18,8 @@ public interface UserInformationMapper extends Mapper<UserInformation> {
 
     /**
      * 获取新闻
+     * @param pageNum
+     * @param pageSize
      * @return
      */
     List<UserInformation> getNewsList(
@@ -26,7 +28,15 @@ public interface UserInformationMapper extends Mapper<UserInformation> {
 
     //-------- admin ------------
 
-    //获取所有资讯内容
+    /**
+     * 获取所有资讯内容
+     * @param start
+     * @param end
+     * @param loginName
+     * @param informationTitle
+     * @param isTop
+     * @return
+     */
     List<UserInformation> getAll(
             @Param("start") int start,
             @Param("end") int end,
@@ -44,6 +54,11 @@ public interface UserInformationMapper extends Mapper<UserInformation> {
     int countGetAll(@Param("loginName") String loginName,
                     @Param("informationTitle") String informationTitle,
                     @Param("isTop") String isTop);
-    //根据id删除指定记录
+
+    /**
+     * 根据id删除指定记录
+     * @param id
+     * @return
+     */
     int deleteById(String id);
 }

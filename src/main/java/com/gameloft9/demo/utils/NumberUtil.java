@@ -14,11 +14,13 @@ public class NumberUtil {
      * */
     public static String paddingNumber(Integer number,int count){
 
-        if(count <= 1){//位数小等于1直接返回
+        //位数小等于1直接返回
+        if(count <= 1){
             return number.toString();
         }
 
-        if(number < 0){//数字小于0直接返回
+        //数字小于0直接返回
+        if(number < 0){
             return number.toString();
         }
 
@@ -29,7 +31,8 @@ public class NumberUtil {
         }
 
         int res = number.compareTo(Integer.valueOf(arg));
-        if(res < 0){//小于最大值才能补零
+        //小于最大值才能补零
+        if(res < 0){
             int n = 0;
             //找到number几位
             int copy = number;
@@ -38,7 +41,8 @@ public class NumberUtil {
                 copy /= 10;
             }
 
-            int need = count - n;//需要补多少位
+            //需要补多少位
+            int need = count - n;
             String padding = "";
             for(int j = 0;j<need;j++){
                 padding += "0";

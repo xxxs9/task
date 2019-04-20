@@ -68,7 +68,8 @@ public class FriendServiceImpl implements FriendService {
 
             }else{
                 //非好友关系，则更新数据条目
-                ouf.setFriendStatus(0);//更新为申请状态
+                //更新为申请状态
+                ouf.setFriendStatus(0);
                 userFriendsMapper.updateByPrimaryKey(ouf);
             }
         }else if (ouf == null){

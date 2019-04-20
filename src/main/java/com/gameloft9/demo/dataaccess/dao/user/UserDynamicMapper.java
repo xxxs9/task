@@ -16,11 +16,22 @@ public interface UserDynamicMapper extends Mapper<UserDynamic>{
      */
     List<UserDynamic> getFriendDynamic(String uuid);
 
-    //查找所有条目
+    /**
+     * 查找所有条目
+     * @param start
+     * @param end
+     * @param loginName
+     * @return
+     */
     List<UserDynamic> getAll(
             @Param("start") int start,
             @Param("end") int end,
             @Param("loginName") String loginName);
-    //条目记录数
+
+    /**
+     * 条目记录数
+     * @param loginName
+     * @return
+     */
     Integer countGetAll(@Param("loginName") String loginName);
 }

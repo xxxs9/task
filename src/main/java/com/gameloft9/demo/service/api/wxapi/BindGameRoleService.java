@@ -13,6 +13,9 @@ public interface BindGameRoleService {
 
     /**
      * 绑定游戏角色
+     * @param uuid
+     * @param reptileName
+     * @param serverName
      * @return
      */
     Boolean bindGameRole(String uuid ,String reptileName, String serverName);

@@ -10,12 +10,14 @@ public interface UserGameDataService {
     /**
      * 获取角色游戏数据
      * @param uuid
+     * @return
      */
     WxUserBaseGameDto getUserGameData(String uuid);
 
     /**
      * 获取近期比赛数据
      * @param uuid
+     * @return
      */
     List<ReptileUserRecentMatch> getUserRecentMatch(String uuid);
 }

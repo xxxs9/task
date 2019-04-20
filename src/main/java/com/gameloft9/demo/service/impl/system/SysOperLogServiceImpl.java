@@ -34,7 +34,8 @@ public class SysOperLogServiceImpl implements SysOperLogService{
      * @param operType 操作类型
      * @param memo 描述
      * */
-    public int insertOperLog(String userId,String loginName,String ipAddr,String operType,String memo){
+    @Override
+    public int insertOperLog(String userId, String loginName, String ipAddr, String operType, String memo){
         SysOperLogTest log = new SysOperLogTest();
         log.setId(UUIDUtil.getUUID());
         log.setCreateDate(new Date());
@@ -55,6 +56,7 @@ public class SysOperLogServiceImpl implements SysOperLogService{
      * @param startTime 开始时间
      * @param endTime 结束时间
      * */
+    @Override
     public List<SysOperLogTest> getAll(String page, String limit, String loginName, String operType, String startTime, String endTime){
         PageRange pageRange = new PageRange(page,limit);
 
@@ -77,6 +79,7 @@ public class SysOperLogServiceImpl implements SysOperLogService{
      * @param startTime 开始时间
      * @param endTime 结束时间
      * */
+    @Override
     public int countGetAll(String loginName, String operType, String startTime, String endTime){
         //解析日期
         Date startDate = null,endDate=null;
@@ -93,6 +96,7 @@ public class SysOperLogServiceImpl implements SysOperLogService{
      * 根据id删除记录
      * @param id 日志id
      * */
+    @Override
     public boolean delete(String id){
         CheckUtil.notBlank(id,"日志id为空");
 
@@ -104,6 +108,7 @@ public class SysOperLogServiceImpl implements SysOperLogService{
      * 批量删除日志
      * @param request 请求
      * */
+    @Override
     public boolean batchDelete(LogBatchDelRequest request){
         CheckUtil.notNull(request,"批量删除请求参数为空");
 

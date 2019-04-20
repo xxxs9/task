@@ -58,8 +58,8 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
         //还未绑定角色
         if (wuri == null || StringUtils.isEmpty(wuri.getReptileId())){
             reptileUtil.getReptileUserId(reptileName,serverName);
-
-            Timer timer = new Timer();// 实例化Timer类
+            // 实例化Timer类
+            Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
@@ -90,8 +90,9 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
                     }
                     System.out.println("退出");
                     this.cancel();
+                    // 这里百毫秒
                 }
-            }, 2000);// 这里百毫秒
+            }, 2000);
             return true;
         }
         //已绑定

@@ -12,13 +12,21 @@ import us.codecraft.webmagic.Spider;
 @Component
 public class ReptileUtil {
 
-    //爬取用户id地址
+    /**
+     * 爬取用户id地址
+     */
     private String uri = "http://api.lolbox.duowan.com/api/v3/player/search/?";
-    //爬取用户游戏数据 + serverId/reptileId
+    /**
+     * 爬取用户游戏数据 + serverId/reptileId
+     */
     private String dataUri = "http://api.lolbox.duowan.com/player";
-    //爬取用户最近比赛数据 + serverId/reptileId/recent_games/
+    /**
+     * 爬取用户最近比赛数据 + serverId/reptileId/recent_games/
+     */
     private String matchUri = "http://api.lolbox.duowan.com/player";
-    //爬取英雄数据
+    /**
+     * 爬取英雄数据
+     */
     private String heroUri = "http://lol.duowan.com/hero";
 
     @Autowired

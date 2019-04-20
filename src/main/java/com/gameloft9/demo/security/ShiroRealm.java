@@ -39,7 +39,8 @@ public class ShiroRealm extends AuthorizingRealm {
 
 		UserTest user = (UserTest) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		if (user != null) {//获取用户角色信息
+		//获取用户角色信息
+		if (user != null) {
 			List<String> roles = userServiceImpl.getRoleNames(user.getId());
 			info.addRoles(roles);
 		} else {
@@ -59,7 +60,8 @@ public class ShiroRealm extends AuthorizingRealm {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		UserTest user = userServiceImpl.getByLoginName(token.getUsername());
 
-		if (user == null) {//用户不存在
+		//用户不存在
+		if (user == null) {
 			throw new UnknownAccountException();
 		}
 

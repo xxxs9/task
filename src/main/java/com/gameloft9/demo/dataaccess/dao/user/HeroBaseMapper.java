@@ -8,9 +8,20 @@ import java.util.List;
 
 public interface HeroBaseMapper extends Mapper<HeroBase> {
 
+    /**
+     * 获取英雄列表
+     * 分页加载
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     List<HeroBase> getListByPageNumSize(
             @Param("pageNum") Integer pageNum,
             @Param("pageSize") Integer pageSize);
 
+    /**
+     * 获取未爬取的英雄URl
+     * @return
+     */
     List<HeroBase> getNewList();
 }

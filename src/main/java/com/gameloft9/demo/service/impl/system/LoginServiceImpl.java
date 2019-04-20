@@ -39,6 +39,7 @@ public class LoginServiceImpl implements LoginService{
      * @param loginName 登录名
      * @param pwd 密码
      * */
+    @Override
     public LoginResponse login(String loginName, String pwd, String code){
         LoginResponse loginResponse = new LoginResponse();
         //参数校验
@@ -92,10 +93,13 @@ public class LoginServiceImpl implements LoginService{
     /**
      * 登出并清理session
      * */
+    @Override
     public String logout(){
-        SecurityUtils.getSubject().logout();//登出
+        //登出
+        SecurityUtils.getSubject().logout();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        request.getSession().removeAttribute("sysUser");//清理session
+        //清理session
+        request.getSession().removeAttribute("sysUser");
         return null;
     }
 }

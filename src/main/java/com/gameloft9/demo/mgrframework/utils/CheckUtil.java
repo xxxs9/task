@@ -98,11 +98,13 @@ public class CheckUtil {
                 }
 
                 if (StringUtils.isNotBlank(sb.toString())) {
-                    fail(sb.toString());//抛出检查异常
+                    //抛出检查异常
+                    fail(sb.toString());
                 }
             }
         } catch (Exception e) {
-            fail(e.getMessage());//抛出检查异常
+            //抛出检查异常
+            fail(e.getMessage());
         }
     }
 
@@ -115,7 +117,8 @@ public class CheckUtil {
      */
     private static void fail(String errMsg, Object... args) {
         StringBuilder sb = new StringBuilder();
-        if (args == null || args.length <= 0) {//没有错误参数直接抛错误信息
+        //没有错误参数直接抛错误信息
+        if (args == null || args.length <= 0) {
             throw new CheckException(ResultBean.CHECK_FAIL, errMsg);
         }
 
@@ -137,8 +140,10 @@ public class CheckUtil {
 
         //拿到controller class，method
         Class<?> clazz = pjp.getTarget().getClass();
-        String clazzName = clazz.getName();//类完整限定名
-        String methodName = pjp.getSignature().getName();//方法名
+        //类完整限定名
+        String clazzName = clazz.getName();
+        //方法名
+        String methodName = pjp.getSignature().getName();
 
         //找到该方法对象
         Method targetMethod = null;
@@ -156,7 +161,7 @@ public class CheckUtil {
         List<Integer> indexs = new LinkedList<Integer>();
         Class<?> clazzs[] = targetMethod.getParameterTypes();
         for (int i = 0; i < clazzs.length; i++) {
-            if (clazzs[i].getName().equals("org.springframework.validation.BindingResult")) {
+            if ("org.springframework.validation.BindingResult".equals(clazzs[i].getName())) {
                 indexs.add(i);
             }
         }

@@ -9,9 +9,12 @@ import java.awt.image.BufferedImage;
  */
 public class VCodeUtil {
 
-    private static final int WIDTH = 70;//验证码长度
-    private static final int HEIGHT = 20;//验证码高度
-    private static final int LENGTH = 4;//验证码位数
+    //验证码长度
+    private static final int WIDTH = 70;
+    //验证码高度
+    private static final int HEIGHT = 20;
+    //验证码位数
+    private static final int LENGTH = 4;
 
     /**
      * 获取验证码

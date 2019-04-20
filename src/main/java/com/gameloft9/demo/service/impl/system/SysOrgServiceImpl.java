@@ -31,6 +31,7 @@ public class SysOrgServiceImpl implements SysOrgService {
     /**
      * 获取所有组织机构
      */
+    @Override
     public List<OrgNodeResponse> getAll() {
         List<SysOrganizeTest> orgList = new LinkedList<SysOrganizeTest>();
         orgList = sysOrganizeTestMapper.getAll();
@@ -43,6 +44,7 @@ public class SysOrgServiceImpl implements SysOrgService {
      * 根据id获取组织机构
      * @param id 主键
      * */
+    @Override
     public SysOrganizeTest getById(String id){
         CheckUtil.notBlank(id,"组织机构id为空");
 
@@ -53,6 +55,7 @@ public class SysOrgServiceImpl implements SysOrgService {
      * 更新组织机构
      * @param org 组织机构信息
      * */
+    @Override
     public Boolean update(SysOrganizeTest org){
         CheckUtil.notNull(org,"组织机构为空");
         CheckUtil.notBlank(org.getId(),"组织机构id为空");
@@ -65,6 +68,7 @@ public class SysOrgServiceImpl implements SysOrgService {
      * 删除组织机构
      * @param id 组织机构id
      * */
+    @Override
     public Boolean deleteById(String id){
         CheckUtil.notBlank(id,"组织机构id为空");
 
@@ -81,6 +85,7 @@ public class SysOrgServiceImpl implements SysOrgService {
      * 添加组织机构
      * @param org 组织机构信息
      * */
+    @Override
     public Boolean add(SysOrganizeTest org){
         CheckUtil.notNull(org,"组织机构为空");
 
@@ -129,7 +134,8 @@ public class SysOrgServiceImpl implements SysOrgService {
         Iterator<SysOrganizeTest> it = orgList.iterator();
         while (it.hasNext()) {
             SysOrganizeTest org = it.next();
-            if (StringUtils.isBlank(org.getParentId())) {//拿到根机构
+            //拿到根机构
+            if (StringUtils.isBlank(org.getParentId())) {
                 OrgNodeResponse node = new OrgNodeResponse();
                 node.setId(org.getId());
                 node.setName(org.getOrganizeName());

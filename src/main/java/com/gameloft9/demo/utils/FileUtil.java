@@ -172,13 +172,15 @@ public class FileUtil {
             log.info("save to path:" + savedPath);
             // 创建当前文件的对象
             newfile = new File(savedPath);
-            if (!newfile.exists()) {// 文件不存在则创建
+            // 文件不存在则创建
+            if (!newfile.exists()) {
                 newfile.createNewFile();
             }
             // 做输出文件流，输出文件
             fos = new FileOutputStream(newfile);
 
-            fos.write(fileObj);// 写入文件内容
+            // 写入文件内容
+            fos.write(fileObj);
             fos.flush();
             fos.close();
         } catch (IOException e) {

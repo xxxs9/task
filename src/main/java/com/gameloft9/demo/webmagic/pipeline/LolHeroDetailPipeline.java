@@ -13,7 +13,6 @@ import us.codecraft.webmagic.pipeline.Pipeline;
  * 英雄明细持久化处理
  */
 @Component
-//@Transactional(rollbackFor = Exception.class)
 public class LolHeroDetailPipeline implements Pipeline {
 
     @Autowired

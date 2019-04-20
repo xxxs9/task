@@ -73,7 +73,10 @@ public class PersonCenterController {
      * 获取所有角色列表
      * @param page 页序
      * @param limit 分页大小
-     * */
+     * @param roleName
+     * @param isSuper
+     * @return
+     */
     @RequestMapping(value = "/roleList.do",method = RequestMethod.POST)
     @ResponseBody
     //@BizOperLog(operType = OperType.Query,memo = "获取所有角色列表")

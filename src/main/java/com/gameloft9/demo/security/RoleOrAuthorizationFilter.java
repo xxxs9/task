@@ -24,7 +24,8 @@ public class RoleOrAuthorizationFilter extends AuthorizationFilter {
         }
 
         for(int i=0;i<rolesArray.length;i++) {
-            if(subject.hasRole(rolesArray[i])) { // 有一个满足即可
+            // 有一个满足即可
+            if(subject.hasRole(rolesArray[i])) {
                 return true;
             }
         }

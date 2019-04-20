@@ -20,8 +20,5 @@ public class LolUserPipeline implements Pipeline {
 
         GetReptileId gri = resultItems.get("gri");
         getReptileIdMapper.updateByPrimaryKey(gri);
-//        for (Map.Entry<String, Object> entry : resultItems.getAll().entrySet()) {
-//
-//        }
     }
 }

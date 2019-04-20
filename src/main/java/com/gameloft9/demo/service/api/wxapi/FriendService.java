@@ -11,12 +11,14 @@ public interface FriendService {
      * 发现用户列表
      * 随机发现Or全部返回
      * @param uuid
+     * @return
      */
     List<WxUser> findUserList(String uuid);
 
     /**
      * 获取好友列表
      * @param uuid 对应 用户1
+     * @return
      */
     List<UserFriends> friendList(String uuid);
 
@@ -47,6 +49,7 @@ public interface FriendService {
     /**
      * 获取别人发送给自己的申请列表
      * @param uuid 对应 用户1
+     * @return
      */
     List<UserFriends> otherApplyList(String uuid);
 

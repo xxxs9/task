@@ -13,7 +13,8 @@ public class UserInfoUtil {
     private final static ThreadLocal<Object> tlUser = new ThreadLocal<Object>();
 
     /**user key*/
-    public static final String KEY_USER = "sysUser";//同放入session的用户信息Key
+    //同放入session的用户信息Key
+    public static final String KEY_USER = "sysUser";
 
     public static void setUser(Object user) {
         tlUser.set(user);

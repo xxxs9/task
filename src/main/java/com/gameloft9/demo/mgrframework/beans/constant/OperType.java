@@ -5,12 +5,18 @@ package com.gameloft9.demo.mgrframework.beans.constant;
  * Created by leiYao on 2017/11/13.
  */
 public enum OperType {
-    Query("sel"),//查询，一般不用，仅作为默认项
-    ADD("add"),//新增操作
-    DELETE("del"),//删除操作
-    UPDATE("upd"),//更新操作
-    UPLOAD("uploadFile"),//上传文件
-    DOWNLOAD("downloadFile");//下载文件
+    //查询，一般不用，仅作为默认项
+    Query("sel"),
+    //新增操作
+    ADD("add"),
+    //删除操作
+    DELETE("del"),
+    //更新操作
+    UPDATE("upd"),
+    //上传文件
+    UPLOAD("uploadFile"),
+    //下载文件
+    DOWNLOAD("downloadFile");
 
     private String value;
 

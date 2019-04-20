@@ -19,6 +19,7 @@ public class SysAccessPermissionServiceImpl implements SysAccessPermissionServic
     @Autowired
     SysAccessPermissionTestMapper sysAccessPermissionTestDao;
 
+    @Override
     public List<SysAccessPermissionTest> getAll(){
         return sysAccessPermissionTestDao.selectAll();
     }

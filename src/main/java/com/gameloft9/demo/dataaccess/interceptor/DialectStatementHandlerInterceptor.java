@@ -20,6 +20,7 @@ public class DialectStatementHandlerInterceptor implements Interceptor {
 	/**是否开启debug模式*/
 	private String debug;
 
+	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
 		RoutingStatementHandler statement = (RoutingStatementHandler) invocation
 				.getTarget();
@@ -30,10 +31,12 @@ public class DialectStatementHandlerInterceptor implements Interceptor {
 		return invocation.proceed();
 	}
 
+	@Override
 	public Object plugin(Object target) {
 		return Plugin.wrap(target, this);
 	}
 
+	@Override
 	public void setProperties(Properties properties) {
 		this.debug = (String) properties.getProperty("debug");
 	}

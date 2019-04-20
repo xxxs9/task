@@ -6,10 +6,13 @@ package com.gameloft9.demo.utils;
  */
 public class PasswordUtil {
 
-    // 定义验证码的字符表
+    /**
+     * 定义验证码的字符表
+     */
     private static String chars = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
 
-    private static int LENGTH = 6;//密码长度
+    //密码长度
+    private static int LENGTH = 6;
 
     /**
      *获取随机密码

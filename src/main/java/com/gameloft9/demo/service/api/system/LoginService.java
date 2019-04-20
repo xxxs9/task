@@ -12,11 +12,14 @@ public interface LoginService {
      * 登录
      * @param loginName 登录名
      * @param pwd 密码
-     * */
+     * @param code
+     * @return
+     */
     LoginResponse login(String loginName, String pwd, String code);
 
     /**
      * 登出
-     * */
+     * @return
+     */
     String logout();
 }

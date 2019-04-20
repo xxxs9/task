@@ -41,7 +41,8 @@ public class SysUserServiceImpl implements SysUserService {
      * @param loginName 登录名
      * @param password 密码（为了不增加复杂度，这里不进行加密，使用明文）
      * */
-    public Boolean validateUser(String loginName,String password){
+    @Override
+    public Boolean validateUser(String loginName, String password){
         int n = dao.countUserByNameAndPwd(loginName,password);
         return n>0?true:false;
     }
@@ -50,6 +51,7 @@ public class SysUserServiceImpl implements SysUserService {
      * 根据登录名获取用户
      * @param loginName 登录名
      * */
+    @Override
     public UserTest getByLoginName(String loginName){
         return dao.getByLoginName(loginName);
     }
@@ -58,6 +60,7 @@ public class SysUserServiceImpl implements SysUserService {
      * 获取用户角色列表
      * @param userId 用户id
      * */
+    @Override
     public List<String> getRoleNames(String userId){
         return sysUserRoleTestMapper.getRoleNamesByUserId(userId);
     }
@@ -71,6 +74,7 @@ public class SysUserServiceImpl implements SysUserService {
      * @param realName     姓名
      * @param status       状态 0-禁用 1-启用
      */
+    @Override
     public List<UserTest> getAll(String page, String limit, String loginName, String realName, String status) {
         PageRange pageRange = new PageRange(page, limit);
         return dao.getAll(pageRange.getStart(), pageRange.getEnd(), loginName, realName, status);
@@ -83,6 +87,7 @@ public class SysUserServiceImpl implements SysUserService {
      * @param realName     姓名
      * @param status       状态 0-禁用 1-启用
      */
+    @Override
     public int countGetAll(String loginName, String realName, String status) {
         return dao.countGetAll(loginName, realName, status);
     }
@@ -91,6 +96,7 @@ public class SysUserServiceImpl implements SysUserService {
      * 根据id删除用户
      * @param id 用户id
      * */
+    @Override
     public Boolean deleteById(String id){
         CheckUtil.notBlank(id,"用户id为空");
 
@@ -105,6 +111,7 @@ public class SysUserServiceImpl implements SysUserService {
      * 根据id获取记录
      * @param id 主键
      * */
+    @Override
     public SysUserResponse getById(String id){
         CheckUtil.notBlank(id,"用户id为空");
 
@@ -135,6 +142,7 @@ public class SysUserServiceImpl implements SysUserService {
      * 全量更新
      * @param userRequest 记录
      * */
+    @Override
     public Boolean updateUser(UserUpdateRequest userRequest){
         CheckUtil.notNull(userRequest,"更新用户为空");
 
@@ -162,6 +170,7 @@ public class SysUserServiceImpl implements SysUserService {
      * @param user 记录
      * @return String 主键id
      * */
+    @Override
     @Transactional(rollbackForClassName = "Exception")
     public String addUser(UserAddRequest user){
         CheckUtil.notNull(user,"添加用户为空");
@@ -195,9 +204,11 @@ public class SysUserServiceImpl implements SysUserService {
      * 初始化密码
      * @param userId 用户id
      * */
+    @Override
     public String initPwd(String userId){
         String pwd = PasswordUtil.getRandomPwd();
-        String sha1Pwd = (new SHA1()).getDigestOfString(pwd);//SHA1加密
+        //SHA1加密
+        String sha1Pwd = (new SHA1()).getDigestOfString(pwd);
 
         UserTest user = new UserTest();
         user.setId(userId);
@@ -212,7 +223,8 @@ public class SysUserServiceImpl implements SysUserService {
      * @param  loginName 登录名
      * @param  newPwd 新密码
      * */
-    public Boolean changePwd(String loginName,String oldPwd,String newPwd){
+    @Override
+    public Boolean changePwd(String loginName, String oldPwd, String newPwd){
         CheckUtil.notBlank(loginName,"登录名为空");
         CheckUtil.notBlank(oldPwd,"旧密码为空");
         CheckUtil.notBlank(newPwd,"新密码为空");

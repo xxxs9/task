@@ -30,6 +30,7 @@ public class SysRoleServiceImpl implements SysRoleService{
     /**
      * 获取所有角色
      * */
+    @Override
     public List<SysRoleTest> getAll(String page, String limit, String roleName, String isSuper){
         PageRange pageRange = new PageRange(page,limit);
         return sysRoleTestDao.selectAll(pageRange.getStart(),pageRange.getEnd(),roleName,isSuper);
@@ -38,7 +39,8 @@ public class SysRoleServiceImpl implements SysRoleService{
     /**
      * 获取所有角色个数
      * */
-    public int countGetAll(String roleName,String isSuper){
+    @Override
+    public int countGetAll(String roleName, String isSuper){
         return sysRoleTestDao.countGetAll(roleName,isSuper);
     }
 
@@ -46,6 +48,7 @@ public class SysRoleServiceImpl implements SysRoleService{
      * 删除角色
      * @param roleId  角色id
      * */
+    @Override
     public Boolean deleteRoleById(String roleId){
         //判断该角色下面是否还有用户,有用户则不能删除该角色
         int userCount = sysUserRoleTestMapper.countByRoleId(roleId);
@@ -60,7 +63,8 @@ public class SysRoleServiceImpl implements SysRoleService{
      * @param roleName  角色名称
      * @param isSuper   是否超级管理员
      * */
-    public String addRole(String roleName,String isSuper){
+    @Override
+    public String addRole(String roleName, String isSuper){
         CheckUtil.notBlank(roleName,"角色名称为空");
         CheckUtil.notBlank(isSuper,"是否超级管理员不能为空");
 
@@ -83,6 +87,7 @@ public class SysRoleServiceImpl implements SysRoleService{
      * 获取角色
      * @param roleId 角色id
      */
+    @Override
     public SysRoleTest getRole(String roleId){
         CheckUtil.notBlank(roleId,"角色id为空");
         return sysRoleTestDao.selectByPrimaryKey(roleId);
@@ -94,7 +99,8 @@ public class SysRoleServiceImpl implements SysRoleService{
      * @param roleName 角色名称;
      * @param isSuper 是否超级管理员 1-是，0-否
      * */
-    public Boolean updateRole(String roleId,String roleName,String isSuper){
+    @Override
+    public Boolean updateRole(String roleId, String roleName, String isSuper){
         CheckUtil.notBlank(roleId,"角色id为空");
 
         //角色名称不能重复

@@ -17,7 +17,9 @@ import java.util.List;
  */
 public class LolHeroDetailProcessor implements PageProcessor {
 
-    // 抓取网站的相关配置，可以包括编码、抓取间隔1s、重试次数等
+    /**
+     * 抓取网站的相关配置，可以包括编码、抓取间隔1s、重试次数等
+     */
     private Site site = Site.me().setCharset("utf8").setRetryTimes(1000).setSleepTime(1000);
 
     @Override

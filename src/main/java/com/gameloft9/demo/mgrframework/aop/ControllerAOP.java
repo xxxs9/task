@@ -53,11 +53,14 @@ public class ControllerAOP {
 	public Object handlerControllerMethods(ProceedingJoinPoint pjp) throws Throwable{
 		long startTime = System.currentTimeMillis();
 		log.info(pjp.getSignature()+"请求参数:{}",pjp.getArgs());
-		IResult result;//业务返回结果
+		//业务返回结果
+		IResult result;
 
-		CheckUtil.checkModel(pjp);//校验model上面的参数
+		//校验model上面的参数
+		CheckUtil.checkModel(pjp);
 
-		result = (IResult) pjp.proceed();//业务处理
+		//业务处理
+		result = (IResult) pjp.proceed();
 
 		log.info("返回结果:{}",result);
 		log.info(pjp.getSignature() + "处理耗费时间:" + (System.currentTimeMillis() - startTime)+"ms");
@@ -74,9 +77,11 @@ public class ControllerAOP {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 
 		UserTest user = (UserTest)SecurityUtils.getSubject().getPrincipal();
-		String userid = user.getId();// 操作员ID
+		// 操作员ID
+		String userid = user.getId();
 		String loginName = user.getLoginName();
-		String ipAddr = IPUtil.getIpAddr(request);// 访问段ip
+		// 访问段ip
+		String ipAddr = IPUtil.getIpAddr(request);
 
 		//从注解中获取操作类型和备注
 		String opertype =  operLog.operType().getValue();
