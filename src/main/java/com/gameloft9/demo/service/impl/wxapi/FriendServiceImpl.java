@@ -30,7 +30,7 @@ public class FriendServiceImpl implements FriendService {
      */
     @Override
     public List<WxUser> findUserList(String uuid) {
-        return wxUserMapper.selectAll();
+        return wxUserMapper.queryListExceptUuid(uuid);
     }
 
     /**

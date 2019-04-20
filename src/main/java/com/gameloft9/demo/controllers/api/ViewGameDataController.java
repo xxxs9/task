@@ -2,7 +2,6 @@ package com.gameloft9.demo.controllers.api;
 
 import com.gameloft9.demo.dataaccess.model.user.HeroBase;
 import com.gameloft9.demo.dto.hero.HeroDetailDto;
-import com.gameloft9.demo.dto.index.BannerDto;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
 import com.gameloft9.demo.mgrframework.beans.response.ResultBean;
 import com.gameloft9.demo.service.api.wxapi.ViewGameDataService;

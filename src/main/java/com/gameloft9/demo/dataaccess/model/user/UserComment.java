@@ -21,6 +21,12 @@ public class UserComment {
     private Integer dynamicId;
 
     /**
+     * 评论者的用户唯一标识
+     */
+    @Column(name = "UUID")
+    private String uuid;
+
+    /**
      * 评论者用户名
      */
     @Column(name = "COMMENT_NAME")
@@ -38,6 +44,13 @@ public class UserComment {
      */
     @Column(name = "COMMENT_DETAILS")
     private String commentDetails;
+
+    /**
+     * 是否删除
+     * 0不删除 1删除
+     */
+    @Column(name = "IS_DEL")
+    private Integer isDel;
 
     /**
      * 获取评论表
@@ -127,5 +140,21 @@ public class UserComment {
      */
     public void setCommentDetails(String commentDetails) {
         this.commentDetails = commentDetails;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public Integer getIsDel() {
+        return isDel;
+    }
+
+    public void setIsDel(Integer isDel) {
+        this.isDel = isDel;
     }
 }

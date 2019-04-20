@@ -5,7 +5,6 @@ import com.gameloft9.demo.dataaccess.dao.user.HeroSkillMapper;
 import com.gameloft9.demo.webmagic.HeroReptile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;

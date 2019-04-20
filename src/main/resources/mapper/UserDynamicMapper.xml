@@ -7,14 +7,25 @@
     -->
     <result column="ID" jdbcType="INTEGER" property="id" />
     <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="UUID" jdbcType="VARCHAR" property="uuid" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="DYNAMIC_CONTENT" jdbcType="LONGVARCHAR" property="dynamicContent" />
+    <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
   </resultMap>
+
+  <select id="getFriendDynamic" resultMap="BaseResultMap">
+    select * from user_dynamic
+    where uuid in (
+      select LOGIN_NAME_SECOND from user_friends
+      where LOGIN_NAME_FIRST = #{uuid}
+      AND friend_status = 1)
+      AND is_del = 0
+  </select>
 
   <!--基本数据列-->
   <sql id="Base_Column_List">
-    ID,LOGIN_NAME,DYNAMIC_CONTENT,CREATE_TIME,UPDATE_TIME
+    ID,UUID,LOGIN_NAME,DYNAMIC_CONTENT,CREATE_TIME,UPDATE_TIME,IS_DEL
   </sql>
   <!-- 获取所有数列-->
   <select id="getAll" resultMap="BaseResultMap">

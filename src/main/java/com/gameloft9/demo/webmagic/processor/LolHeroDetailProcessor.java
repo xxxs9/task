@@ -35,8 +35,22 @@ public class LolHeroDetailProcessor implements PageProcessor {
         String physics = strDel(sList.get(1).xpath("//i/@style").get());
         String magic = strDel(sList.get(2).xpath("//i/@style").get());
         String operation = strDel(sList.get(3).xpath("//i/@style").get());
+
+
+        //英雄背景图片
+        String  backgroundImg = html.xpath("//li[@class=\"ui-slide__panel is-active\"]/img/@src").get();
+        //英雄点券
+        Selectable selectable =  html.xpath("//div[@class=\"hero-box ext-attr\"]/div[@class=\"hero-box__bd\"]/ul/li").nodes().get(0);
+        String mony = selectable.xpath("//li/span/text()").get().trim();
+        String[] monys = mony.split("/");
+        String goldCoin = monys[0];
+        String ticket = monys[1];
         //英雄详情实体
         HeroDetail hd = new HeroDetail();
+
+        hd.setBackgroundImg(backgroundImg);
+        hd.setGoldCoin(goldCoin);
+        hd.setTicket(ticket);
 
         hd.setHeroTitle(heroTitle);
         hd.setHeroName(heroName);

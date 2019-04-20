@@ -7,33 +7,47 @@
     -->
     <result column="ID" jdbcType="INTEGER" property="id" />
     <result column="DYNAMIC_ID" jdbcType="INTEGER" property="dynamicId" />
+      <result column="UUID" jdbcType="VARCHAR" property="uuid" />
     <result column="COMMENT_NAME" jdbcType="VARCHAR" property="commentName" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="COMMENT_DETAILS" jdbcType="LONGVARCHAR" property="commentDetails" />
+      <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
   </resultMap>
     <!--动态信息的结果映射表-->
     <resultMap id="UserDynamicMap" type="com.gameloft9.demo.dataaccess.model.user.UserDynamic">
         <result column="ID" jdbcType="INTEGER" property="id" />
+        <result column="UUID" jdbcType="VARCHAR" property="uuid" />
         <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
         <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
         <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
         <result column="DYNAMIC_CONTENT" jdbcType="LONGVARCHAR" property="dynamicContent" />
-    </resultMap>
+        <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
+     </resultMap>
 
 
   <resultMap id="SelectResultBase" type="com.gameloft9.demo.service.beans.system.CommentSelectResponse">
       <result column="ID" jdbcType="INTEGER" property="id" />
+      <result column="UUID" jdbcType="VARCHAR" property="uuid" />
       <result column="DYNAMIC_ID" jdbcType="INTEGER" property="dynamicId" />
       <result column="COMMENT_NAME" jdbcType="VARCHAR" property="commentName" />
       <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
       <result column="COMMENT_DETAILS" jdbcType="LONGVARCHAR" property="commentDetails" />
+      <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
       <association property="dynamic" column="DYNAMIC_ID" select="getDynamic" />
   </resultMap>
 
     <!--基本数据列-->
     <sql id="Base_Column_List">
-    ID,DYNAMIC_ID,COMMENT_NAME,CREATE_TIME,COMMENT_DETAILS
+    ID,UUID,DYNAMIC_ID,COMMENT_NAME,CREATE_TIME,COMMENT_DETAILS,IS_DEL
   </sql>
+
+    <select id="queryListByDynamicId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from user_comment t
+        WHERE DYNAMIC_ID = #{dynamicId}
+        AND is_del = 0
+    </select>
+
+
     <!-- 获取所有数列-->
     <select id="getAll" resultMap="SelectResultBase">
         select <include refid="Base_Column_List"/> from user_comment t

@@ -21,6 +21,12 @@ public class UserDynamic {
     private String loginName;
 
     /**
+     * 动态发送者的用户Id
+     */
+    @Column(name = "UUID")
+    private String uuid;
+
+    /**
      * 创建时间
      */
     @Column(name = "CREATE_TIME")
@@ -39,6 +45,13 @@ public class UserDynamic {
      */
     @Column(name = "DYNAMIC_CONTENT")
     private String dynamicContent;
+
+    /**
+     * 是否删除
+     * 0不删除 1删除
+     */
+    @Column(name = "IS_DEL")
+    private Integer isDel;
 
     /**
      * 获取朋友圈动态表
@@ -128,5 +141,21 @@ public class UserDynamic {
      */
     public void setDynamicContent(String dynamicContent) {
         this.dynamicContent = dynamicContent;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public Integer getIsDel() {
+        return isDel;
+    }
+
+    public void setIsDel(Integer isDel) {
+        this.isDel = isDel;
     }
 }

@@ -41,11 +41,12 @@ public class GameHeroController {
     @RequestMapping(value = "/detail.api",method = RequestMethod.GET)
     @ResponseBody
     public void getHeroDetail() {
-        List<HeroBase> bhList =  heroBaseMapper.getNewList();
-        if (bhList != null && bhList.size() > 0){
-            for (int i = 0, num = bhList.size(); i < num ; i ++ ){
-                reptileUtil.getLolHeroDetail(bhList.get(i).getDetailUrl());
-            }
-        }
+        //为防止接口被随意访问导致的重复抓取，将方法注释掉
+//        List<HeroBase> bhList =  heroBaseMapper.getNewList();
+//        if (bhList != null && bhList.size() > 0){
+//            for (int i = 0, num = bhList.size(); i < num ; i ++ ){
+//                reptileUtil.getLolHeroDetail(bhList.get(i).getDetailUrl());
+//            }
+//        }
     }
 }

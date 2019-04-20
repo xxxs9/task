@@ -2,7 +2,6 @@ package com.gameloft9.demo.webmagic.pipeline;
 
 import com.gameloft9.demo.dataaccess.dao.user.ReptileUserBaseMapper;
 import com.gameloft9.demo.dataaccess.dao.user.ReptileUserContentStatisticsMapper;
-import com.gameloft9.demo.dataaccess.model.user.ReptileUserBase;
 import com.gameloft9.demo.webmagic.UserGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -49,6 +49,18 @@ public class HeroDetail {
     private Integer magic;
 
     /**
+     * 金币
+     */
+    @Column(name = "GOLD_COIN")
+    private String goldCoin;
+    /**
+     * 点券
+     */
+    @Column(name = "TICKET")
+    private String ticket;
+
+
+    /**
      * 操作难度
      */
     @Column(name = "OPERATION")
@@ -59,6 +71,12 @@ public class HeroDetail {
      */
     @Column(name = "HERO_TITLE")
     private String heroTitle;
+
+    /**
+     * 英雄背景图片
+     */
+    @Column(name = "BACKGROUND_IMG")
+    private String backgroundImg;
 
     /**
      * @return ID
@@ -184,5 +202,29 @@ public class HeroDetail {
      */
     public void setHeroTitle(String heroTitle) {
         this.heroTitle = heroTitle;
+    }
+
+    public String getBackgroundImg() {
+        return backgroundImg;
+    }
+
+    public void setBackgroundImg(String backgroundImg) {
+        this.backgroundImg = backgroundImg;
+    }
+
+    public String getGoldCoin() {
+        return goldCoin;
+    }
+
+    public void setGoldCoin(String goldCoin) {
+        this.goldCoin = goldCoin;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
     }
 }

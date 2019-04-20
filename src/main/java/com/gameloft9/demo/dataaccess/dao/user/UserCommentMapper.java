@@ -8,6 +8,14 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 
 public interface UserCommentMapper extends Mapper<UserComment>{
+
+    /**
+     * 获取指定动态下的评论列表
+     * @param dynamicId
+     * @return
+     */
+    List<UserComment> queryListByDynamicId(Integer dynamicId);
+
     /**
      * 查找所有
      * @param start

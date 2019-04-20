@@ -3,27 +3,52 @@ package com.gameloft9.demo.dataaccess.model.user;
 import java.util.Date;
 import javax.persistence.*;
 
+/**
+ * 微信用户实体
+ */
 @Table(name = "wx_user")
 public class WxUser {
+
+    /**
+     * 用户唯一标识
+     */
     @Column(name = "UUID")
     @Id
     private String uuid;
 
+    /**
+     * 微信昵称
+     */
     @Column(name = "NICKNAME")
     private String nickname;
 
+    /**
+     * 微信头像
+     */
     @Column(name = "AVATAR_URL")
     private String avatarUrl;
 
+    /**
+     * 性别
+     */
     @Column(name = "GENDER")
     private String gender;
 
+    /**
+     * 微信唯一标识
+     */
     @Column(name = "UNION_ID")
     private String unionId;
 
+    /**
+     * 创建时间
+     */
     @Column(name = "CREATE_TIME")
     private Date createTime;
 
+    /**
+     * 更新时间
+     */
     @Column(name = "UPDATE_TIME")
     private Date updateTime;
 

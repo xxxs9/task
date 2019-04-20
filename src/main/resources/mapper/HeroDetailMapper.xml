@@ -14,6 +14,9 @@
     <result column="MAGIC" jdbcType="INTEGER" property="magic" />
     <result column="OPERATION" jdbcType="INTEGER" property="operation" />
     <result column="HERO_TITLE" jdbcType="VARCHAR" property="heroTitle" />
+    <result column="BACKGROUND_IMG" jdbcType="VARCHAR" property="backgroundImg" />
+    <result column="GOLD_COIN" jdbcType="VARCHAR" property="goldCoin" />
+    <result column="TICKET" jdbcType="VARCHAR" property="ticket" />
   </resultMap>
 
   <select id="queryHeroDetailByHeroNameOrHeroTile" resultMap="BaseResultMap">

@@ -7,6 +7,15 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 
 public interface UserDynamicMapper extends Mapper<UserDynamic>{
+
+
+    /**
+     * 获取朋友们的动态
+     * @param uuid
+     * @return
+     */
+    List<UserDynamic> getFriendDynamic(String uuid);
+
     //查找所有条目
     List<UserDynamic> getAll(
             @Param("start") int start,

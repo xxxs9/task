@@ -2,12 +2,10 @@ package com.gameloft9.demo.webmagic.processor;
 
 import com.gameloft9.demo.dataaccess.model.user.ReptileUserBase;
 import com.gameloft9.demo.dataaccess.model.user.ReptileUserContentStatistics;
-import com.gameloft9.demo.webmagic.DataStrUtil;
 import com.gameloft9.demo.webmagic.UserGame;
 import com.gameloft9.demo.webmagic.template.ExtractTemplate;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.downloader.Downloader;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
 import us.codecraft.webmagic.selector.Selectable;
