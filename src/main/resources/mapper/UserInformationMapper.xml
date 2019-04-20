@@ -16,6 +16,18 @@
     <result column="INFORMATION_CONTENT" jdbcType="LONGVARCHAR" property="informationContent" />
   </resultMap>
 
+    <select id="getBannerList" resultMap="BaseResultMap">
+      select * from user_information where INFORMATION_TYPE = 3
+        order by UPDATE_TIME desc
+        limit 0,5
+    </select>
+
+    <select id="getNewsList" resultMap="BaseResultMap">
+      select * from user_information where INFORMATION_TYPE = 0
+        order by UPDATE_TIME desc
+        limit ${(pageNum - 1 ) * pageSize},${pageNum * pageSize}
+    </select>
+
     <!--基本数据列-->
     <sql id="Base_Column_List">
     ID,LOGIN_NAME,INFORMATION_TITLE,IS_TOP,INFORMATION_IMG,INFORMATION_TYPE,CREATE_TIME,UPDATE_TIME,INFORMATION_CONTENT

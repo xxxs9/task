@@ -1,12 +1,30 @@
 package com.gameloft9.demo.dataaccess.dao.user;
 
 import com.gameloft9.demo.dataaccess.model.user.UserInformation;
+import com.gameloft9.demo.dto.index.BannerDto;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
 public interface UserInformationMapper extends Mapper<UserInformation> {
+
+
+    /**
+     * 获取滚动栏
+     * @return
+     */
+    List<UserInformation> getBannerList();
+
+    /**
+     * 获取新闻
+     * @return
+     */
+    List<UserInformation> getNewsList(
+            @Param("pageNum")Integer pageNum,
+            @Param("pageSize")Integer pageSize);
+
+    //-------- admin ------------
 
     //获取所有资讯内容
     List<UserInformation> getAll(

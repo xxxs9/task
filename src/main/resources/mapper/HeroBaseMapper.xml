@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.user.HeroBaseMapper">
+  <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.user.HeroBase">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="HERO_NAME" jdbcType="VARCHAR" property="heroName" />
+    <result column="HERO_TITLE" jdbcType="VARCHAR" property="heroTitle" />
+    <result column="IMG_URl" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="DETAIL_URL" jdbcType="VARCHAR" property="detailUrl" />
+    <result column="DES" jdbcType="LONGVARCHAR" property="des" />
+  </resultMap>
+
+    <select id="getListByPageNumSize" resultMap="BaseResultMap">
+      select * from hero_base
+        order by hero_base.ID asc
+        limit ${(pageNum - 1 ) * pageSize},${pageNum * pageSize}
+    </select>
+
+  <select id="getNewList" resultMap="BaseResultMap">
+       select t.ID,t.DETAIL_URL from
+        (select hero_base.*,hero_detail.hero_title as tt
+            from hero_base
+            left join hero_detail
+              on hero_base.hero_title = hero_detail.hero_title or hero_base.hero_name = hero_detail.hero_name) as t
+        where t.tt is null;
+    </select>
+
+</mapper>

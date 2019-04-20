@@ -8,7 +8,37 @@ import java.util.List;
 
 public interface UserFriendsMapper extends Mapper<UserFriends>{
 
-    //获取所有资讯内容
+    /**
+     * 获取自己的好友/已发送的申请列表
+     * @param uuid   -- loginNameFirst
+     * @param status 0 申请 1 好友
+     * @return
+     */
+    List<UserFriends> myFirendListByStatus(
+            @Param("loginNameFirst") String uuid,
+            @Param("status") int status);
+
+    /**
+     * 获取自己受到的申请列表
+     * @param uuid
+     * @return
+     */
+    List<UserFriends> applyListByUuid(String uuid);
+
+    /**
+     * 通过2个id获取唯一数据
+     * @param uuid
+     * @param friendId
+     * @return
+     */
+    UserFriends queryFriendByFirstSecondId(
+            @Param("loginNameFirst") String uuid,
+            @Param("loginNameSecond") String friendId);
+
+
+    ///-------- admin ---------
+
+    //获取所有好友内容
     List<UserFriends> getAll(
             @Param("start") int start,
             @Param("end") int end,

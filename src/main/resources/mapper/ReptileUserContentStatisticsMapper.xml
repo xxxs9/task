@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.user.ReptileUserContentStatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.user.ReptileUserContentStatistics">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="REPTILE_ID" jdbcType="VARCHAR" property="reptileId" />
+    <result column="SERVER_ID" jdbcType="VARCHAR" property="serverId" />
+    <result column="CONTENT_TYPE" jdbcType="VARCHAR" property="contentType" />
+    <result column="WIN" jdbcType="INTEGER" property="win" />
+    <result column="LOSE" jdbcType="INTEGER" property="lose" />
+  </resultMap>
+
+  <select id="queryListByReptileServerId" resultMap="BaseResultMap">
+       select * from reptile_user_content_statistics
+       where server_id = #{serverId}
+        and reptile_id = #{reptileId}
+    </select>
+
+  <insert id="insertList" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.ArrayList">
+    INSERT INTO
+    reptile_user_content_statistics(ID, REPTILE_ID, SERVER_ID, CONTENT_TYPE, WIN, LOSE)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id},#{item.reptileId},#{item.serverId},#{item.contentType}, #{item.win}, #{item.lose})
+    </foreach>
+  </insert>
+
+</mapper>

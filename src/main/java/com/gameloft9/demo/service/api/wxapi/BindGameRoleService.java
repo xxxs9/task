@@ -1,8 +1,15 @@
 package com.gameloft9.demo.service.api.wxapi;
 
-import com.gameloft9.demo.dataaccess.model.user.WxUserReptileInfo;
+import com.gameloft9.demo.dto.user.WxUserDto;
 
 public interface BindGameRoleService {
+
+    /**
+     * 获取用户游戏角色信息
+     * @param uuid
+     * @return
+     */
+    WxUserDto getBase(String uuid);
 
     /**
      * 绑定游戏角色

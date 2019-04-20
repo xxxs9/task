@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.user.HeroDetailMapper">
+  <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.user.HeroDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="HERO_NAME" jdbcType="VARCHAR" property="heroName" />
+    <result column="VIDEO_URL" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="OUTPUT" jdbcType="VARCHAR" property="output" />
+    <result column="EXISTENCE" jdbcType="INTEGER" property="existence" />
+    <result column="PHYSICS" jdbcType="INTEGER" property="physics" />
+    <result column="MAGIC" jdbcType="INTEGER" property="magic" />
+    <result column="OPERATION" jdbcType="INTEGER" property="operation" />
+    <result column="HERO_TITLE" jdbcType="VARCHAR" property="heroTitle" />
+  </resultMap>
+
+  <select id="queryHeroDetailByHeroNameOrHeroTile" resultMap="BaseResultMap">
+       select * from
+          hero_detail
+        where hero_name = #{heroName}
+          or hero_title = #{heroTitle}
+    </select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.user.ReptileUserRecentMatchMapper">
+  <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.user.ReptileUserRecentMatch">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="REPTILE_ID" jdbcType="VARCHAR" property="reptileId" />
+    <result column="SERVER_ID" jdbcType="VARCHAR" property="serverId" />
+    <result column="HERO_NAME" jdbcType="VARCHAR" property="heroName" />
+    <result column="HERO_IMG" jdbcType="VARCHAR" property="heroImg" />
+    <result column="GAME_URL" jdbcType="VARCHAR" property="gameUrl" />
+    <result column="GAME_TYPE" jdbcType="VARCHAR" property="gameType" />
+    <result column="RESULT" jdbcType="VARCHAR" property="result" />
+    <result column="GAME_TIME" jdbcType="VARCHAR" property="gameTime" />
+  </resultMap>
+
+
+
+  <select id="queryListByReptileServerId" resultMap="BaseResultMap">
+       select * from reptile_user_recent_match
+       where server_id = #{serverId}
+        and reptile_id = #{reptileId}
+    </select>
+
+  <insert id="insertList" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.ArrayList">
+    INSERT INTO
+    reptile_user_recent_match(ID, REPTILE_ID, SERVER_ID,
+    GAME_URL, HERO_IMG, HERO_NAME,
+    GAME_TYPE, RESULT, GAME_TIME)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id},#{item.reptileId},#{item.serverId},
+      #{item.gameUrl}, #{item.heroImg}, #{item.heroName},
+      #{item.gameType}, #{item.result}, #{item.gameTime})
+    </foreach>
+  </insert>
+</mapper>

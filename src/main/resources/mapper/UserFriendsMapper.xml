@@ -9,11 +9,34 @@
     <result column="LOGIN_NAME_FIRST" jdbcType="VARCHAR" property="loginNameFirst" />
     <result column="LOGIN_NAME_SECOND" jdbcType="VARCHAR" property="loginNameSecond" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="FRIEND_STATUS" jdbcType="INTEGER" property="friendStatus" />
   </resultMap>
 
     <sql id="Base_Column_List">
-    ID,LOGIN_NAME_FIRST,LOGIN_NAME_SECOND,CREATE_TIME
+    ID,LOGIN_NAME_FIRST,LOGIN_NAME_SECOND,CREATE_TIME,FRIEND_STATUS
     </sql>
+
+
+    <select id="myFirendListByStatus" resultMap="BaseResultMap">
+        select * from user_friends t
+        where t.LOGIN_NAME_FIRST = #{loginNameFirst,jdbcType=VARCHAR}
+          AND t.FRIEND_STATUS = #{status}
+    </select>
+
+    <select id="applyListByUuid" resultMap="BaseResultMap">
+        select * from user_friends t
+        where t.LOGIN_NAME_SECOND = #{loginNameFirst,jdbcType=VARCHAR}
+          AND t.FRIEND_STATUS = 0
+    </select>
+
+    <select id="queryFriendByFirstSecondId" resultMap="BaseResultMap">
+        select * from user_friends t
+        where t.LOGIN_NAME_FIRST= #{loginNameFirst,jdbcType=VARCHAR}
+          AND t.LOGIN_NAME_SECOND = #{loginNameSecond,jdbcType=VARCHAR}
+    </select>
+
+
+
     <!-- 获取所有数列-->
     <select id="getAll" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/> from user_friends t

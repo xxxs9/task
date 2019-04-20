@@ -41,10 +41,13 @@ public class WxUserLoginServiceImpl implements WxUserLoginService {
         WxUser user = wxUserMapper.queryWxUserByNickname(wxUser.getNickname());
         WxUserDto dto = new WxUserDto();
         if (user != null){
+            user.setNickname(wxUser.getNickname());
+            user.setAvatarUrl(wxUser.getAvatarUrl());
+            wxUserMapper.updateByPrimaryKey(user);
             dto = toWxUserDto(user);
         }else{
             wxUser.setUuid(UUIDUtil.getUUID());
-            wxUser.setUnionId("geterror");
+            wxUser.setUnionId("unionId");
             wxUser.setCreateTime(new Date());
             wxUserMapper.insert(wxUser);
             user = wxUserMapper.queryWxUserByNickname(wxUser.getNickname());
@@ -54,7 +57,7 @@ public class WxUserLoginServiceImpl implements WxUserLoginService {
         }
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        request.getSession().setAttribute("wxUser","获取成功");
+        request.getSession().setAttribute("wxUser",dto);
         return dto;
     }
 
@@ -68,8 +71,8 @@ public class WxUserLoginServiceImpl implements WxUserLoginService {
 
         //获取爬取信息
         WxUserReptileInfo wri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuid(wxUser.getUuid());
+        wxUserDto.setUuid(wxUser.getUuid());
         if (wri != null){
-            wxUserDto.setUuid(wxUser.getUuid());
             wxUserDto.setReptileId(wri.getReptileId());
             wxUserDto.setServerId(wri.getServerId());
         }

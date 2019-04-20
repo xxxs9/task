@@ -36,5 +36,11 @@
         <!--<table tableName="wx_user" domainObjectName="WxUser"/>-->
         <!--<table tableName="wx_user_reptile_info" domainObjectName="WxUserReptileInfo"/>-->
         <!--<table tableName="get_reptile_id" domainObjectName="GetReptileId"/>-->
+        <!--<table tableName="hero_base" domainObjectName="HeroBase"/>-->
+        <!--<table tableName="hero_detail" domainObjectName="HeroDetail"/>-->
+        <!--<table tableName="hero_skill" domainObjectName="HeroSkill"/>-->
+        <!--<table tableName="reptile_user_base" domainObjectName="ReptileUserBase"/>-->
+        <!--<table tableName="reptile_user_content_statistics" domainObjectName="ReptileUserContentStatistics"/>-->
+        <!--<table tableName="reptile_user_recent_match" domainObjectName="ReptileUserRecentMatch"/>-->
     </context>
 </generatorConfiguration>

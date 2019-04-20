@@ -15,16 +15,22 @@ public class UserFriends {
     private Integer id;
 
     /**
-     * 用户1
+     * 用户1 发起人
      */
     @Column(name = "LOGIN_NAME_FIRST")
     private String loginNameFirst;
 
     /**
-     * 用户2
+     * 用户2 添加人
      */
     @Column(name = "LOGIN_NAME_SECOND")
     private String loginNameSecond;
+
+    /**
+     * 状态 0 申请 1 好友 2 不是好友
+     */
+    @Column(name = "FRIEND_STATUS")
+    private Integer friendStatus;
 
     /**
      * 添加时间
@@ -103,5 +109,13 @@ public class UserFriends {
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getFriendStatus() {
+        return friendStatus;
+    }
+
+    public void setFriendStatus(Integer friendStatus) {
+        this.friendStatus = friendStatus;
     }
 }

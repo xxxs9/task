@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class NewsDto {
 
+    private String id;
     /**
      * 文章标题
      */

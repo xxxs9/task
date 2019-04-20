@@ -1,11 +1,7 @@
 package com.gameloft9.demo.webmagic;
 
-import com.gameloft9.demo.webmagic.pipeline.GameDataPipeline;
-import com.gameloft9.demo.webmagic.pipeline.LolUserPipeline;
-import com.gameloft9.demo.webmagic.pipeline.RecentMatchPipeline;
-import com.gameloft9.demo.webmagic.processor.GameDateProcessor;
-import com.gameloft9.demo.webmagic.processor.LolUserIdProcessor;
-import com.gameloft9.demo.webmagic.processor.RecentMatchProcessor;
+import com.gameloft9.demo.webmagic.pipeline.*;
+import com.gameloft9.demo.webmagic.processor.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
@@ -22,6 +18,8 @@ public class ReptileUtil {
     private String dataUri = "http://api.lolbox.duowan.com/player";
     //爬取用户最近比赛数据 + serverId/reptileId/recent_games/
     private String matchUri = "http://api.lolbox.duowan.com/player";
+    //爬取英雄数据
+    private String heroUri = "http://lol.duowan.com/hero";
 
     @Autowired
     private LolUserPipeline lolUserPipeline;
@@ -29,6 +27,48 @@ public class ReptileUtil {
     private GameDataPipeline gameDataPipeline;
     @Autowired
     private RecentMatchPipeline recentMatchPipeline;
+    @Autowired
+    private LolHeroPipeline lolHeroPipeline;
+    @Autowired
+    private LolHeroDetailPipeline lolHeroDetailPipeline;
+
+
+    /**
+     * 获取lol英雄基本数据
+     */
+    public void getLolHeroData(){
+        StringBuffer url = new StringBuffer(heroUri);
+
+        //初始化爬虫任务
+        LolHeroProcessor lhp = new LolHeroProcessor();
+        Spider spider = Spider.create(lhp);
+
+        //检测爬虫任务
+        long startTime, endTime;
+        System.out.println("开始爬取英雄基本数据...");
+        startTime = System.currentTimeMillis();
+        spider.addUrl(url.toString()).addPipeline(lolHeroPipeline).thread(5).run();
+        endTime = System.currentTimeMillis();
+        System.out.println("英雄基本数据爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒");
+    }
+
+    /**
+     * 获取lol英雄详细数据
+     */
+    public void getLolHeroDetail(String url){
+        //初始化爬虫任务
+        LolHeroDetailProcessor lhdp = new LolHeroDetailProcessor();
+        Spider spider = Spider.create(lhdp);
+
+        //检测爬虫任务
+        long startTime, endTime;
+        System.out.println("开始爬取英雄详细数据...");
+        startTime = System.currentTimeMillis();
+        spider.addUrl(url).addPipeline(lolHeroDetailPipeline).thread(1).run();
+        endTime = System.currentTimeMillis();
+        System.out.println("英雄详细数据爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒");
+    }
+
     /**
      * 获取爬取的用户id
      * @param username
@@ -78,13 +118,13 @@ public class ReptileUtil {
     }
 
     /**
-     *
+     *  获取用户近期比赛数据
      * @param reptileId
      * @param serverId
      */
     public void getRecentMatch(String reptileId, String serverId){
         //拼接url
-        StringBuffer url = new StringBuffer(dataUri);
+        StringBuffer url = new StringBuffer(matchUri);
         url.append("/").append(serverId);
         url.append("/").append(reptileId);
         url.append("/recent_games");

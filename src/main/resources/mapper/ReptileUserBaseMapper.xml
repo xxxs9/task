@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.user.ReptileUserBaseMapper">
+  <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.user.ReptileUserBase">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="REPTILE_ID" jdbcType="VARCHAR" property="reptileId" />
+    <result column="SERVER_ID" jdbcType="VARCHAR" property="serverId" />
+    <result column="LEVEL" jdbcType="VARCHAR" property="level" />
+    <result column="BATLE_ABILITY" jdbcType="INTEGER" property="batleAbility" />
+    <result column="PRAISE" jdbcType="INTEGER" property="praise" />
+    <result column="BELTTLE" jdbcType="INTEGER" property="belttle" />
+  </resultMap>
+
+  <select id="queryByReptileServerId" resultMap="BaseResultMap">
+       select * from reptile_user_base
+       where server_id = #{serverId}
+        and reptile_id = #{reptileId}
+  </select>
+
+</mapper>

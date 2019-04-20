@@ -23,6 +23,16 @@ public class WxUserLoginController {
     @Autowired
     private WxUserLoginService wxUserLoginService;
 
+    /**
+     * 小程序授权登录
+     * 由于获取不到unionId
+     * 暂时用nickname做唯一标识
+     * unicode字符未处理
+     * @param nickname
+     * @param gender
+     * @param avatarUrl
+     * @return
+     */
     @RequestMapping(value = "/login.api",method = RequestMethod.POST)
     @ResponseBody
     public IResult login(String nickname , String gender , String avatarUrl){

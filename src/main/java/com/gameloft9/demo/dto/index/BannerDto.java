@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class BannerDto {
 
+    private String id;
     /**
      * 轮播图跳转链接
      */

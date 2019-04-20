@@ -1,11 +1,14 @@
 package com.gameloft9.demo.webmagic.processor;
 
+import com.gameloft9.demo.dataaccess.model.user.ReptileUserRecentMatch;
 import com.gameloft9.demo.webmagic.template.ExtractTemplate;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
 import us.codecraft.webmagic.selector.Selectable;
+
+import java.util.List;
 
 public class RecentMatchProcessor implements PageProcessor {
 
@@ -15,9 +18,15 @@ public class RecentMatchProcessor implements PageProcessor {
 
     @Override
     public void process(Page page) {
+        /**
+         * 提取最近比赛数据模板
+         */
         Html html = page.getHtml();
+        Selectable tag = html.xpath("//ol[@class=\"breadcrumb\"]/li").nodes().get(1);
+        String[] s = tag.xpath("//a/@href").get().split("/");
         Selectable st =  html.xpath("//table[@class=\"table table-hover recent-game-list\"]");
-        ExtractTemplate.extractRecentMatchTemplat(st);
+        List<ReptileUserRecentMatch> rmList = ExtractTemplate.extractRecentMatchTemplat(s[2].trim(),s[3].trim(),st);
+        page.putField("rm",rmList);
     }
 
     @Override
