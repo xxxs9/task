@@ -26,9 +26,9 @@ public class LolHeroDetailPipeline implements Pipeline {
         HeroReptile heroReptile = resultItems.get("detail");
         if (heroReptile != null){
             heroDetailMapper.insert(heroReptile.getHeroDetail());
-            for (int i = 0 , num = heroReptile.getHsList().size(); i < num ; i ++ ){
-                heroSkillMapper.insert(heroReptile.getHsList().get(i));
-            }
+//            for (int i = 0 , num = heroReptile.getHsList().size(); i < num ; i ++ ){
+////                heroSkillMapper.insert(heroReptile.getHsList().get(i));
+//            }
         }
     }
 }

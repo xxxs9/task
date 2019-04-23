@@ -1,6 +1,7 @@
 package com.gameloft9.demo.dataaccess.dao.user;
 
 import com.gameloft9.demo.dataaccess.model.user.UserFriends;
+import com.gameloft9.demo.dto.friend.FriendDto;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -14,7 +15,7 @@ public interface UserFriendsMapper extends Mapper<UserFriends>{
      * @param status 0 申请 1 好友
      * @return
      */
-    List<UserFriends> myFirendListByStatus(
+    List<FriendDto> myFirendListByStatus(
             @Param("loginNameFirst") String uuid,
             @Param("status") int status);
 
@@ -23,7 +24,7 @@ public interface UserFriendsMapper extends Mapper<UserFriends>{
      * @param uuid
      * @return
      */
-    List<UserFriends> applyListByUuid(String uuid);
+    List<FriendDto> applyListByUuid(String uuid);
 
     /**
      * 通过2个id获取唯一数据
@@ -34,7 +35,6 @@ public interface UserFriendsMapper extends Mapper<UserFriends>{
     UserFriends queryFriendByFirstSecondId(
             @Param("loginNameFirst") String uuid,
             @Param("loginNameSecond") String friendId);
-
 
     ///-------- admin ---------
 

@@ -13,6 +13,17 @@
     <result column="COMMENT_DETAILS" jdbcType="LONGVARCHAR" property="commentDetails" />
       <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
   </resultMap>
+    <resultMap id="DtoResultMap" type="com.gameloft9.demo.dto.dynamic.UserCommentDto">
+        <result column="ID" jdbcType="INTEGER" property="id" />
+        <result column="DYNAMIC_ID" jdbcType="INTEGER" property="dynamicId" />
+        <result column="UUID" jdbcType="VARCHAR" property="uuid" />
+        <result column="COMMENT_NAME" jdbcType="VARCHAR" property="commentName" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="COMMENT_DETAILS" jdbcType="LONGVARCHAR" property="commentDetails" />
+        <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
+        <result column="NICKNAME" jdbcType="VARCHAR" property="nickname" />
+        <result column="AVATAR_URL" jdbcType="VARCHAR" property="avatarUrl" />
+    </resultMap>
     <!--动态信息的结果映射表-->
     <resultMap id="UserDynamicMap" type="com.gameloft9.demo.dataaccess.model.user.UserDynamic">
         <result column="ID" jdbcType="INTEGER" property="id" />
@@ -41,8 +52,9 @@
     ID,UUID,DYNAMIC_ID,COMMENT_NAME,CREATE_TIME,COMMENT_DETAILS,IS_DEL
   </sql>
 
-    <select id="queryListByDynamicId" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/> from user_comment t
+    <select id="queryListByDynamicId" resultMap="DtoResultMap">
+        select t.*,w.nickname,w.avatar_url from user_comment t
+        left join wx_user w on w.uuid = t.uuid
         WHERE DYNAMIC_ID = #{dynamicId}
         AND is_del = 0
     </select>

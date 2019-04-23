@@ -79,6 +79,23 @@ public class HeroDetail {
     private String backgroundImg;
 
     /**
+     * 英雄装备ID
+     */
+    @Column(name = "EQUIP_ID")
+    private String equipId;
+
+    /**
+     * 符文图片
+     */
+    @Column(name = "RUNE_IMG")
+    private String runeImg;
+    /**
+     * 符文描述
+     */
+    @Column(name = "RUNE_DES")
+    private String runeDes;
+
+    /**
      * @return ID
      */
     public Integer getId() {
@@ -226,5 +243,29 @@ public class HeroDetail {
 
     public void setTicket(String ticket) {
         this.ticket = ticket;
+    }
+
+    public String getEquipId() {
+        return equipId;
+    }
+
+    public void setEquipId(String equipId) {
+        this.equipId = equipId;
+    }
+
+    public String getRuneImg() {
+        return runeImg;
+    }
+
+    public void setRuneImg(String runeImg) {
+        this.runeImg = runeImg;
+    }
+
+    public String getRuneDes() {
+        return runeDes;
+    }
+
+    public void setRuneDes(String runeDes) {
+        this.runeDes = runeDes;
     }
 }

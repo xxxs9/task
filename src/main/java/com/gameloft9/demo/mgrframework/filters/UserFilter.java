@@ -25,6 +25,8 @@ public class UserFilter implements Filter {
             throws IOException, ServletException {
 
         fillUserInfo((HttpServletRequest) request);
+        String s = ((HttpServletRequest) request).getRequestURL().toString();
+        System.out.println(s);
 
         chain.doFilter(request, response);
 

@@ -1,6 +1,7 @@
 package com.gameloft9.demo.service.api.wxapi;
 
 import com.gameloft9.demo.dto.dynamic.DynamicDto;
+import com.gameloft9.demo.dto.dynamic.UserCommentDto;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public interface WxUserDynamicService {
      * @param content
      * @return
      */
-    boolean pushComment(Integer dynamicId, String uuid, String content);
+    List<UserCommentDto> pushComment(Integer dynamicId, String uuid, String content);
 
     /**
      * 删除动态

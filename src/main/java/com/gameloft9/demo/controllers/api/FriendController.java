@@ -3,6 +3,7 @@ package com.gameloft9.demo.controllers.api;
 
 import com.gameloft9.demo.dataaccess.model.user.UserFriends;
 import com.gameloft9.demo.dataaccess.model.user.WxUser;
+import com.gameloft9.demo.dto.friend.FriendDto;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
 import com.gameloft9.demo.mgrframework.beans.response.ResultBean;
 import com.gameloft9.demo.service.api.wxapi.FriendService;
@@ -35,12 +36,12 @@ public class FriendController {
     @ResponseBody
     public IResult test(){
         //返回json至前端的均返回ResultBean或者PageResultBean
-//        System.out.println("发现用户列表："+findUserList("64ddde8049d04be8a76ea2fa85a3db44"));
-//        System.out.println("好友列表："+friendList("64ddde8049d04be8a76ea2fa85a3db44"));
-//        System.out.println("申请列表："+myApplyList("64ddde8049d04be8a76ea2fa85a3db44"));
+        System.out.println("发现用户列表："+findUserList("64ddde8049d04be8a76ea2fa85a3db44"));
+        System.out.println("好友列表："+friendList("64ddde8049d04be8a76ea2fa85a3db44"));
+        System.out.println("申请列表："+myApplyList("64ddde8049d04be8a76ea2fa85a3db44"));
 //        System.out.println("发送添加申请："+applyFriend("cs001","64ddde8049d04be8a76ea2fa85a3db44"));
 //        System.out.println("cs申请列表："+myApplyList("cs001"));
-//        System.out.println("查看申请列表："+otherApplyList("64ddde8049d04be8a76ea2fa85a3db44"));
+        System.out.println("查看申请列表："+otherApplyList("64ddde8049d04be8a76ea2fa85a3db44"));
 //        applyFriend("64ddde8049d04be8a76ea2fa85a3db44","1232");
 //        operationApply("cs001",2,2);
 //        delApply("cs001",1);
@@ -72,10 +73,11 @@ public class FriendController {
     public IResult friendList(String uuid){
         try {
             if (userQueryService.queryWxUser(uuid)){
-                return new ResultBean<List<UserFriends>>(friendService.friendList(uuid));
+                return new ResultBean<List<FriendDto>>(friendService.friendList(uuid));
             }
             return new ResultBean<String>("9999","无效用户");
         }catch (Exception e){
+            e.printStackTrace();
             return new ResultBean<String>("9999","获取好友列表失败");
         }
     }
@@ -89,10 +91,11 @@ public class FriendController {
     public IResult myApplyList(String uuid){
         try {
             if (userQueryService.queryWxUser(uuid)){
-                return new ResultBean<List<UserFriends>>(friendService.myApplyList(uuid));
+                return new ResultBean<List<FriendDto>>(friendService.myApplyList(uuid));
             }
             return new ResultBean<String>("9999","无效用户");
         }catch (Exception e){
+            e.printStackTrace();
             return new ResultBean<String>("9999","获取已发送的申请列表失败");
         }
     }
@@ -149,10 +152,11 @@ public class FriendController {
     public IResult otherApplyList(String uuid){
         try {
             if (userQueryService.queryWxUser(uuid)){
-                return new ResultBean<List<UserFriends>>(friendService.otherApplyList(uuid));
+                return new ResultBean<List<FriendDto>>(friendService.otherApplyList(uuid));
             }
             return new ResultBean<String>("9999","无效用户");
         }catch (Exception e){
+            e.printStackTrace();
             return new ResultBean<String>("9999","获取申请列表失败");
         }
     }
@@ -171,6 +175,7 @@ public class FriendController {
             }
             return new ResultBean<String>("9999","无效用户");
         }catch (Exception e){
+            e.printStackTrace();
             return new ResultBean<String>("9999","操作失败");
         }
     }

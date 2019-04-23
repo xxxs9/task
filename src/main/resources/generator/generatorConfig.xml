@@ -42,5 +42,7 @@
         <!--<table tableName="reptile_user_base" domainObjectName="ReptileUserBase"/>-->
         <!--<table tableName="reptile_user_content_statistics" domainObjectName="ReptileUserContentStatistics"/>-->
         <!--<table tableName="reptile_user_recent_match" domainObjectName="ReptileUserRecentMatch"/>-->
+        <!--<table tableName="HERO_EQUIP" domainObjectName="HeroEquip"/>-->
+        <!--<table tableName="hero_week_free" domainObjectName="HeroWeekFree"/>-->
     </context>
 </generatorConfiguration>

@@ -1,6 +1,7 @@
 package com.gameloft9.demo.controllers.api;
 
 import com.gameloft9.demo.dto.dynamic.DynamicDto;
+import com.gameloft9.demo.dto.dynamic.UserCommentDto;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
 import com.gameloft9.demo.mgrframework.beans.response.ResultBean;
 import com.gameloft9.demo.service.api.wxapi.UserQueryService;
@@ -89,7 +90,7 @@ public class WxUserDynamicController {
     public IResult pushComment(Integer dynamicId, String uuid, String content) {
         try {
             if (userQueryService.queryWxUser(uuid)){
-                return new ResultBean<Boolean>(wxUserDynamicService.pushComment(dynamicId,uuid,content));
+                return new ResultBean<List<UserCommentDto>>(wxUserDynamicService.pushComment(dynamicId,uuid,content));
             }
             return new ResultBean<String>("9999","无效用户");
         }catch (Exception e){

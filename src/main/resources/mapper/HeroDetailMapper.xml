@@ -17,6 +17,7 @@
     <result column="BACKGROUND_IMG" jdbcType="VARCHAR" property="backgroundImg" />
     <result column="GOLD_COIN" jdbcType="VARCHAR" property="goldCoin" />
     <result column="TICKET" jdbcType="VARCHAR" property="ticket" />
+    <result column="EQUIP_ID" jdbcType="VARCHAR" property="equipId" />
   </resultMap>
 
   <select id="queryHeroDetailByHeroNameOrHeroTile" resultMap="BaseResultMap">

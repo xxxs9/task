@@ -1,6 +1,8 @@
 package com.gameloft9.demo.controllers.api;
 
 import com.gameloft9.demo.dataaccess.model.user.HeroBase;
+import com.gameloft9.demo.dataaccess.model.user.HeroEquip;
+import com.gameloft9.demo.dataaccess.model.user.HeroWeekFree;
 import com.gameloft9.demo.dto.hero.HeroDetailDto;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
 import com.gameloft9.demo.mgrframework.beans.response.ResultBean;
@@ -27,6 +29,15 @@ public class ViewGameDataController {
     private ViewGameDataService viewGameDataService;
 
     /**
+     * 获取周免英雄
+     */
+    @RequestMapping(value = "/free.api",method = RequestMethod.GET)
+    @ResponseBody
+    public IResult getWeekFree(){
+        return new ResultBean<List<HeroWeekFree>>(viewGameDataService.getFreeHero());
+    }
+
+    /**
      * 获取所有英雄基本信息
      * @return
      */
@@ -51,6 +62,16 @@ public class ViewGameDataController {
     public IResult getHeroDetail(String heroName, String heroTitle){
         return new ResultBean<HeroDetailDto>(viewGameDataService.getHeroDetailSKill(heroName,heroTitle));
 
+    }
+
+    /**
+     * 获取指定英雄出账数据
+     * @return
+     */
+    @RequestMapping(value = "/heroEquip.api",method = RequestMethod.GET)
+    @ResponseBody
+    public IResult getHeroEquip(String equipId){
+        return new ResultBean<HeroEquip>(viewGameDataService.getHeroEquip(equipId));
     }
 
 }

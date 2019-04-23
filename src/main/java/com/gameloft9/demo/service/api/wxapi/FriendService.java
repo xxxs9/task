@@ -2,6 +2,7 @@ package com.gameloft9.demo.service.api.wxapi;
 
 import com.gameloft9.demo.dataaccess.model.user.UserFriends;
 import com.gameloft9.demo.dataaccess.model.user.WxUser;
+import com.gameloft9.demo.dto.friend.FriendDto;
 
 import java.util.List;
 
@@ -20,14 +21,14 @@ public interface FriendService {
      * @param uuid 对应 用户1
      * @return
      */
-    List<UserFriends> friendList(String uuid);
+    List<FriendDto> friendList(String uuid);
 
     /**
      * 获取自己发送的申请列表
      * @param uuid
      * @return
      */
-    List<UserFriends> myApplyList(String uuid);
+    List<FriendDto> myApplyList(String uuid);
 
     /**
      * 发送好友申请
@@ -51,7 +52,7 @@ public interface FriendService {
      * @param uuid 对应 用户1
      * @return
      */
-    List<UserFriends> otherApplyList(String uuid);
+    List<FriendDto> otherApplyList(String uuid);
 
     /**
      * 处理好友申请

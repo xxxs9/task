@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.user.HeroEquipMapper">
+  <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.user.HeroEquip">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="RECORD_ID" jdbcType="VARCHAR" property="recordId" />
+    <result column="PRE_CZ" jdbcType="VARCHAR" property="preCz" />
+    <result column="PRE_EXPLAIN" jdbcType="VARCHAR" property="preExplain" />
+    <result column="MID_CZ" jdbcType="VARCHAR" property="midCz" />
+    <result column="MID_EXPLAIN" jdbcType="VARCHAR" property="midExplain" />
+    <result column="END_CZ" jdbcType="VARCHAR" property="endCz" />
+    <result column="END_EXPLAIN" jdbcType="VARCHAR" property="endExplain" />
+    <result column="NF_CZ" jdbcType="VARCHAR" property="nfCz" />
+    <result column="NF_EXPLAIN" jdbcType="VARCHAR" property="nfExplain" />
+  </resultMap>
+
+
+  <select id="queryByEquipId" resultMap="BaseResultMap">
+       select * from
+          hero_equip
+        where record_id = #{equipId}
+    </select>
+</mapper>

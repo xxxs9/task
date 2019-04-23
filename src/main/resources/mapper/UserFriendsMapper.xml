@@ -12,26 +12,39 @@
       <result column="FRIEND_STATUS" jdbcType="INTEGER" property="friendStatus" />
   </resultMap>
 
+    <resultMap id="FriendResultMap" type="com.gameloft9.demo.dto.friend.FriendDto">
+        <result column="ID" jdbcType="INTEGER" property="id" />
+        <result column="LOGIN_NAME_FIRST" jdbcType="VARCHAR" property="loginNameFirst" />
+        <result column="LOGIN_NAME_SECOND" jdbcType="VARCHAR" property="loginNameSecond" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="FRIEND_STATUS" jdbcType="INTEGER" property="friendStatus" />
+        <result column="NICKNAME" jdbcType="VARCHAR" property="nickname" />
+        <result column="AVATAR_URL" jdbcType="VARCHAR" property="avatarUrl" />
+        <result column="GENDER" jdbcType="VARCHAR" property="gender" />
+    </resultMap>
+
     <sql id="Base_Column_List">
     ID,LOGIN_NAME_FIRST,LOGIN_NAME_SECOND,CREATE_TIME,FRIEND_STATUS
     </sql>
 
 
-    <select id="myFirendListByStatus" resultMap="BaseResultMap">
-        select * from user_friends t
+    <select id="myFirendListByStatus" resultMap="FriendResultMap">
+        select t.*,w.* from user_friends t
+        left join wx_user w on w.uuid = t.LOGIN_NAME_SECOND
         where t.LOGIN_NAME_FIRST = #{loginNameFirst,jdbcType=VARCHAR}
           AND t.FRIEND_STATUS = #{status}
     </select>
 
-    <select id="applyListByUuid" resultMap="BaseResultMap">
-        select * from user_friends t
+    <select id="applyListByUuid" resultMap="FriendResultMap">
+        select t.*,w.* from user_friends t
+        left join wx_user w on w.uuid = t.LOGIN_NAME_FIRST
         where t.LOGIN_NAME_SECOND = #{loginNameFirst,jdbcType=VARCHAR}
           AND t.FRIEND_STATUS = 0
     </select>
 
     <select id="queryFriendByFirstSecondId" resultMap="BaseResultMap">
         select * from user_friends t
-        where t.LOGIN_NAME_FIRST= #{loginNameFirst,jdbcType=VARCHAR}
+        where t.LOGIN_NAME_FIRST = #{loginNameFirst,jdbcType=VARCHAR}
           AND t.LOGIN_NAME_SECOND = #{loginNameSecond,jdbcType=VARCHAR}
     </select>
 

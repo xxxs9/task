@@ -24,6 +24,7 @@
                     <list>
                         <value>text/plain;charset=UTF-8</value>
                         <value>text/html;charset=UTF-8</value>
+                        <!--<value>applicaton/json;charset=UTF-8</value>-->
                     </list>
                 </property>
             </bean>

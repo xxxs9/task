@@ -4,6 +4,7 @@ import com.gameloft9.demo.dataaccess.dao.user.UserFriendsMapper;
 import com.gameloft9.demo.dataaccess.dao.user.WxUserMapper;
 import com.gameloft9.demo.dataaccess.model.user.UserFriends;
 import com.gameloft9.demo.dataaccess.model.user.WxUser;
+import com.gameloft9.demo.dto.friend.FriendDto;
 import com.gameloft9.demo.service.api.wxapi.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class FriendServiceImpl implements FriendService {
      * @return
      */
     @Override
-    public List<UserFriends> friendList(String uuid) {
+    public List<FriendDto> friendList(String uuid) {
         return userFriendsMapper.myFirendListByStatus(uuid,1);
     }
 
@@ -49,7 +50,7 @@ public class FriendServiceImpl implements FriendService {
      * @return
      */
     @Override
-    public List<UserFriends> myApplyList(String uuid) {
+    public List<FriendDto> myApplyList(String uuid) {
         return userFriendsMapper.myFirendListByStatus(uuid,0);
     }
 
@@ -110,7 +111,7 @@ public class FriendServiceImpl implements FriendService {
      * @return
      */
     @Override
-    public List<UserFriends> otherApplyList(String uuid) {
+    public List<FriendDto> otherApplyList(String uuid) {
         return userFriendsMapper.applyListByUuid(uuid);
     }
 

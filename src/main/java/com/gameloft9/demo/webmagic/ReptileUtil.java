@@ -6,12 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
 
+import java.security.PrivateKey;
+
 /**
  * 爬虫工具类
  */
 @Component
 public class ReptileUtil {
 
+    /**
+     * 获取多玩盒子周免
+     */
+    private String heroWeeKFreeUrl = "http://api.lolbox.duowan.com/";
     /**
      * 爬取用户id地址
      */
@@ -29,17 +35,67 @@ public class ReptileUtil {
      */
     private String heroUri = "http://lol.duowan.com/hero";
 
+    /**
+     * 爬取英雄出装Url
+     */
+    private String heroEquipUrl = "http://db.duowan.com/lolnewcz/article?record_id=";
+
     @Autowired
     private LolUserPipeline lolUserPipeline;
     @Autowired
     private GameDataPipeline gameDataPipeline;
     @Autowired
     private RecentMatchPipeline recentMatchPipeline;
+
     @Autowired
     private LolHeroPipeline lolHeroPipeline;
     @Autowired
     private LolHeroDetailPipeline lolHeroDetailPipeline;
+    @Autowired
+    private HeroEquipPipeline heroEquipPipeline;
+    @Autowired
+    private HeroWeeKFreePipeline heroWeeKFreePipeline;
 
+
+    /**
+     * 获取周免英雄数据
+     */
+    public void getHeroWeekFree(){
+        StringBuffer url = new StringBuffer(heroWeeKFreeUrl);
+
+        //初始化爬虫任务
+        HeroWeeKFreeProcessor hwfp = new HeroWeeKFreeProcessor();
+        Spider spider = Spider.create(hwfp);
+
+        //检测爬虫任务
+        long startTime, endTime;
+        System.out.println("开始爬取英雄周免数据...");
+        startTime = System.currentTimeMillis();
+        spider.addUrl(url.toString()).addPipeline(heroWeeKFreePipeline).thread(5).run();
+        endTime = System.currentTimeMillis();
+        System.out.println("英雄周免数据爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒");
+    }
+
+
+
+    /**
+     * 获取英雄装备信息，返回的是json数据
+     */
+    public void getHeroEquipData(String equipId){
+        StringBuffer url = new StringBuffer(heroEquipUrl).append(equipId);
+
+        //初始化爬虫任务
+        HeroEquipProcessor hep = new HeroEquipProcessor();
+        Spider spider = Spider.create(hep);
+
+        //检测爬虫任务
+        long startTime, endTime;
+        System.out.println("开始爬取英雄出装数据...");
+        startTime = System.currentTimeMillis();
+        spider.addUrl(url.toString()).addPipeline(heroEquipPipeline).thread(5).run();
+        endTime = System.currentTimeMillis();
+        System.out.println("英雄出装数据爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒");
+    }
 
     /**
      * 获取lol英雄基本数据
@@ -76,6 +132,9 @@ public class ReptileUtil {
         endTime = System.currentTimeMillis();
         System.out.println("英雄详细数据爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒");
     }
+
+
+    //---------- User Data ----------
 
     /**
      * 获取爬取的用户id

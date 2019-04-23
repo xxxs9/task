@@ -37,7 +37,7 @@ public class UserGameDataController {
      * 各赛季统计数据
      * @return
      */
-    @RequestMapping(value = "/base.api",method = RequestMethod.POST)
+    @RequestMapping(value = "/base.api")
     @ResponseBody
     public IResult getUserGameData(String uuid){
 
@@ -51,7 +51,7 @@ public class UserGameDataController {
      * 获取游戏角色的近期比赛数据
      * @return
      */
-    @RequestMapping(value = "/match.api",method = RequestMethod.POST)
+    @RequestMapping(value = "/match.api")
     @ResponseBody
     public IResult getUserRecentMatch(String uuid){
         if (userQueryService.queryWxUser(uuid)){

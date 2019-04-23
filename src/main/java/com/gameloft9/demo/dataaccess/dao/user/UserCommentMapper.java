@@ -1,6 +1,7 @@
 package com.gameloft9.demo.dataaccess.dao.user;
 
 import com.gameloft9.demo.dataaccess.model.user.UserComment;
+import com.gameloft9.demo.dto.dynamic.UserCommentDto;
 import com.gameloft9.demo.service.beans.system.CommentSelectResponse;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
@@ -14,7 +15,7 @@ public interface UserCommentMapper extends Mapper<UserComment>{
      * @param dynamicId
      * @return
      */
-    List<UserComment> queryListByDynamicId(Integer dynamicId);
+    List<UserCommentDto> queryListByDynamicId(Integer dynamicId);
 
     /**
      * 查找所有

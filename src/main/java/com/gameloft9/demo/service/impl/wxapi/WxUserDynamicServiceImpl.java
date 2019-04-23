@@ -8,6 +8,8 @@ import com.gameloft9.demo.dataaccess.model.user.UserComment;
 import com.gameloft9.demo.dataaccess.model.user.UserDynamic;
 import com.gameloft9.demo.dataaccess.model.user.UserFriends;
 import com.gameloft9.demo.dto.dynamic.DynamicDto;
+import com.gameloft9.demo.dto.dynamic.UserCommentDto;
+import com.gameloft9.demo.dto.dynamic.UserDynamicDto;
 import com.gameloft9.demo.service.api.wxapi.WxUserDynamicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +42,7 @@ public class WxUserDynamicServiceImpl implements WxUserDynamicService {
     @Override
     public List<DynamicDto> findFriendDynamic(String uuid) {
         List<DynamicDto> dtoList = new ArrayList<>();
-        List<UserDynamic> fudList = userDynamicMapper.getFriendDynamic(uuid);
+        List<UserDynamicDto> fudList = userDynamicMapper.getFriendDynamic(uuid);
         //查看是否有朋友圈动态
         if (fudList != null && fudList.size() > 0){
             for (int i = 0, num = fudList.size(); i < num ; i ++ ){
@@ -79,7 +81,7 @@ public class WxUserDynamicServiceImpl implements WxUserDynamicService {
      * @return
      */
     @Override
-    public boolean pushComment(Integer dynamicId, String uuid, String content) {
+    public List<UserCommentDto> pushComment(Integer dynamicId, String uuid, String content) {
         //先校验动态是否存在
         UserDynamic ud = new UserDynamic();
         ud.setId(dynamicId);
@@ -98,10 +100,10 @@ public class WxUserDynamicServiceImpl implements WxUserDynamicService {
                 uc.setUuid(uuid);
                 uc.setIsDel(0);
                 userCommentMapper.insert(uc);
-                return true;
+                return userCommentMapper.queryListByDynamicId(dynamicId);
             }
         }
-        return false;
+        return new ArrayList<UserCommentDto>();
     }
 
     /**

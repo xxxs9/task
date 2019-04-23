@@ -16,7 +16,8 @@
 
   <select id="queryListExceptUuid" parameterType="String" resultMap="BaseResultMap">
     select * from WX_USER t WHERE
-    t.UUID != #{uuid}
+    t.UUID != #{uuid} and t.UUID not in
+    (select LOGIN_NAME_SECOND from user_friend where LOGIN_NAME_FIRST = #{uuid})
   </select>
 
   <select id="queryWxUserByNickname" parameterType="String" resultMap="BaseResultMap">

@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class DynamicDto {
 
-    private UserDynamic userDynamic;
+    private UserDynamicDto userDynamic;
 
-    private List<UserComment> ucList;
+    private List<UserCommentDto> ucList;
 }

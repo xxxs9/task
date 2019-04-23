@@ -1,11 +1,7 @@
 package com.gameloft9.demo.service.impl.wxapi;
 
-import com.gameloft9.demo.dataaccess.dao.user.HeroBaseMapper;
-import com.gameloft9.demo.dataaccess.dao.user.HeroDetailMapper;
-import com.gameloft9.demo.dataaccess.dao.user.HeroSkillMapper;
-import com.gameloft9.demo.dataaccess.model.user.HeroBase;
-import com.gameloft9.demo.dataaccess.model.user.HeroDetail;
-import com.gameloft9.demo.dataaccess.model.user.HeroSkill;
+import com.gameloft9.demo.dataaccess.dao.user.*;
+import com.gameloft9.demo.dataaccess.model.user.*;
 import com.gameloft9.demo.dto.hero.HeroDetailDto;
 import com.gameloft9.demo.service.api.wxapi.ViewGameDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +25,33 @@ public class ViewGameDataServiceImpl implements ViewGameDataService {
     @Autowired
     private HeroSkillMapper heroSkillMapper;
 
+    @Autowired
+    private HeroWeekFreeMapper heroWeekFreeMapper;
+
+    @Autowired
+    private HeroEquipMapper heroEquipMapper;
+
+    @Override
+    public HeroEquip getHeroEquip(String equipId) {
+        return heroEquipMapper.queryByEquipId(equipId);
+    }
+
+    @Override
+    public List<HeroWeekFree> getFreeHero() {
+        return heroWeekFreeMapper.selectAll();
+    }
+
     @Override
     public List<HeroBase> getAllHero(Integer pageNum, Integer pageSize) {
         return heroBaseMaper.getListByPageNumSize(pageNum,pageSize);
     }
 
+    /**
+     * 获取英雄详情和技能详情
+     * @param heroName
+     * @param heroTitle
+     * @return
+     */
     @Override
     public HeroDetailDto getHeroDetailSKill(String heroName, String heroTitle) {
         HeroDetailDto dto = new HeroDetailDto();

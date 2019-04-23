@@ -1,6 +1,7 @@
 package com.gameloft9.demo.dataaccess.dao.user;
 
 import com.gameloft9.demo.dataaccess.model.user.UserDynamic;
+import com.gameloft9.demo.dto.dynamic.UserDynamicDto;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -14,7 +15,7 @@ public interface UserDynamicMapper extends Mapper<UserDynamic>{
      * @param uuid
      * @return
      */
-    List<UserDynamic> getFriendDynamic(String uuid);
+    List<UserDynamicDto> getFriendDynamic(String uuid);
 
     /**
      * 查找所有条目

@@ -14,9 +14,22 @@
     <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
   </resultMap>
 
-  <select id="getFriendDynamic" resultMap="BaseResultMap">
-    select * from user_dynamic
-    where uuid in (
+  <resultMap id="DtoResultMap" type="com.gameloft9.demo.dto.dynamic.UserDynamicDto">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="DYNAMIC_CONTENT" jdbcType="LONGVARCHAR" property="dynamicContent" />
+    <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
+    <result column="NICKNAME" jdbcType="VARCHAR" property="nickname" />
+    <result column="AVATAR_URL" jdbcType="VARCHAR" property="avatarUrl" />
+  </resultMap>
+
+  <select id="getFriendDynamic" resultMap="DtoResultMap">
+    select t.*,w.nickname,w.avatar_url from user_dynamic t
+        left join wx_user w on w.uuid = t.uuid
+    where t.uuid in (
       select LOGIN_NAME_SECOND from user_friends
       where LOGIN_NAME_FIRST = #{uuid}
       AND friend_status = 1)

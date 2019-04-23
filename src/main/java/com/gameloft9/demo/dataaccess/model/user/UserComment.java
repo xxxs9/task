@@ -35,8 +35,9 @@ public class UserComment {
     /**
      * 评论时间
      */
-    @Column(name = "CREATE_TIME")
+
     @JsonFormat(timezone = "GTM+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "CREATE_TIME")
     private Date createTime;
 
     /**

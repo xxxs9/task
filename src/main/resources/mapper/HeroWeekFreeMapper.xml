@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.user.HeroWeekFreeMapper">
+  <resultMap id="BaseResultMap" type="com.gameloft9.demo.dataaccess.model.user.HeroWeekFree">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="hero_title" jdbcType="VARCHAR" property="heroTitle" />
+    <result column="hero_name" jdbcType="VARCHAR" property="heroName" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+  </resultMap>
+
+  <insert id="insertList" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.ArrayList">
+    INSERT INTO
+    hero_week_free(ID, hero_title, hero_name,
+    img, des)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id},#{item.heroTitle},#{item.heroName},
+      #{item.img}, #{item.des})
+    </foreach>
+  </insert>
+
+  <update id="truncateTable">
+    truncate table hero_week_free
+  </update>
+
+</mapper>
