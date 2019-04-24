@@ -35,4 +35,25 @@
     t.UNIONID = #{unionid,jdbcType=VARCHAR}
   </select>
 
+  <!-- 后台相关sql语句 -->
+
+  <!-- 获取所有数列-->
+  <select id="getAll" resultMap="BaseResultMap">
+    select * from wx_user t
+    where 1=1
+    <if test="nickname != null and nickname != ''">
+      and nickname = #{nickname}
+    </if>
+    order by t.CREATE_TIME desc
+    limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+  </select>
+  <!--获取记录数-->
+  <select id="countGetAll" resultType="Integer">
+    select count(*) from wx_user
+    where 1=1
+    <if test="nickname != null and nickname != ''">
+      and nickname = #{nickname,jdbcType=VARCHAR}
+    </if>
+  </select>
+
 </mapper>

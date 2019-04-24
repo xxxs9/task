@@ -2,6 +2,7 @@ package com.gameloft9.demo.controllers;
 
 import com.gameloft9.demo.dataaccess.dao.user.HeroBaseMapper;
 import com.gameloft9.demo.dataaccess.dao.user.HeroDetailMapper;
+import com.gameloft9.demo.dataaccess.model.user.HeroBase;
 import com.gameloft9.demo.dataaccess.model.user.HeroDetail;
 import com.gameloft9.demo.webmagic.ReptileUtil;
 import lombok.extern.slf4j.Slf4j;

@@ -180,7 +180,11 @@ layui.define(['$tool','jquery'], function (exports) {
         },
         UpdateComment:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'comment/update.do',req,config,successCallback,errorCallback);
-        }
+        },
+        /* 英雄详情模块 */
+        UpdateHeroDetail:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'adminHeroDetail/update.do',req,config,successCallback,errorCallback);
+        },
     };
 
 

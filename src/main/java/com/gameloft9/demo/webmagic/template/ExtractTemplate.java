@@ -124,7 +124,7 @@ public class ExtractTemplate {
                 && html.xpath("//div[@class=\"mod-tab-content\"]").nodes().size() > 1) {
             Selectable selectable1 = html.xpath("//div[@class=\"mod-tab-content\"]");
             //符文整体图片
-            runeImg = selectable1.xpath("//img/@src").get();
+            runeImg = selectable1.xpath("//div[@class=\"mod-tab-content\"]/img/@src").get();
             //符文选择描述
             runeDes = selectable1.xpath("//div[@class=\"desc\"]/html()").get();
         }

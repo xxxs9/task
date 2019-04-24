@@ -6,6 +6,7 @@ import com.gameloft9.demo.dataaccess.model.user.HeroWeekFree;
 import com.gameloft9.demo.dto.hero.HeroDetailDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ViewGameDataService {
 
@@ -22,11 +23,10 @@ public interface ViewGameDataService {
     List<HeroWeekFree> getFreeHero();
     /**
      * 获取所有英雄
-     * @param pageNum
-     * @param pageSize
+     * @param map
      * @return
      */
-    List<HeroBase> getAllHero(Integer pageNum, Integer pageSize);
+    List<HeroBase> getAllHero(Map map);
 
     /**
      * 获取英雄明细

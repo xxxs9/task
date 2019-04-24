@@ -15,7 +15,7 @@ public class WxUserBaseGameDto {
     /**
      * 基本数据
      */
-    private ReptileUserBase uBase;
+    private ReptileUserBaseDto uBase;
 
     /**
      * 用户赛季统计结果

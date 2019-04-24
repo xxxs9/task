@@ -6,6 +6,7 @@ import com.gameloft9.demo.dataaccess.model.user.GetReptileId;
 import com.gameloft9.demo.dataaccess.model.user.WxUserReptileInfo;
 import com.gameloft9.demo.dto.user.WxUserDto;
 import com.gameloft9.demo.service.api.wxapi.BindGameRoleService;
+import com.gameloft9.demo.webmagic.ReptileDataUtil;
 import com.gameloft9.demo.webmagic.ReptileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,8 +54,19 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
      */
     @Override
     public Boolean bindGameRole(String uuid ,String reptileName, String serverName) {
-
-        WxUserReptileInfo wuri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuid(uuid);
+        WxUserReptileInfo wuri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuidReptilServerName(reptileName,serverName);
+        if (wuri != null){
+            //存在角色但没有绑定用户 - 直接更新用户
+            if (wuri.getUuid() == null || wuri.getUuid().length() == 0){
+                wuri.setUuid(uuid);
+                wxUserReptileInfoMapper.updateByPrimaryKey(wuri);
+                return true;
+            }else{
+                //角色存在并且已经绑定 - 返回错误
+                return false;
+            }
+        }
+        wuri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuid(uuid);
         //还未绑定角色
         if (wuri == null || StringUtils.isEmpty(wuri.getReptileId())){
             reptileUtil.getReptileUserId(reptileName,serverName);
@@ -63,7 +75,6 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-
                     WxUserReptileInfo wuri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuid(uuid);
                     GetReptileId gri = new GetReptileId();
                     gri.setId(1);
@@ -76,7 +87,7 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
                             wuri.setServerName(serverName);
                             wuri.setUuid(uuid);
                             wuri.setReptileId(gri.getCode());
-                            wuri.setServerId(toServerId(serverName));
+                            wuri.setServerId(ReptileDataUtil.toServerId(serverName));
                             wxUserReptileInfoMapper.insert(wuri);
                             gri.setCode("");
                             getReptileIdMapper.updateByPrimaryKey(gri);
@@ -84,9 +95,12 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
                             wuri.setReptileName(reptileName);
                             wuri.setServerName(serverName);
                             wuri.setReptileId(gri.getCode());
-                            wuri.setServerId(toServerId(serverName));
+                            wuri.setServerId(ReptileDataUtil.toServerId(serverName));
                             wxUserReptileInfoMapper.updateByPrimaryKey(wuri);
                         }
+                        //抓取用户游戏数据
+                        reptileUtil.getGameData(wuri.getReptileId(),wuri.getServerId());
+                        reptileUtil.getRecentMatch(wuri.getReptileId(),wuri.getServerId());
                     }
                     System.out.println("退出");
                     this.cancel();
@@ -97,44 +111,6 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
         }
         //已绑定
         return false;
-    }
-
-    /**
-     * serverame 转换成 serverId
-     * @param serverName
-     * @return
-     */
-    private String toServerId(String serverName){
-
-        StringBuffer str = new StringBuffer();
-        String ser = serverName.substring(0,2);
-        String id = serverName.substring(2,serverName.length());
-        switch (ser){
-            case "电信":str.append("dx");break;
-            case "网通":str.append("wt");break;
-            case "教育":str.append("jy");break;
-            case "全网":str.append("qw");break;
-            default: break;
-        }
-        if (id.length() == 2){
-            str.append("1");
-            id = id.substring(1,2);
-        }
-        if (id.length() == 1){
-            switch (id){
-                case "一": str.append("1");break;
-                case "二": str.append("2");break;
-                case "三": str.append("3");break;
-                case "四": str.append("4");break;
-                case "五": str.append("5");break;
-                case "六": str.append("6");break;
-                case "七": str.append("7");break;
-                case "八": str.append("8");break;
-                case "九": str.append("9");break;
-                default:break;
-            }
-        }
-        return str.toString();
     }
 
 }

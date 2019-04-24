@@ -38,12 +38,10 @@
 
   <resultMap id="SelectResultBase" type="com.gameloft9.demo.service.beans.system.CommentSelectResponse">
       <result column="ID" jdbcType="INTEGER" property="id" />
-      <result column="UUID" jdbcType="VARCHAR" property="uuid" />
       <result column="DYNAMIC_ID" jdbcType="INTEGER" property="dynamicId" />
       <result column="COMMENT_NAME" jdbcType="VARCHAR" property="commentName" />
       <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
       <result column="COMMENT_DETAILS" jdbcType="LONGVARCHAR" property="commentDetails" />
-      <result column="IS_DEL" jdbcType="INTEGER" property="isDel" />
       <association property="dynamic" column="DYNAMIC_ID" select="getDynamic" />
   </resultMap>
 

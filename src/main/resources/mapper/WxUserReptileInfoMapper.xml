@@ -13,6 +13,13 @@
     <result column="SERVER_NAME" jdbcType="VARCHAR" property="serverName" />
   </resultMap>
 
+  <select id="queryWxUserReptileInfoByUuidReptilServerName" parameterType="String" resultMap="BaseResultMap">
+    select * from WX_USER_REPTILE_INFO t WHERE
+    t.REPTILE_NAME = #{reptileName,jdbcType=VARCHAR}
+    AND t.SERVER_NAME = #{serverName,jdbcType=VARCHAR}
+  </select>
+
+
   <select id="queryWxUserReptileInfoByUuid" parameterType="String" resultMap="BaseResultMap">
     select * from WX_USER_REPTILE_INFO t WHERE
     t.UUID = #{uuid,jdbcType=VARCHAR}

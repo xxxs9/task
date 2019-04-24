@@ -14,8 +14,21 @@
   </resultMap>
 
     <select id="getListByPageNumSize" resultMap="BaseResultMap">
-      select * from hero_base
-        order by hero_base.ID asc
+      select b.* from hero_base b
+        <if test="output != null and output != ''" >
+        LEFT JOIN hero_detail d
+            on b.hero_name = d.hero_name
+            or b.hero_title = d.hero_title
+        </if>
+      <where>
+          <if test="output != null and output != ''" >
+              d.output like #{output}
+          </if>
+          <if test="heroName != null and heroName != ''">
+              b.hero_name = #{heroName}
+          </if>
+      </where>
+        order by b.ID asc
         limit ${(pageNum - 1 ) * pageSize},${pageNum * pageSize}
     </select>
 
@@ -26,6 +39,27 @@
             left join hero_detail
               on hero_base.hero_title = hero_detail.hero_title or hero_base.hero_name = hero_detail.hero_name) as t
         where t.tt is null;
+    </select>
+
+
+    <!-- 后台数据操作 -->
+    <!-- 获取所有数列-->
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from hero_base t
+        where 1=1
+        <if test="heroName != null and heroName != ''">
+            and hero_name = #{heroName}
+        </if>
+        order by t.id asc
+        limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+    </select>
+    <!--获取记录数-->
+    <select id="countGetAll" resultType="Integer">
+        select count(*) from hero_base
+        where 1=1
+        <if test="heroName != null and heroName != ''">
+            and hero_name = #{heroName,jdbcType=VARCHAR}
+        </if>
     </select>
 
 </mapper>

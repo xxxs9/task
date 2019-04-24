@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 小程序英雄信息控制器
@@ -43,14 +45,23 @@ public class ViewGameDataController {
      */
     @RequestMapping(value = "/all.api",method = RequestMethod.GET)
     @ResponseBody
-    public IResult getAllHero(Integer pageNum, Integer pageSize){
+    public IResult getAllHero(String heroName, String output, Integer pageNum, Integer pageSize){
+        Map map = new HashMap();
         if (pageNum == null || pageNum < 1){
             pageNum = 1;
         }
         if (pageSize == null || pageSize < 2){
             pageSize = 6;
         }
-        return new ResultBean<List<HeroBase>>(viewGameDataService.getAllHero(pageNum,pageSize));
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
+        if (heroName != null) {
+            map.put("heroName",heroName);
+        }
+        if (output != null) {
+            map.put("output","%"+output+"%");
+        }
+        return new ResultBean<List<HeroBase>>(viewGameDataService.getAllHero(map));
     }
 
     /**
@@ -65,7 +76,7 @@ public class ViewGameDataController {
     }
 
     /**
-     * 获取指定英雄出账数据
+     * 获取指定英雄出装数据
      * @return
      */
     @RequestMapping(value = "/heroEquip.api",method = RequestMethod.GET)

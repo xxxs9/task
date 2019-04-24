@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 页面显示的英雄数据处理工具
@@ -42,8 +43,8 @@ public class ViewGameDataServiceImpl implements ViewGameDataService {
     }
 
     @Override
-    public List<HeroBase> getAllHero(Integer pageNum, Integer pageSize) {
-        return heroBaseMaper.getListByPageNumSize(pageNum,pageSize);
+    public List<HeroBase> getAllHero(Map map) {
+        return heroBaseMaper.getListByPageNumSize(map);
     }
 
     /**

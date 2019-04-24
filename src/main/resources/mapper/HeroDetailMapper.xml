@@ -18,6 +18,8 @@
     <result column="GOLD_COIN" jdbcType="VARCHAR" property="goldCoin" />
     <result column="TICKET" jdbcType="VARCHAR" property="ticket" />
     <result column="EQUIP_ID" jdbcType="VARCHAR" property="equipId" />
+    <result column="RUNE_IMG" jdbcType="VARCHAR" property="runeImg" />
+    <result column="RUNE_DES" jdbcType="VARCHAR" property="runeDes" />
   </resultMap>
 
   <select id="queryHeroDetailByHeroNameOrHeroTile" resultMap="BaseResultMap">
@@ -26,4 +28,24 @@
         where hero_name = #{heroName}
           or hero_title = #{heroTitle}
     </select>
+
+  <!-- 后台数据操作 -->
+  <!-- 获取所有数列-->
+  <select id="getAll" resultMap="BaseResultMap">
+    select * from hero_detail t
+    where 1=1
+    <if test="heroName != null and heroName != ''">
+      and hero_name = #{heroName}
+    </if>
+    order by t.id asc
+    limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+  </select>
+  <!--获取记录数-->
+  <select id="countGetAll" resultType="Integer">
+    select count(*) from hero_detail
+    where 1=1
+    <if test="heroName != null and heroName != ''">
+      and hero_name = #{heroName,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

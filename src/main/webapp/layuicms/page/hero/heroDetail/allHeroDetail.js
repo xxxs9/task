@@ -1,0 +1,84 @@
+layui.config({
+    base: $config.resUrl+'layuicms/common/js/'//定义基目录
+}).extend({
+    ajaxExtention: 'ajaxExtention',//加载自定义扩展，每个业务js都需要加载这个ajax扩展
+    $tool: 'tool',
+    $api:'api'
+}).use(['form', 'layer', '$api','jquery', 'table', 'laypage','laytpl', 'ajaxExtention', '$tool'], function () {
+    var form = layui.form,
+        layer = parent.layer === undefined ? layui.layer : parent.layer,
+        $ = layui.jquery,
+        laypage = layui.laypage,
+        laytpl = layui.laytpl,
+        $tool = layui.$tool,
+        table = layui.table,
+        $api = layui.$api;
+
+    var tableIns;//表格实例
+
+    /**
+     * 页面初始化
+     * */
+    function init() {
+    }
+    init();
+
+    /**
+     * 定义表格
+     * */
+    function defineTable() {
+        tableIns = table.render({
+            elem: '#information-data'
+            , height: 'full-200'
+            , url: $tool.getContext() + 'adminHeroDetail/list.do' //数据接口
+            , method: 'post'
+            , page:true //开启分页
+            , cols: [[ //表头
+                  {type:'numbers',title:'序号',fixed: 'left'},
+                  {field: 'heroName', title: '英雄名称', width: '10%'}
+                , {field: 'heroTitle', title: '英雄称号', width: '10%'}
+                , {field: 'output', title: '定位', width: '20%'}
+                , {field: 'existence', title: '生存', width: '5%'}
+                , {field: 'physics', title: '物攻', width: '5%'}
+                , {field: 'magic', title: '法伤', width: '5%'}
+                , {field: 'operation', title: '操作', width: '5%'}
+                , {field: 'backgroundImg', title: '背景Url', width: '20%'}
+                , {field: 'runeImg', title: '符文Url', width: '20%'}
+                // , {fixed: 'right', title: '操作', width: 300, align: 'center', toolbar: '#barDemo'}
+            ]]
+            , done: function (res, curr) {//请求完毕后的回调
+                //如果是异步请求数据方式，res即为你接口返回的信息.curr：当前页码
+            }
+        });
+
+        //为toolbar添加事件响应
+        table.on('tool(userFilter)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            var row = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+            //区分事件
+            if (layEvent === 'del') { //删除
+                delInformation(row.id);
+            } else if (layEvent === 'edit') { //编辑
+                //do something
+                editUser(row.id);
+            }else if(layEvent === 'initPwd'){//密码初始化
+                initPwd(row.id);
+            }
+        });
+    }
+    defineTable();
+
+    //查询
+    form.on("submit(queryHero)", function (data) {
+        var heroName = data.field.heroName;
+        //表格重新加载
+        tableIns.reload({
+            where:{
+                heroName:heroName,
+            }
+        });
+        return false;
+    });
+});
