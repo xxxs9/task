@@ -48,4 +48,35 @@
       and hero_name = #{heroName,jdbcType=VARCHAR}
     </if>
   </select>
+
+  <update id="updataHeroDetail" parameterType="com.gameloft9.demo.dataaccess.model.user.HeroDetail">
+    update hero_detail
+    <set>
+      <if test="heroName != null">
+        hero_name = #{heroName,jdbcType=VARCHAR},
+      </if>
+      <if test="heroTitle != null">
+        hero_title = #{heroTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="output != null">
+        output = #{output,jdbcType=VARCHAR},
+      </if>
+      <if test="existence != null and existence !=0">
+        existence = #{existence},
+      </if>
+      <if test="physics != null and physics !=0">
+        physics = #{physics},
+      </if>
+      <if test="magic != null and magic !=0">
+        magic = #{magic},
+      </if>
+      <if test="operation != null and operation !=0">
+        operation = #{operation},
+      </if>
+    </set>
+    where ID = #{id}
+  </update>
 </mapper>

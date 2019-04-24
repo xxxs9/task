@@ -30,21 +30,15 @@ layui.config({
         tableIns = table.render({
             elem: '#information-data'
             , height: 'full-200'
-            , url: $tool.getContext() + 'adminHeroDetail/list.do' //数据接口
+            , url: $tool.getContext() + 'adminHeroWeekFree/list.do' //数据接口
             , method: 'post'
             , page:true //开启分页
             , cols: [[ //表头
                   {type:'numbers',title:'序号',fixed: 'left'},
-                  {field: 'heroName', title: '英雄名称', width: '10%'}
-                , {field: 'heroTitle', title: '英雄称号', width: '10%'}
-                , {field: 'output', title: '定位', width: '20%'}
-                , {field: 'existence', title: '生存', width: '5%'}
-                , {field: 'physics', title: '物攻', width: '5%'}
-                , {field: 'magic', title: '法伤', width: '5%'}
-                , {field: 'operation', title: '操作', width: '5%'}
-                , {field: 'backgroundImg', title: '背景Url', width: '20%'}
-                , {field: 'runeImg', title: '符文Url', width: '20%'}
-                , {fixed: 'right', title: '操作', width: 100, align: 'center', toolbar: '#barDemo'}
+                  {field: 'heroName', title: '英雄名称', width: '20%'}
+                , {field: 'heroTitle', title: '英雄称号', width: '20%'}
+                , {field: 'img', title: '图片', width: '40%'}
+                , {field: 'des', title: '描述', width: '20%'}
             ]]
             , done: function (res, curr) {//请求完毕后的回调
                 //如果是异步请求数据方式，res即为你接口返回的信息.curr：当前页码
@@ -84,7 +78,7 @@ layui.config({
 
     //爬取英雄详情
     form.on("submit(reptilHero)", function (data) {
-        $api.ReptilHeroDetail(null,function (data) {
+        $api.ReptilHeroWeekFree(null,function (data) {
             // layer.msg("详情数据爬取成功！", {time: 1000}, function () {
             //     tableIns.reload();
             // });

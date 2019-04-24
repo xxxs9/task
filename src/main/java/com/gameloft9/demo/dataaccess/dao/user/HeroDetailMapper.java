@@ -37,4 +37,6 @@ public interface HeroDetailMapper extends Mapper<HeroDetail> {
      * @return
      */
     Integer countGetAll( @Param("heroName") String heroName);
+
+    void updataHeroDetail(HeroDetail heroDetail);
 }

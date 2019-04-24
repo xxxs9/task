@@ -26,6 +26,9 @@
         <div class="layui-inline">
             <a class="layui-btn search_btn" lay-submit="" lay-filter="queryHero">查询</a>
         </div>
+        <div class="layui-inline">
+            <a class="layui-btn search_btn" lay-submit="" lay-filter="reptilHero">爬取英雄详情</a>
+        </div>
     </form>
 </blockquote>
 <!--表格区-->
@@ -39,8 +42,7 @@
 <!--toolbar 模板-->
 <script type="text/html" id="barDemo">
     <!--通过lay-event定义事件-->
-    <!--<a class="layui-btn layui-btn-sm" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>-->
-    <!--<a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>-->
+    <a class="layui-btn layui-btn-sm" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
     <!--<a class="layui-btn layui-btn-warm layui-btn-sm" lay-event="initPwd"><i class="layui-icon">&#xe620;</i>查看详情</a>-->
 </script>
 <!--一般情况下，一个业务页面引入一个layui.js,config.js和业务js这三个js就够了-->

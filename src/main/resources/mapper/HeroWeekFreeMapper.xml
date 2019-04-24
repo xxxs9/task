@@ -27,4 +27,25 @@
     truncate table hero_week_free
   </update>
 
+
+  <!-- 后台数据操作 -->
+  <!-- 获取所有数列-->
+  <select id="getAll" resultMap="BaseResultMap">
+    select * from hero_week_free t
+    where 1=1
+    <if test="heroName != null and heroName != ''">
+      and hero_name = #{heroName}
+    </if>
+    order by t.id asc
+    limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+  </select>
+  <!--获取记录数-->
+  <select id="countGetAll" resultType="Integer">
+    select count(*) from hero_week_free
+    where 1=1
+    <if test="heroName != null and heroName != ''">
+      and hero_name = #{heroName,jdbcType=VARCHAR}
+    </if>
+  </select>
+
 </mapper>

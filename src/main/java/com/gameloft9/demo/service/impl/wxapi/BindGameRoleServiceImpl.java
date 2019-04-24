@@ -89,8 +89,6 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
                             wuri.setReptileId(gri.getCode());
                             wuri.setServerId(ReptileDataUtil.toServerId(serverName));
                             wxUserReptileInfoMapper.insert(wuri);
-                            gri.setCode("");
-                            getReptileIdMapper.updateByPrimaryKey(gri);
                         }else{
                             wuri.setReptileName(reptileName);
                             wuri.setServerName(serverName);
@@ -98,6 +96,8 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
                             wuri.setServerId(ReptileDataUtil.toServerId(serverName));
                             wxUserReptileInfoMapper.updateByPrimaryKey(wuri);
                         }
+                        gri.setCode("");
+                        getReptileIdMapper.updateByPrimaryKey(gri);
                         //抓取用户游戏数据
                         reptileUtil.getGameData(wuri.getReptileId(),wuri.getServerId());
                         reptileUtil.getRecentMatch(wuri.getReptileId(),wuri.getServerId());

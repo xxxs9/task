@@ -182,9 +182,19 @@ layui.define(['$tool','jquery'], function (exports) {
             doComplexPost($tool.getContext() + 'comment/update.do',req,config,successCallback,errorCallback);
         },
         /* 英雄详情模块 */
+        GetHeroDetail:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'adminHeroDetail/get.do',req,successCallback,errorCallback);
+        },
         UpdateHeroDetail:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'adminHeroDetail/update.do',req,config,successCallback,errorCallback);
         },
+        /* 爬虫数据接口 */
+        ReptilHeroWeekFree:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'gethero/weekfree.do',req,successCallback,errorCallback);
+        },
+        ReptilHeroDetail:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'gethero/detail.do',req,successCallback,errorCallback);
+        }
     };
 
 

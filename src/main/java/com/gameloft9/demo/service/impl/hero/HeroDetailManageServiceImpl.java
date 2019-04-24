@@ -2,6 +2,7 @@ package com.gameloft9.demo.service.impl.hero;
 
 import com.gameloft9.demo.dataaccess.dao.user.HeroDetailMapper;
 import com.gameloft9.demo.dataaccess.model.user.HeroDetail;
+import com.gameloft9.demo.mgrframework.utils.CheckUtil;
 import com.gameloft9.demo.service.api.hero.HeroDetailManageService;
 import com.gameloft9.demo.service.beans.system.PageRange;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,17 @@ public class HeroDetailManageServiceImpl implements HeroDetailManageService {
     @Override
     public Integer countGetAll(String heroName) {
         return dao.countGetAll(heroName);
+    }
+
+    @Override
+    public HeroDetail getById(String id) {
+        CheckUtil.notBlank(id,"id为空");
+        return dao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Boolean updateHeroDetail(HeroDetail heroDetail) {
+        dao.updataHeroDetail(heroDetail);
+        return true;
     }
 }

@@ -61,7 +61,7 @@ public class SearchServiceImpl implements SearchService {
                 dto.setStatus(200);
                 return dto;
             }else{
-                //角色的爬取Id不存在
+                //角色的爬取Id不存在 - 可能是没有获取到
                 reptile(roleName,serverName);
             }
         }else{
@@ -117,8 +117,6 @@ public class SearchServiceImpl implements SearchService {
                         wuri.setReptileId(gri.getCode());
                         wuri.setServerId(ReptileDataUtil.toServerId(serverName));
                         wxUserReptileInfoMapper.insert(wuri);
-                        gri.setCode("");
-                        getReptileIdMapper.updateByPrimaryKey(gri);
                     }else{
                         wuri.setReptileName(reptileName);
                         wuri.setServerName(serverName);
@@ -126,6 +124,8 @@ public class SearchServiceImpl implements SearchService {
                         wuri.setServerId(ReptileDataUtil.toServerId(serverName));
                         wxUserReptileInfoMapper.updateByPrimaryKey(wuri);
                     }
+                    gri.setCode("");
+                    getReptileIdMapper.updateByPrimaryKey(gri);
                     //抓取用户游戏数据
                     reptileUtil.getGameData(wuri.getReptileId(), wuri.getServerId());
                     reptileUtil.getRecentMatch(wuri.getReptileId(), wuri.getServerId());

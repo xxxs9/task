@@ -30,43 +30,44 @@ public class GameHeroController {
     @Autowired
     private HeroDetailMapper heroDetailMapper;
 
-    /**
-     * 获取英雄基本信息
-     */
-    @RequestMapping(value = "/test.api",method = RequestMethod.GET)
-    @ResponseBody
-    public void test(){
-//        reptileUtil.getHeroWeekFree();
-    }
+//    /**
+//     * 获取英雄基本信息
+//     */
+//    @RequestMapping(value = "/test.api",method = RequestMethod.GET)
+//    @ResponseBody
+//    public void test(){
+////        reptileUtil.getHeroWeekFree();
+//    }
 
     /**
      * 获取英雄周免信息
      */
-    @RequestMapping(value = "/weekfree.api",method = RequestMethod.GET)
+    @RequestMapping(value = "/weekfree.do",method = RequestMethod.POST)
     @ResponseBody
     public void getHeroWeekFree(){
-        reptileUtil.getHeroWeekFree();
+        System.out.println("周免进入");
+//        reptileUtil.getHeroWeekFree();
     }
     /**
      * 获取英雄出装信息
      */
-    @RequestMapping(value = "/equip.api",method = RequestMethod.GET)
+    @RequestMapping(value = "/equip.do",method = RequestMethod.POST)
     @ResponseBody
     public void getHeroEquip() {
         //为防止接口被随意访问导致的重复抓取，将方法注释掉
-//        List<HeroDetail> heroDetailList =  heroDetailMapper.selectAll();
-//        for (int i = 0, num = heroDetailList.size(); i < num ; i ++ ){
-//            if (!StringUtils.isEmpty(heroDetailList.get(i).getEquipId())
-//            && heroDetailList.get(i).getEquipId().length() > 0){
-//                reptileUtil.getHeroEquipData(heroDetailList.get(i).getEquipId());
-//            }
-//        }
+        List<HeroDetail> heroDetailList =  heroDetailMapper.selectAll();
+        for (int i = 0, num = heroDetailList.size(); i < num ; i ++ ){
+            if (!StringUtils.isEmpty(heroDetailList.get(i).getEquipId())
+            && heroDetailList.get(i).getEquipId().length() > 0){
+                reptileUtil.getHeroEquipData(heroDetailList.get(i).getEquipId());
+            }
+        }
     }
 
     /**
      * 获取英雄基本信息
      */
-    @RequestMapping(value = "/base.api",method = RequestMethod.GET)
+    @RequestMapping(value = "/base.do",method = RequestMethod.POST)
     @ResponseBody
     public void getHero(){
         reptileUtil.getLolHeroData();
@@ -75,12 +76,12 @@ public class GameHeroController {
     /**
      * 获取英雄详细信息
      */
-    @RequestMapping(value = "/detail.api",method = RequestMethod.GET)
+    @RequestMapping(value = "/detail.do",method = RequestMethod.POST)
     @ResponseBody
     public void getHeroDetail() {
         //为防止接口被随意访问导致的重复抓取，将方法注释掉
-//        List<HeroBase> bhList =  heroBaseMapper.getNewList();
-//        if (bhList != null && bhList.size() > 0){
+        List<HeroBase> bhList =  heroBaseMapper.getNewList();
+//        if (bhListList != null && bhList.size() > 0){
 //            for (int i = 0, num = bhList.size(); i < num ; i ++ ){
 //                reptileUtil.getLolHeroDetail(bhList.get(i).getDetailUrl());
 //            }

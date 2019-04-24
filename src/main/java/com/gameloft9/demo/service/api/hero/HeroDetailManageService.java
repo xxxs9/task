@@ -24,4 +24,18 @@ public interface HeroDetailManageService {
      * @return
      */
     Integer countGetAll(String heroName);
+
+    /**
+     * 获取指定数据条目
+     * @param id
+     * @return
+     */
+    HeroDetail getById(String id);
+
+    /**
+     * 更新英雄详情
+     * @param heroDetail
+     * @return
+     */
+    Boolean updateHeroDetail(HeroDetail heroDetail);
 }

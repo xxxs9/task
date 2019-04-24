@@ -37,59 +37,54 @@
         <!--</div>-->
     </div>
     <div class="layui-form-item parent-menu">
-        <label class="layui-form-label">发布者</label>
+        <label class="layui-form-label">英雄名</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input"  name="loginName" id="loginName" readonly="readonly">
+            <input type="text" class="layui-input"  name="heroName" id="" readonly="英雄名">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">资讯标题</label>
+        <label class="layui-form-label">英雄称号</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="informationTitle" placeholder="请输入资讯标题">
-        </div>
-    </div>
-    <div class="layui-form-item" >
-        <label class="layui-form-label">资讯类型</label>
-        <div class="layui-input-block" style="z-index: 10000;position: relative">
-            <select name="informationType" lay-verify="">
-                <option value="">请选择类型</option>
-                <option value="0">新闻</option>
-                <option value="1">出装</option>
-                <option value="2">技巧</option>
-            </select>
+            <input type="text" class="layui-input" name="heroTitle" placeholder="请输入英雄称号">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">是否置顶</label>
+        <label class="layui-form-label">视频路径</label>
         <div class="layui-input-block">
-            <input type="radio" name="isTop" value="1" title="置顶">
-            <input type="radio" name="isTop" value="0" title="不置顶" checked>
+            <input type="text" class="layui-input" name="videoUrl" placeholder="请输入视频路径">
         </div>
     </div>
-
-    <!-- 预留图片上传  -->
-    <div >
-        <label class="layui-form-label">封面图</label>
-        <button type="button" class="layui-btn layui-btn-normal" id="chooseFile_add">选择文件</button>
-        <button type="button" class="layui-btn" id="beginFile_add" style="margin-left: 13px">开始上传</button>
-
-        <div class="layui-input-block">
-            <img  id="photo_img" style="width: 200px;height: 200px;margin-top: 15px">
-            <p style="color: darkslateblue;font-family: 微软雅黑;font-weight: bold;margin-top: 5px">请点击'开始上传',上传图片</p>
-            <p id="textTip"></p>
-            <div class="layui-form-item" >
-                <!-- 一个隐藏的input框用来存储图片的src值 -->
-                <input type="hidden" name="informationImg"  id="informationImg">
-            </div>
-        </div>
-    </div>
-
     <div class="layui-form-item">
-        <label class="layui-form-label">资讯内容</label>
-        <div class="layui-input-block" id="informationContent">
-
+        <label class="layui-form-label">定位</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="output" placeholder="请输入定位">
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">生存能力</label>
+        <div class="layui-input-block">
+            <input type="number" class="layui-input" name="existence" placeholder="请输入生存能力">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物理攻击</label>
+        <div class="layui-input-block">
+            <input type="number" class="layui-input" name="physics" placeholder="请输入物理攻击">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">魔法攻击</label>
+        <div class="layui-input-block">
+            <input type="number" class="layui-input" name="magic" placeholder="请输入魔法攻击">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">操作难度</label>
+        <div class="layui-input-block">
+            <input type="number" class="layui-input" name="operation" placeholder="请输入操作难度">
+        </div>
+    </div>
+
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -102,11 +97,7 @@
 <!--一般情况下，一个业务页面引入一个layui.js,config.js和业务js这三个js就够了-->
 <script type="text/javascript" src="../../../lib/layui/layui.js"></script>
 <script type="text/javascript" src="../../../common/js/config.js"></script>
-<script type="text/javascript" src="editInformation.js"></script>
-<!--引入百度在线文本编辑器-->
-<script type="text/javascript" src="../../../ueditor/ueditor.config.js"></script>
-<script type="text/javascript" src="../../../ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" src="../../../ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="editHeroDetail.js"></script>
 
 </body>
 </html>

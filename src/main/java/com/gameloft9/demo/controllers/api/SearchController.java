@@ -27,7 +27,7 @@ public class SearchController {
      * 有 - 则数据库返回
      * 无 - 尝试爬虫抓取
      */
-    @RequestMapping(value = "/quick.api",method = RequestMethod.GET)
+    @RequestMapping(value = "/quick.api",method = RequestMethod.POST)
     @ResponseBody
     public IResult searchRole(String roleName, String serverName){
         return new ResultBean<SearchDto>(searchService.searchRole(roleName,serverName));
