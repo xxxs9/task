@@ -41,8 +41,6 @@ public class BindGameRoleController {
         return new ResultBean<Boolean>(bindGameRoleService.bindGameRole(uuid ,reptileName,serverName));
     }
 
-
-
     /**
      * 解除绑定游戏角色
      * @return

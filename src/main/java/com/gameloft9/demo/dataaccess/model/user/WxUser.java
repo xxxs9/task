@@ -1,5 +1,7 @@
 package com.gameloft9.demo.dataaccess.model.user;
 
+import com.gameloft9.demo.webmagic.template.ReptileDataUtil;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -77,14 +79,14 @@ public class WxUser {
      * @param nickname
      */
     public void setNickname(String nickname) {
-        this.nickname = nickname;
+        this.nickname = ReptileDataUtil.unicodeToString(nickname);
     }
 
     /**
      * @return AVATAR_URL
      */
     public String getAvatarUrl() {
-        return avatarUrl;
+        return ReptileDataUtil.stringToUnicode(avatarUrl);
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.gameloft9.demo.webmagic;
+package com.gameloft9.demo.webmagic.beans;
 
 import com.gameloft9.demo.dataaccess.model.user.HeroDetail;
 import com.gameloft9.demo.dataaccess.model.user.HeroSkill;

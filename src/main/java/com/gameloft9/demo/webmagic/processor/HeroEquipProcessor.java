@@ -1,6 +1,7 @@
 package com.gameloft9.demo.webmagic.processor;
 
 import com.gameloft9.demo.dataaccess.model.user.HeroEquip;
+import com.gameloft9.demo.webmagic.template.ReptileDataUtil;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -43,19 +44,19 @@ public class HeroEquipProcessor implements PageProcessor {
             //出门装
             heroEquip.setPreCz(regexString(jsonStr, "pre_cz"));
 //      //出装思路
-            heroEquip.setPreExplain(unicodeToString(regexString(jsonStr, "pre_explain")));
+            heroEquip.setPreExplain(ReptileDataUtil.unicodeToString(regexString(jsonStr, "pre_explain")));
             //中期核心装
             heroEquip.setMidCz(regexString(jsonStr, "mid_cz"));
             //中期核心装思路
-            heroEquip.setPreExplain(unicodeToString(regexString(jsonStr, "mid_explain")));
+            heroEquip.setPreExplain(ReptileDataUtil.unicodeToString(regexString(jsonStr, "mid_explain")));
             //顺风装
             heroEquip.setEndCz(regexString(jsonStr, "end_cz"));
             //顺风装思路
-            heroEquip.setEndExplain(unicodeToString(regexString(jsonStr, "end_explain")));
+            heroEquip.setEndExplain(ReptileDataUtil.unicodeToString(regexString(jsonStr, "end_explain")));
             //逆风装
             heroEquip.setNfCz(regexString(jsonStr, "nf_cz"));
             //逆风装思路
-            heroEquip.setNfExplain(unicodeToString(regexString(jsonStr, "nf_explain")));
+            heroEquip.setNfExplain(ReptileDataUtil.unicodeToString(regexString(jsonStr, "nf_explain")));
             page.putField("equip", heroEquip);
         }
     }
@@ -72,28 +73,6 @@ public class HeroEquipProcessor implements PageProcessor {
             str = matcher.group(1);
             str = str.substring(str.indexOf("\":\"") + 3, str.lastIndexOf("\","));
             break;
-        }
-        return str;
-    }
-
-
-    /**
-     * unicode转汉字字符串
-     * @param str
-     * @return
-     */
-    public String unicodeToString(String str) {
-        Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
-        Matcher matcher = pattern.matcher(str);
-        char ch;
-        while (matcher.find()) {
-            //group 6728
-            String group = matcher.group(2);
-            //ch:'木' 26408
-            ch = (char) Integer.parseInt(group, 16);
-            //group1 \u6728
-            String group1 = matcher.group(1);
-            str = str.replace(group1, ch + "");
         }
         return str;
     }

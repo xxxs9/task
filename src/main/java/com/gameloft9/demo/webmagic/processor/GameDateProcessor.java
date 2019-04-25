@@ -2,7 +2,7 @@ package com.gameloft9.demo.webmagic.processor;
 
 import com.gameloft9.demo.dataaccess.model.user.ReptileUserBase;
 import com.gameloft9.demo.dataaccess.model.user.ReptileUserContentStatistics;
-import com.gameloft9.demo.webmagic.UserGame;
+import com.gameloft9.demo.webmagic.beans.UserGame;
 import com.gameloft9.demo.webmagic.template.ExtractTemplate;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;

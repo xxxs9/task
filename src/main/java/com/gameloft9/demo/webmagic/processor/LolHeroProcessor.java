@@ -1,7 +1,7 @@
 package com.gameloft9.demo.webmagic.processor;
 
 import com.gameloft9.demo.dataaccess.model.user.HeroBase;
-import com.gameloft9.demo.webmagic.Heros;
+import com.gameloft9.demo.webmagic.beans.Heros;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;

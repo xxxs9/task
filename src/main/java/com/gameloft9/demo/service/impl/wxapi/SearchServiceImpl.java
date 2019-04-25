@@ -5,7 +5,7 @@ import com.gameloft9.demo.dataaccess.model.user.GetReptileId;
 import com.gameloft9.demo.dataaccess.model.user.WxUserReptileInfo;
 import com.gameloft9.demo.dto.SearchDto;
 import com.gameloft9.demo.service.api.wxapi.SearchService;
-import com.gameloft9.demo.webmagic.ReptileDataUtil;
+import com.gameloft9.demo.webmagic.template.ReptileDataUtil;
 import com.gameloft9.demo.webmagic.ReptileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

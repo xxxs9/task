@@ -1,4 +1,4 @@
-package com.gameloft9.demo.webmagic;
+package com.gameloft9.demo.webmagic.template;
 
 /**
  * 爬取字符串处理工具类

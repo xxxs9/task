@@ -2,7 +2,7 @@ package com.gameloft9.demo.webmagic.pipeline;
 
 import com.gameloft9.demo.dataaccess.dao.user.HeroDetailMapper;
 import com.gameloft9.demo.dataaccess.dao.user.HeroSkillMapper;
-import com.gameloft9.demo.webmagic.HeroReptile;
+import com.gameloft9.demo.webmagic.beans.HeroReptile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;

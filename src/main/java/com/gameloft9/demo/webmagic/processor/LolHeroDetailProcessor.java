@@ -2,15 +2,13 @@ package com.gameloft9.demo.webmagic.processor;
 
 import com.gameloft9.demo.dataaccess.model.user.HeroDetail;
 import com.gameloft9.demo.dataaccess.model.user.HeroSkill;
-import com.gameloft9.demo.webmagic.HeroReptile;
+import com.gameloft9.demo.webmagic.beans.HeroReptile;
 import com.gameloft9.demo.webmagic.template.ExtractTemplate;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
-import us.codecraft.webmagic.selector.Selectable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
