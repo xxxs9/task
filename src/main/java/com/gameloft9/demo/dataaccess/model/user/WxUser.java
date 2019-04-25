@@ -79,14 +79,14 @@ public class WxUser {
      * @param nickname
      */
     public void setNickname(String nickname) {
-        this.nickname = ReptileDataUtil.unicodeToString(nickname);
+        this.nickname = nickname;
     }
 
     /**
      * @return AVATAR_URL
      */
     public String getAvatarUrl() {
-        return ReptileDataUtil.stringToUnicode(avatarUrl);
+        return avatarUrl;
     }
 
     /**

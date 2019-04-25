@@ -7,6 +7,7 @@ import com.gameloft9.demo.dataaccess.model.user.WxUserReptileInfo;
 import com.gameloft9.demo.dto.user.WxUserDto;
 import com.gameloft9.demo.service.api.wxapi.WxUserLoginService;
 import com.gameloft9.demo.utils.UUIDUtil;
+import com.gameloft9.demo.webmagic.template.ReptileDataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +38,8 @@ public class WxUserLoginServiceImpl implements WxUserLoginService {
      */
     @Override
     public WxUserDto login(WxUser wxUser) {
-
+        String nickname = ReptileDataUtil.stringToUnicode(wxUser.getNickname());
+        wxUser.setNickname(nickname);
         WxUser user = wxUserMapper.queryWxUserByNickname(wxUser.getNickname());
         WxUserDto dto = new WxUserDto();
         if (user != null){
