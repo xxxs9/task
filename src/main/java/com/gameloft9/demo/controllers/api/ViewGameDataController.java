@@ -55,10 +55,10 @@ public class ViewGameDataController {
         }
         map.put("pageNum",pageNum);
         map.put("pageSize",pageSize);
-        if (heroName != null) {
+        if (heroName != null && heroName.length() > 0) {
             map.put("heroName",heroName);
         }
-        if (output != null) {
+        if (output != null && output.length() > 0) {
             map.put("output","%"+output+"%");
         }
         return new ResultBean<List<HeroBase>>(viewGameDataService.getAllHero(map));

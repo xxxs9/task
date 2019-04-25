@@ -7,6 +7,7 @@ import com.gameloft9.demo.mgrframework.beans.response.ResultBean;
 import com.gameloft9.demo.service.api.wxapi.UserQueryService;
 import com.gameloft9.demo.service.api.wxapi.WxUserDynamicService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,6 +70,9 @@ public class WxUserDynamicController {
     @ResponseBody
     public IResult pushDynamic(String uuid, String content) {
         try {
+            if (StringUtils.isEmpty(uuid) || StringUtils.isEmpty(content)){
+                return new ResultBean<String>("9999","无效参数");
+            }
             if (userQueryService.queryWxUser(uuid)){
                 return new ResultBean<Boolean>(wxUserDynamicService.pushDynamic(uuid,content));
             }

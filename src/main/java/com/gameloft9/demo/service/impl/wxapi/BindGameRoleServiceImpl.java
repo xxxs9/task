@@ -54,19 +54,19 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
      */
     @Override
     public Boolean bindGameRole(String uuid ,String reptileName, String serverName) {
-        WxUserReptileInfo wuri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuidReptilServerName(reptileName,serverName);
-        if (wuri != null){
+        WxUserReptileInfo wurir = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuidReptilServerName(reptileName,serverName);
+        WxUserReptileInfo wuri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuid(uuid);
+        if (wurir != null && wuri == null){
             //存在角色但没有绑定用户 - 直接更新用户
-            if (wuri.getUuid() == null || wuri.getUuid().length() == 0){
-                wuri.setUuid(uuid);
-                wxUserReptileInfoMapper.updateByPrimaryKey(wuri);
+            if (wurir.getUuid() == null || wurir.getUuid().length() == 0){
+                wurir.setUuid(uuid);
+                wxUserReptileInfoMapper.updateByPrimaryKey(wurir);
                 return true;
             }else{
                 //角色存在并且已经绑定 - 返回错误
                 return false;
             }
         }
-        wuri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuid(uuid);
         //还未绑定角色
         if (wuri == null || StringUtils.isEmpty(wuri.getReptileId())){
             reptileUtil.getReptileUserId(reptileName,serverName);
