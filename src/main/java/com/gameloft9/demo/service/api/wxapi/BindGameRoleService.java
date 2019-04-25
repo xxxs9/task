@@ -12,6 +12,14 @@ public interface BindGameRoleService {
     WxUserDto getBase(String uuid);
 
     /**
+     * 解除绑定
+     * @param uuid
+     * @param reptileId
+     * @return
+     */
+    Boolean delBindGameRole(String uuid ,String reptileId);
+
+    /**
      * 绑定游戏角色
      * @param uuid
      * @param reptileName

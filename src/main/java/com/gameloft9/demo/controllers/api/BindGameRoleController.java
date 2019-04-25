@@ -41,6 +41,22 @@ public class BindGameRoleController {
         return new ResultBean<Boolean>(bindGameRoleService.bindGameRole(uuid ,reptileName,serverName));
     }
 
+
+
+    /**
+     * 解除绑定游戏角色
+     * @return
+     */
+    @RequestMapping(value = "/delBase.api",method = RequestMethod.POST)
+    @ResponseBody
+    public IResult delBindGameRole(String uuid ,String reptileId){
+        if (!userQueryService.queryWxUser(uuid)){
+            return new ResultBean<String>("无效用户");
+        }
+        //返回json至前端的均返回ResultBean或者PageResultBean
+        return new ResultBean<Boolean>(bindGameRoleService.delBindGameRole(uuid ,reptileId));
+    }
+
     /**
      * 获取游戏角色
      * @return

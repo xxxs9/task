@@ -46,6 +46,16 @@ public class BindGameRoleServiceImpl implements BindGameRoleService {
         return dto;
     }
 
+    @Override
+    public Boolean delBindGameRole(String uuid, String reptileId) {
+        WxUserReptileInfo wri = wxUserReptileInfoMapper.queryWxUserReptileInfoByUuid(uuid);
+        if (wri != null && wri.getReptileId().equals(reptileId)){
+            wri.setUuid("");
+            wxUserReptileInfoMapper.updateByPrimaryKey(wri);
+        }
+        return true;
+    }
+
     /**
      * 绑定角色信息
      * @param reptileName
