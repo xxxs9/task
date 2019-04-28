@@ -15,17 +15,21 @@
 
     <select id="getListByPageNumSize" resultMap="BaseResultMap">
       select b.* from hero_base b
-        <if test="output != null and output != ''" >
+        <if test="output != null and output != '' or goldCoin != null " >
         LEFT JOIN hero_detail d
             on b.hero_name = d.hero_name
             or b.hero_title = d.hero_title
         </if>
       <where>
+            1=1
           <if test="output != null and output != ''" >
-              d.output like #{output}
+            and  d.output like #{output}
+          </if>
+          <if test="goldCoin != null and goldCoin != ''" >
+            and  d.gold_coin = #{goldCoin}
           </if>
           <if test="heroName != null and heroName != ''">
-              b.hero_name = #{heroName}
+            and  b.hero_name = #{heroName}
           </if>
       </where>
         order by b.ID asc

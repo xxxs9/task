@@ -60,6 +60,7 @@ public class FriendController {
         try {
             return new ResultBean<List<WxUser>>(friendService.findUserList(uuid));
         }catch (Exception e){
+            e.printStackTrace();
             return new ResultBean<String>("9999","获取用户列表失败");
         }
     }

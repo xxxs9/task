@@ -45,7 +45,7 @@ public class ViewGameDataController {
      */
     @RequestMapping(value = "/all.api",method = RequestMethod.GET)
     @ResponseBody
-    public IResult getAllHero(String heroName, String output, Integer pageNum, Integer pageSize){
+    public IResult getAllHero(String goldCoin, String heroName, String output, Integer pageNum, Integer pageSize){
         Map map = new HashMap();
         if (pageNum == null || pageNum < 1){
             pageNum = 1;
@@ -55,11 +55,14 @@ public class ViewGameDataController {
         }
         map.put("pageNum",pageNum);
         map.put("pageSize",pageSize);
-        if (heroName != null && heroName.length() > 0) {
+        if (heroName != null && heroName.trim().length() > 0) {
             map.put("heroName",heroName);
         }
-        if (output != null && output.length() > 0) {
+        if (output != null && output.trim().length() > 0) {
             map.put("output","%"+output+"%");
+        }
+        if (goldCoin != null && goldCoin.trim().length() > 0) {
+            map.put("goldCoin",goldCoin);
         }
         return new ResultBean<List<HeroBase>>(viewGameDataService.getAllHero(map));
     }

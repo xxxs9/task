@@ -66,4 +66,9 @@ public class InformationServiceImpl implements InformationService {
         }
         return dtoList;
     }
+
+    @Override
+    public UserInformation getDetail(Integer informationId) {
+        return userInformationMapper.selectByPrimaryKey(informationId);
+    }
 }

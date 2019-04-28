@@ -6,6 +6,7 @@ import com.gameloft9.demo.dataaccess.model.user.UserFriends;
 import com.gameloft9.demo.dataaccess.model.user.WxUser;
 import com.gameloft9.demo.dto.friend.FriendDto;
 import com.gameloft9.demo.service.api.wxapi.FriendService;
+import com.gameloft9.demo.webmagic.template.ReptileDataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,13 @@ public class FriendServiceImpl implements FriendService {
      */
     @Override
     public List<WxUser> findUserList(String uuid) {
-        return wxUserMapper.queryListExceptUuid(uuid);
+        List<WxUser> list = wxUserMapper.queryListExceptUuid(uuid);
+        if (list != null && list.size() > 0){
+            for (int i = 0, num =list.size(); i < num ; i ++){
+                list.get(i).setNickname(ReptileDataUtil.unicodeToString(list.get(i).getNickname()));
+            }
+        }
+        return list;
     }
 
     /**
@@ -41,7 +48,13 @@ public class FriendServiceImpl implements FriendService {
      */
     @Override
     public List<FriendDto> friendList(String uuid) {
-        return userFriendsMapper.myFirendListByStatus(uuid,1);
+        List<FriendDto> list = userFriendsMapper.myFirendListByStatus(uuid,1);
+        if (list != null && list.size() > 0){
+            for (int i = 0, num =list.size(); i < num ; i ++){
+                list.get(i).setNickname(ReptileDataUtil.unicodeToString(list.get(i).getNickname()));
+            }
+        }
+        return list;
     }
 
     /**
@@ -51,7 +64,13 @@ public class FriendServiceImpl implements FriendService {
      */
     @Override
     public List<FriendDto> myApplyList(String uuid) {
-        return userFriendsMapper.myFirendListByStatus(uuid,0);
+        List<FriendDto> list = userFriendsMapper.myFirendListByStatus(uuid,0);
+        if (list != null && list.size() > 0){
+            for (int i = 0, num =list.size(); i < num ; i ++){
+                list.get(i).setNickname(ReptileDataUtil.unicodeToString(list.get(i).getNickname()));
+            }
+        }
+        return list;
     }
 
     /**
@@ -94,7 +113,7 @@ public class FriendServiceImpl implements FriendService {
 
         UserFriends quf = new UserFriends();
         quf.setId(id);
-        userFriendsMapper.selectByPrimaryKey(quf);
+        quf = userFriendsMapper.selectByPrimaryKey(quf);
         //判断是否存在，是否是自己发送的请求，是否是申请状态
         if (quf != null
                 && quf.getLoginNameFirst().equals(uuid)
@@ -112,7 +131,13 @@ public class FriendServiceImpl implements FriendService {
      */
     @Override
     public List<FriendDto> otherApplyList(String uuid) {
-        return userFriendsMapper.applyListByUuid(uuid);
+        List<FriendDto> list = userFriendsMapper.applyListByUuid(uuid);
+        if (list != null && list.size() > 0){
+            for (int i = 0, num =list.size(); i < num ; i ++){
+                list.get(i).setNickname(ReptileDataUtil.unicodeToString(list.get(i).getNickname()));
+            }
+        }
+        return list;
     }
 
 

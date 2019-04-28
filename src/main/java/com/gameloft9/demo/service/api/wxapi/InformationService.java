@@ -1,5 +1,6 @@
 package com.gameloft9.demo.service.api.wxapi;
 
+import com.gameloft9.demo.dataaccess.model.user.UserInformation;
 import com.gameloft9.demo.dto.index.BannerDto;
 import com.gameloft9.demo.dto.index.NewsDto;
 
@@ -11,7 +12,7 @@ public interface InformationService {
      * 获取滚动栏
      * @return
      */
-    public List<BannerDto> getBannerList();
+    List<BannerDto> getBannerList();
 
     /**
      * 获取新闻列表
@@ -19,6 +20,13 @@ public interface InformationService {
      * @param pageSize
      * @return
      */
-    public List<NewsDto> getNewsList(Integer pageNum, Integer pageSize);
+    List<NewsDto> getNewsList(Integer pageNum, Integer pageSize);
+
+    /**
+     * 获取文章详情
+     * @param informationId
+     * @return
+     */
+    UserInformation getDetail(Integer informationId);
 }
 

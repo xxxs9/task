@@ -1,5 +1,6 @@
 package com.gameloft9.demo.controllers.api;
 
+import com.gameloft9.demo.dataaccess.model.user.UserInformation;
 import com.gameloft9.demo.dto.index.BannerDto;
 import com.gameloft9.demo.dto.index.NewsDto;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
@@ -47,4 +48,13 @@ public class InformationApiController {
         return new ResultBean<List<NewsDto>>(informationService.getNewsList(pageNum,pageSize));
     }
 
+    /**
+     * 获取新闻列表
+     * @return
+     */
+    @RequestMapping(value = "/detail.api",method = RequestMethod.GET)
+    @ResponseBody
+    public IResult getDetail(Integer informationId){
+        return new ResultBean<UserInformation>(informationService.getDetail(informationId));
+    }
 }
