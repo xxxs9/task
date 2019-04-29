@@ -43,15 +43,4 @@ public class WxUserLoginController {
         wxUser.setNickname(nickname);
         return new ResultBean<WxUserDto>(wxUserLoginService.login(wxUser));
     }
-
-    @RequestMapping(value = "/test.api",method = RequestMethod.GET)
-    @ResponseBody
-    public IResult test(){
-        //返回json至前端的均返回ResultBean或者PageResultBean
-        login("test1","男","http：//");
-        return new ResultBean<String>("接口测试成功");
-
-    }
-
-
 }

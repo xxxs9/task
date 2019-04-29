@@ -5,7 +5,6 @@ package com.gameloft9.demo.controllers.hero;
  */
 
 import com.gameloft9.demo.dataaccess.model.user.HeroDetail;
-import com.gameloft9.demo.dataaccess.model.user.UserInformation;
 import com.gameloft9.demo.mgrframework.annotation.BizOperLog;
 import com.gameloft9.demo.mgrframework.beans.constant.OperType;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;

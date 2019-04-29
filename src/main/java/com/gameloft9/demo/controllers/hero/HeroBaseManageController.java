@@ -5,7 +5,6 @@ package com.gameloft9.demo.controllers.hero;
  */
 
 import com.gameloft9.demo.dataaccess.model.user.HeroBase;
-import com.gameloft9.demo.dataaccess.model.user.WxUser;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
 import com.gameloft9.demo.mgrframework.beans.response.PageResultBean;
 import com.gameloft9.demo.service.api.hero.HeroBaseManageService;

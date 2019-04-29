@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
 
-import java.security.PrivateKey;
-
 /**
  * 爬虫工具类
  */

@@ -43,7 +43,7 @@ public class HeroEquipProcessor implements PageProcessor {
             heroEquip.setRecordId(regexString(jsonStr, "record_id"));
             //出门装
             heroEquip.setPreCz(regexString(jsonStr, "pre_cz"));
-//      //出装思路
+            //出装思路
             heroEquip.setPreExplain(ReptileDataUtil.unicodeToString(regexString(jsonStr, "pre_explain")));
             //中期核心装
             heroEquip.setMidCz(regexString(jsonStr, "mid_cz"));

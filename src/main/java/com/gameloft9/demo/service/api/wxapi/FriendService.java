@@ -1,6 +1,5 @@
 package com.gameloft9.demo.service.api.wxapi;
 
-import com.gameloft9.demo.dataaccess.model.user.UserFriends;
 import com.gameloft9.demo.dataaccess.model.user.WxUser;
 import com.gameloft9.demo.dto.friend.FriendDto;
 

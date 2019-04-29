@@ -30,18 +30,6 @@ public class WxUserDynamicController {
     @Autowired
     private UserQueryService userQueryService;
 
-    @RequestMapping(value = "/test.api",method = RequestMethod.GET)
-    @ResponseBody
-    public IResult test(){
-        //返回json至前端的均返回ResultBean或者PageResultBean
-//        System.out.println("发送动态："+pushDynamic("cs001","动态1"));
-//        System.out.println("提交评论："+pushComment(2,"cs001","shdia"));
-//        System.out.println("删除评论："+delComment("cs001",1));
-
-        return new ResultBean<String>("接口测试成功");
-    }
-
-
     /**
      * 获取好友动态
      * @param uuid

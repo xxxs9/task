@@ -2,7 +2,6 @@ package com.gameloft9.demo.service.api.user;
 
 import com.gameloft9.demo.dataaccess.model.user.UserInformation;
 import com.gameloft9.demo.service.beans.system.InformationAddRequest;
-import com.gameloft9.demo.service.beans.system.UserAddRequest;
 
 import java.util.List;
 

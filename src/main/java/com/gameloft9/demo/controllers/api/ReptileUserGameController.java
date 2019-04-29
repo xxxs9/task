@@ -80,17 +80,4 @@ public class ReptileUserGameController {
         return new ResultBean<String>("9999","参数异常");
 
     }
-
-    /**
-     *
-     * @param serverId
-     * @param reptileId
-     * @return
-     */
-    @RequestMapping(value = "/test.api",method = RequestMethod.GET)
-    @ResponseBody
-    public IResult test(String serverId, String reptileId){
-        //返回json至前端的均返回ResultBean或者PageResultBean
-        return new ResultBean<String>("接口测试成功");
-    }
 }

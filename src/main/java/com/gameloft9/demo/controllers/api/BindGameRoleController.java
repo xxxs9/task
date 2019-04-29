@@ -69,12 +69,4 @@ public class BindGameRoleController {
         return new ResultBean<WxUserDto>(bindGameRoleService.getBase(uuid));
     }
 
-    @RequestMapping(value = "/test.api",method = RequestMethod.GET)
-    @ResponseBody
-    public IResult test(){
-        //返回json至前端的均返回ResultBean或者PageResultBean
-        bindGameRole("bf037e384e03458bbf94a4fae5283071","悲伤的雪糕","电信一");
-        return new ResultBean<String>("接口测试成功");
-    }
-
 }

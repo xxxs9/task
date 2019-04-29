@@ -1,7 +1,6 @@
 package com.gameloft9.demo.webmagic.processor;
 
 import com.gameloft9.demo.dataaccess.model.user.HeroWeekFree;
-import org.apache.ibatis.annotations.Select;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;

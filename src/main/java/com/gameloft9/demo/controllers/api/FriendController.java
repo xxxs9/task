@@ -1,7 +1,6 @@
 package com.gameloft9.demo.controllers.api;
 
 
-import com.gameloft9.demo.dataaccess.model.user.UserFriends;
 import com.gameloft9.demo.dataaccess.model.user.WxUser;
 import com.gameloft9.demo.dto.friend.FriendDto;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
@@ -32,22 +31,22 @@ public class FriendController {
     private FriendService friendService;
 
 
-    @RequestMapping(value = "/test.api",method = RequestMethod.GET)
-    @ResponseBody
-    public IResult test(){
-        //返回json至前端的均返回ResultBean或者PageResultBean
-        System.out.println("发现用户列表："+findUserList("64ddde8049d04be8a76ea2fa85a3db44"));
-        System.out.println("好友列表："+friendList("64ddde8049d04be8a76ea2fa85a3db44"));
-        System.out.println("申请列表："+myApplyList("64ddde8049d04be8a76ea2fa85a3db44"));
-//        System.out.println("发送添加申请："+applyFriend("cs001","64ddde8049d04be8a76ea2fa85a3db44"));
-//        System.out.println("cs申请列表："+myApplyList("cs001"));
-        System.out.println("查看申请列表："+otherApplyList("64ddde8049d04be8a76ea2fa85a3db44"));
-//        applyFriend("64ddde8049d04be8a76ea2fa85a3db44","1232");
-//        operationApply("cs001",2,2);
-//        delApply("cs001",1);
-//        delFriend("64ddde8049d04be8a76ea2fa85a3db44",1,"cs001");
-        return new ResultBean<String>("接口测试成功");
-    }
+//    @RequestMapping(value = "/test.api",method = RequestMethod.GET)
+//    @ResponseBody
+//    public IResult test(){
+//        //返回json至前端的均返回ResultBean或者PageResultBean
+//        System.out.println("发现用户列表："+findUserList("64ddde8049d04be8a76ea2fa85a3db44"));
+//        System.out.println("好友列表："+friendList("64ddde8049d04be8a76ea2fa85a3db44"));
+//        System.out.println("申请列表："+myApplyList("64ddde8049d04be8a76ea2fa85a3db44"));
+////        System.out.println("发送添加申请："+applyFriend("cs001","64ddde8049d04be8a76ea2fa85a3db44"));
+////        System.out.println("cs申请列表："+myApplyList("cs001"));
+//        System.out.println("查看申请列表："+otherApplyList("64ddde8049d04be8a76ea2fa85a3db44"));
+////        applyFriend("64ddde8049d04be8a76ea2fa85a3db44","1232");
+////        operationApply("cs001",2,2);
+////        delApply("cs001",1);
+////        delFriend("64ddde8049d04be8a76ea2fa85a3db44",1,"cs001");
+//        return new ResultBean<String>("接口测试成功");
+//    }
 
 
     /**

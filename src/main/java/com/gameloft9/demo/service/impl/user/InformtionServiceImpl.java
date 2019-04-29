@@ -1,7 +1,6 @@
 package com.gameloft9.demo.service.impl.user;
 
 import com.gameloft9.demo.dataaccess.dao.user.UserInformationMapper;
-
 import com.gameloft9.demo.dataaccess.model.user.UserInformation;
 import com.gameloft9.demo.mgrframework.utils.CheckUtil;
 import com.gameloft9.demo.service.api.user.InformtionService;
@@ -12,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 import java.util.List;

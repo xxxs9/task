@@ -1,7 +1,6 @@
 package com.gameloft9.demo.controllers.user;
 
 import com.gameloft9.demo.dataaccess.model.user.UserComment;
-import com.gameloft9.demo.dataaccess.model.user.UserDynamic;
 import com.gameloft9.demo.mgrframework.annotation.BizOperLog;
 import com.gameloft9.demo.mgrframework.beans.constant.OperType;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
